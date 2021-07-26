@@ -11,6 +11,6 @@ class Customer extends Model
 
     public function point()
     {
-        return $this->hasOne(Customer::class);
+        return $this->hasOne(Point::class);
     }
 }

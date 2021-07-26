@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDeliveryLogsTable extends Migration
+class CreateDeliveryRoutesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateDeliveryLogsTable extends Migration
      */
     public function up()
     {
-        Schema::create('delivery_logs', function (Blueprint $table) {
+        Schema::create('delivery_routes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('route_id')->constrained('routes');
-            $table->date('date');
+            $table->timestamps();
         });
     }
 
@@ -28,6 +27,6 @@ class CreateDeliveryLogsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('delivery_logs');
+        Schema::dropIfExists('delivery_routes');
     }
 }

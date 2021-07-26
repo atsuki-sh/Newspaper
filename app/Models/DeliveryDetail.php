@@ -9,9 +9,9 @@ class DeliveryDetail extends Model
 {
     use HasFactory;
 
-    public function delivery_log()
+    public function delivery()
     {
-        return $this->belongsTo(DeliveryLog::class);
+        return $this->belongsTo(Delivery::class);
     }
 
     public function point()

@@ -19,6 +19,7 @@ class CreateCustomersTable extends Migration
             $table->string('name');
             $table->string('tel', 11);
             $table->integer('copy');
+            $table->timestamps();
         });
     }
 

@@ -11,9 +11,9 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    public function delivery_log()
+    public function delivery()
     {
-        return $this->hasOne(DeliveryLog::class);
+        return $this->hasOne(Delivery::class);
     }
 
     /**

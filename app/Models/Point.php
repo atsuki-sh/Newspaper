@@ -14,9 +14,9 @@ class Point extends Model
         return $this->hasOne(Customer::class);
     }
 
-    public function route()
+    public function delivery_route()
     {
-        return $this->belongsTo(Route::class);
+        return $this->belongsTo(DeliveryRoute::class);
     }
 
     public function delivery_detail()
