@@ -8,4 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class DeliveryLog extends Model
 {
     use HasFactory;
+
+    public function route()
+    {
+        return $this->hasOne(Route::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function delivery_detail()
+    {
+        return $this->hasMany(DeliveryDetail::class);
+    }
 }

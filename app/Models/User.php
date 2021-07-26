@@ -11,6 +11,11 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    public function delivery_log()
+    {
+        return $this->hasOne(DeliveryLog::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *
