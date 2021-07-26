@@ -9,9 +9,9 @@ class Delivery extends Model
 {
     use HasFactory;
 
-    public function route()
+    public function delivery_route()
     {
-        return $this->hasOne(Route::class);
+        return $this->hasOne(DeliveryRoute::class);
     }
 
     public function user()

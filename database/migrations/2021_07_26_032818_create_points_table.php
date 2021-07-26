@@ -15,7 +15,7 @@ class CreatePointsTable extends Migration
     {
         Schema::create('points', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('delivery_route_id')->constrained('delivery_routes');
             $table->double('north_lat', 20, 15);
             $table->double('east_lon', 20, 15);
             $table->integer('rank');

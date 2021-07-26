@@ -14,8 +14,8 @@ class DeliveryRoute extends Model
         return $this->hasMany(Point::class);
     }
 
-    public function delivery_log()
+    public function delivery()
     {
-        return $this->hasOne(DeliveryLog::class);
+        return $this->hasOne(Delivery::class);
     }
 }
