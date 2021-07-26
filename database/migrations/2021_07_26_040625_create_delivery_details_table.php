@@ -15,7 +15,9 @@ class CreateDeliveryDetailsTable extends Migration
     {
         Schema::create('delivery_details', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignId('delivery_log_id')->constrained('delivery_logs');
+            $table->foreignId('point_id')->constrained('points');
+            $table->dateTime('delivered_at');
         });
     }
 

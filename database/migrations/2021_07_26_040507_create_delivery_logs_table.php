@@ -15,7 +15,9 @@ class CreateDeliveryLogsTable extends Migration
     {
         Schema::create('delivery_logs', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('route_id')->constrained('routes');
+            $table->date('date');
         });
     }
 
