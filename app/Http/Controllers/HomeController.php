@@ -24,10 +24,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-//        $users = User::all();
-//
-//        return view('home', ['users' => $users]);
-
         return view('home');
+    }
+
+    public function user()
+    {
+        $users = User::all();
+
+        return view('User/user', ['users' => $users]);
     }
 }
