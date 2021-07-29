@@ -22,7 +22,7 @@ Route::get('/test', [TestController::class, 'index']);
 
 Auth::routes();
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// ホーム画面
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+// ユーザー管理画面
 Route::get('/user', [App\Http\Controllers\HomeController::class, 'user']);
