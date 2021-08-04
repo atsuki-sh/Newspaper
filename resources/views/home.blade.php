@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'ホーム')
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -21,7 +23,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-5 mb-4">
             <div class="card text-center">
                 <div class="card-body">
                     <h5 class="card-title">配達管理</h5>
@@ -30,7 +32,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-5 mb-4">
             <div class="card text-center">
                 <div class="card-body">
                     <h5 class="card-title">ポイント管理</h5>
