@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +26,7 @@ Auth::routes();
 // ホーム画面
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // ユーザー管理画面
-Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->name('user_index');
+Route::get('/user', [UserController::class, 'index'])->name('user_index');
+Route::post('/user/create', [UserController::class, 'create'])->name('user_create');
+Route::post('/user/update', [UserController::class, 'update'])->name('user_update');
+Route::post('/user/delete', [UserController::class, 'delete'])->name('user_delete');
