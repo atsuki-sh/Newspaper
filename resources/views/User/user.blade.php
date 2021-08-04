@@ -38,7 +38,8 @@
                             <span id="x" aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" data-id="">
+                        <div class="alert alert-danger d-none" id="error-messages"></div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1">名前</span>
@@ -69,7 +70,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" id="close" data-dismiss="modal">閉じる</button>
-                        <button type="button" class="btn btn-primary" id="submit" data-dismiss="modal">保存</button>
+                        <button type="button" class="btn btn-primary" id="submit">保存</button>
                     </div>
                 </div>
             </div>
