@@ -26,11 +26,4 @@ class HomeController extends Controller
     {
         return view('home');
     }
-
-    public function user()
-    {
-        $users = User::all();
-
-        return view('User/user', ['users' => $users]);
-    }
 }
