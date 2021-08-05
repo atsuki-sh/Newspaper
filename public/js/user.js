@@ -38,13 +38,32 @@ $("#exampleModal").on('hidden.bs.modal', function () {
 
 // 新規・更新の処理
 $('#submit').click(function () {
+    // 送信するデータをpost_dataにまとめる
+    const post_data = {};
+    $('.post-data').each(function () {
+        const val = $(this).val();
+        const name = $(this).attr('name');
+        const type = $(this).data('type');
+
+        switch (type) {
+            case 'textarea':
+                break;
+            default:
+                post_data[name] = val;
+                break;
+        }
+    });
+    console.log(post_data);
+
+    const id = $('.modal-body').data('id');
+    post_data['id'] = id;
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
 
-    const id = $('.modal-body').data('id');
     // idが0ならcreate
     if (id === 0) {
         $.ajax({
@@ -52,13 +71,7 @@ $('#submit').click(function () {
             type: 'post',
             //ここでデータの送信先URLを指定します。
             url: 'user/create',
-            data: {
-                name: $('#input-name').val(),
-                email: $('#input-email').val(),
-                password: $('#input-password').val(),
-                admin: $('#input-admin').val(),
-            },
-
+            data: post_data,
         })
             //通信が成功したとき
             .then((res) => {
@@ -74,9 +87,10 @@ $('#submit').click(function () {
                 $('#error-messages').removeClass('d-none');
 
                 // バリデーションのエラーメッセージを出力
+                // いったんエラーメッセージとフォームをクリア
                 $('#error-messages').html('');
                 $('.form-control').removeClass('is-invalid');
-
+                // エラーメッセージとフォームを表示
                 Object.keys(xhr.responseJSON.errors).forEach(function (key) {
                     const message = xhr.responseJSON.errors[key];
                     const messagae_html = `<div>${message}</div>`;
@@ -95,14 +109,7 @@ $('#submit').click(function () {
             type: 'post',
             //ここでデータの送信先URLを指定します。
             url: 'user/update',
-            data: {
-                id: id,
-                name: $('#input-name').val(),
-                email: $('#input-email').val(),
-                password: $('#input-password').val(),
-                admin: $('#input-admin').val(),
-            },
-
+            data: post_data,
         })
             //通信が成功したとき
             .then((res) => {
@@ -128,29 +135,13 @@ $('#submit').click(function () {
                 });
             })
     }
-
-    // 送信するデータをまとめるやつ
-    // var post_data = [];
-    // $('.post_data').each(function () {
-    //     var val = $(this).val();
-    //     var name = $(this).attr('name');
-    //     var type = $(this).data('type');
-    //
-    //     switch (type) {
-    //         case 'textarea':
-    //             break;
-    //         default:
-    //             post_data[name] = val;
-    //             break;
-    //     }
-    // });
-
 });
 
 // 削除の処理
 $('.delete').click(function () {
     // confirmで「OK」が押されたら、データを削除する
     const name = $(this).parent().data('name');
+
     if(confirm(`ユーザー「${name}」 を削除しますか？`)) {
         $.ajaxSetup({
             headers: {
