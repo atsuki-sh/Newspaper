@@ -11,9 +11,20 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $all_users = User::all();
+        $admin_users = [];
+        $common_users = [];
 
-        return view('User/user', ['users' => $users]);
+        // 管理者ユーザーと一般ユーザーで分ける
+        foreach ($all_users as $user) {
+            if ($user->admin === "0") {
+                array_push($common_users, $user);
+            } else {
+                array_push($admin_users, $user);
+            }
+        }
+
+        return view('User/user', ['common_users' => $common_users, 'admin_users' => $admin_users]);
     }
 
     public function create(UserRequest $request)
