@@ -149,25 +149,29 @@ $('#submit').click(function () {
 
 // 削除の処理
 $('.delete').click(function () {
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-    $.ajax({
-        //POST通信
-        type: 'post',
-        //ここでデータの送信先URLを指定します。
-        url: 'user/delete',
-        data: {id: $(this).parent().data('id')}
-    })
-        //通信が成功したとき
-        .then((res) => {
-            console.log(res);
-        })
-        //通信が失敗したとき
-        .fail((error) => {
-            console.log(error.statusText);
+    // confirmで「OK」が押されたら、データを削除する
+    const name = $(this).parent().data('name');
+    if(confirm(`ユーザー「${name}」 を削除しますか？`)) {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
         });
+
+        $.ajax({
+            //POST通信
+            type: 'post',
+            //ここでデータの送信先URLを指定します。
+            url: 'user/delete',
+            data: {id: $(this).parent().data('id')}
+        })
+            //通信が成功したとき
+            .then((res) => {
+                console.log(res);
+            })
+            //通信が失敗したとき
+            .fail((error) => {
+                console.log(error.statusText);
+            });
+    }
 });
