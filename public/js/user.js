@@ -7,7 +7,7 @@ $('.change').click(function () {
 
     $('#input-name').val(name);
     $('#input-email').val(email);
-    $('#input-pass').val(password);
+    $('#input-password').val(password);
     $('#input-admin').val(admin);
 
     // modal-bodyのidを0にセット
@@ -20,16 +20,20 @@ $('#new').click(function () {
     // 値をクリア
     $('#input-name').val('');
     $('#input-email').val('');
-    $('#input-pass').val('');
+    $('#input-password').val('');
     $('#input-admin').val(0);
 
     // modal-bodyのidを0にセット
     $('.modal-body').data('id', 0);
 });
 
-// モーダルが閉じたらエラーメッセージも閉じる
+// モーダルが閉じた時の処理
 $("#exampleModal").on('hidden.bs.modal', function () {
+    // エラーメッセージを閉じる
     $('#error-messages').addClass('d-none');
+
+    // フォームのinvalidを消す
+    $('.form-control').removeClass('is-invalid');
 });
 
 // 新規・更新の処理
@@ -51,7 +55,7 @@ $('#submit').click(function () {
             data: {
                 name: $('#input-name').val(),
                 email: $('#input-email').val(),
-                password: $('#input-pass').val(),
+                password: $('#input-password').val(),
                 admin: $('#input-admin').val(),
             },
 
@@ -71,10 +75,15 @@ $('#submit').click(function () {
 
                 // バリデーションのエラーメッセージを出力
                 $('#error-messages').html('');
+                $('.form-control').removeClass('is-invalid');
+
                 Object.keys(xhr.responseJSON.errors).forEach(function (key) {
                     const message = xhr.responseJSON.errors[key];
                     const messagae_html = `<div>${message}</div>`;
                     $('#error-messages').append(messagae_html);
+
+                    // エラーの出たinputをinvalid表示
+                    $(`#input-${key}`).addClass('is-invalid');
                 });
             })
     }
@@ -90,7 +99,7 @@ $('#submit').click(function () {
                 id: id,
                 name: $('#input-name').val(),
                 email: $('#input-email').val(),
-                password: $('#input-pass').val(),
+                password: $('#input-password').val(),
                 admin: $('#input-admin').val(),
             },
 
@@ -113,6 +122,9 @@ $('#submit').click(function () {
                     const message = xhr.responseJSON.errors[key];
                     const messagae_html = `<div>${message}</div>`;
                     $('#error-messages').append(messagae_html);
+
+                    // エラーの出たinputをinvalid表示
+                    $(`#input-${key}`).addClass('is-invalid');
                 });
             })
     }

@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row mb-3 justify-content-center">
             <div class="col-md-8 d-flex justify-content-between align-items-center">
-                <h3>ユーザー管理画面</h3>
+                <h3 class="mb-0">ユーザー管理画面</h3>
                 <button type="button" class="btn btn-primary btn-lg" id="new" data-toggle="modal" data-target="#exampleModal">新規登録</button>
             </div>
         </div>
@@ -56,7 +56,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon3">パスワード</span>
                             </div>
-                            <input type="password" class="form-control" id="input-pass" aria-label="Password" aria-describedby="basic-addon3">
+                            <input type="password" class="form-control" id="input-password" aria-label="Password" aria-describedby="basic-addon3">
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
@@ -69,8 +69,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" id="close" data-dismiss="modal">閉じる</button>
                         <button type="button" class="btn btn-primary" id="submit">保存</button>
+                        <button type="button" class="btn btn-secondary" id="close" data-dismiss="modal">閉じる</button>
                     </div>
                 </div>
             </div>

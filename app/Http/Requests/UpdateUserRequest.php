@@ -46,8 +46,6 @@ class UpdateUserRequest extends FormRequest
      */
     public function rules()
     {
-        Log::debug($this->input('id'));
-
         return [
             'name' => 'required',
             'email' => ['required', 'email', Rule::unique('users')->ignore($this->input('id'))],
