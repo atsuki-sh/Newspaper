@@ -56,7 +56,6 @@ $('#submit').click(function () {
 
     const id = $('.modal-body').data('id');
     post_data['id'] = id;
-    console.log(post_data);
 
     $.ajaxSetup({
         headers: {
@@ -139,7 +138,7 @@ $('#submit').click(function () {
 });
 
 // 削除の処理
-$('.delete').click(function () {
+$(document).on('click', '.delete', function () {
     // confirmで「OK」が押されたら、データを削除する
     const name = $(this).parent().data('name');
 

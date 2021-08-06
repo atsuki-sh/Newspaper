@@ -6,6 +6,7 @@ use App\Http\Requests\UserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class UserController extends Controller
 {
@@ -17,6 +18,8 @@ class UserController extends Controller
 
         // 管理者ユーザーと一般ユーザーで分ける
         foreach ($all_users as $user) {
+            $user->password = Crypt::decrypt($user->password);
+
             if ($user->admin === "0") {
                 array_push($common_users, $user);
             } else {
@@ -33,7 +36,7 @@ class UserController extends Controller
 
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = bcrypt($request->password);
+        $user->password = Crypt::encrypt($request->password);
         $user->admin = $request->admin;
 
         $user->save();
@@ -44,6 +47,8 @@ class UserController extends Controller
 
         // 管理者ユーザーと一般ユーザーで分ける
         foreach ($all_users as $user) {
+            $user->password = Crypt::decrypt($user->password);
+
             if ($user->admin === "0") {
                 array_push($common_users, $user);
             } else {
@@ -60,7 +65,7 @@ class UserController extends Controller
 
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = bcrypt($request->password);
+        $user->password = Crypt::encrypt($request->password);
         $user->admin = $request->admin;
 
         $user->save();
@@ -71,6 +76,8 @@ class UserController extends Controller
 
         // 管理者ユーザーと一般ユーザーで分ける
         foreach ($all_users as $user) {
+            $user->password = Crypt::decrypt($user->password);
+
             if ($user->admin === "0") {
                 array_push($common_users, $user);
             } else {
@@ -91,6 +98,8 @@ class UserController extends Controller
 
         // 管理者ユーザーと一般ユーザーで分ける
         foreach ($all_users as $user) {
+            $user->password = Crypt::decrypt($user->password);
+
             if ($user->admin === "0") {
                 array_push($common_users, $user);
             } else {

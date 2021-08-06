@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Crypt;
 
 class UserTableSeeder extends Seeder
 {
@@ -19,7 +20,7 @@ class UserTableSeeder extends Seeder
             'id' => 1,
             'name' => 'atsuki',
             'admin' => false,
-            'password' => bcrypt('bluegreen'),
+            'password' => Crypt::encrypt('bluegreen'),
             'email' => 'blue@example.com',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
@@ -30,7 +31,7 @@ class UserTableSeeder extends Seeder
             'name' => 'shinoto',
             'admin' => false,
             'email' => 'green@example.com',
-            'password' => bcrypt('greenblue'),
+            'password' => Crypt::encrypt('greenblue'),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
