@@ -10,16 +10,14 @@ use Illuminate\Support\Facades\Crypt;
 
 class UserController extends Controller
 {
-    public function index()
+    // 管理者ユーザーと一般ユーザーで分けるためのメソッド
+    public function divideUsers()
     {
         $all_users = User::all();
-        $admin_users = [];
         $common_users = [];
+        $admin_users = [];
 
-        // 管理者ユーザーと一般ユーザーで分ける
         foreach ($all_users as $user) {
-            $user->password = Crypt::decrypt($user->password);
-
             if ($user->admin === "0") {
                 array_push($common_users, $user);
             } else {
@@ -27,7 +25,15 @@ class UserController extends Controller
             }
         }
 
-        return view('User/user', ['common_users' => $common_users, 'admin_users' => $admin_users]);
+        // [0]に一般、[1]に管理者のユーザーを返す
+        return [$common_users, $admin_users];
+    }
+
+    public function index()
+    {
+        $divided_users = $this->divideUsers();
+
+        return view('User/user', ['common_users' => $divided_users[0], 'admin_users' => $divided_users[1]]);
     }
 
     public function create(UserRequest $request)
@@ -41,22 +47,9 @@ class UserController extends Controller
 
         $user->save();
 
-        $all_users = User::all();
-        $admin_users = [];
-        $common_users = [];
+        $divided_users = $this->divideUsers();
 
-        // 管理者ユーザーと一般ユーザーで分ける
-        foreach ($all_users as $user) {
-            $user->password = Crypt::decrypt($user->password);
-
-            if ($user->admin === "0") {
-                array_push($common_users, $user);
-            } else {
-                array_push($admin_users, $user);
-            }
-        }
-
-        return view('User/user_list_item', ['common_users' => $common_users, 'admin_users' => $admin_users]);
+        return view('User/user_list_item', ['common_users' => $divided_users[0], 'admin_users' => $divided_users[1]]);
     }
 
     public function update(UpdateUserRequest $request)
@@ -70,43 +63,17 @@ class UserController extends Controller
 
         $user->save();
 
-        $all_users = User::all();
-        $admin_users = [];
-        $common_users = [];
+        $divided_users = $this->divideUsers();
 
-        // 管理者ユーザーと一般ユーザーで分ける
-        foreach ($all_users as $user) {
-            $user->password = Crypt::decrypt($user->password);
-
-            if ($user->admin === "0") {
-                array_push($common_users, $user);
-            } else {
-                array_push($admin_users, $user);
-            }
-        }
-
-        return view('User/user_list_item', ['common_users' => $common_users, 'admin_users' => $admin_users]);
+        return view('User/user_list_item', ['common_users' => $divided_users[0], 'admin_users' => $divided_users[1]]);
     }
 
     public function delete(Request $request)
     {
         User::find($request->id)->delete();
 
-        $all_users = User::all();
-        $admin_users = [];
-        $common_users = [];
+        $divided_users = $this->divideUsers();
 
-        // 管理者ユーザーと一般ユーザーで分ける
-        foreach ($all_users as $user) {
-            $user->password = Crypt::decrypt($user->password);
-
-            if ($user->admin === "0") {
-                array_push($common_users, $user);
-            } else {
-                array_push($admin_users, $user);
-            }
-        }
-
-        return view('User/user_list_item', ['common_users' => $common_users, 'admin_users' => $admin_users]);
+        return view('User/user_list_item', ['common_users' => $divided_users[0], 'admin_users' => $divided_users[1]]);
     }
 }
