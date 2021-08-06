@@ -38,9 +38,20 @@ class UserController extends Controller
 
         $user->save();
 
-        $users = User::all();
+        $all_users = User::all();
+        $admin_users = [];
+        $common_users = [];
 
-        return $users;
+        // 管理者ユーザーと一般ユーザーで分ける
+        foreach ($all_users as $user) {
+            if ($user->admin === "0") {
+                array_push($common_users, $user);
+            } else {
+                array_push($admin_users, $user);
+            }
+        }
+
+        return view('User/user_list_item', ['common_users' => $common_users, 'admin_users' => $admin_users]);
     }
 
     public function update(UpdateUserRequest $request)
@@ -54,17 +65,39 @@ class UserController extends Controller
 
         $user->save();
 
-        $users = User::all();
+        $all_users = User::all();
+        $admin_users = [];
+        $common_users = [];
 
-        return $users;
+        // 管理者ユーザーと一般ユーザーで分ける
+        foreach ($all_users as $user) {
+            if ($user->admin === "0") {
+                array_push($common_users, $user);
+            } else {
+                array_push($admin_users, $user);
+            }
+        }
+
+        return view('User/user_list_item', ['common_users' => $common_users, 'admin_users' => $admin_users]);
     }
 
     public function delete(Request $request)
     {
         User::find($request->id)->delete();
 
-        $users = User::all();
+        $all_users = User::all();
+        $admin_users = [];
+        $common_users = [];
 
-        return $users;
+        // 管理者ユーザーと一般ユーザーで分ける
+        foreach ($all_users as $user) {
+            if ($user->admin === "0") {
+                array_push($common_users, $user);
+            } else {
+                array_push($admin_users, $user);
+            }
+        }
+
+        return view('User/user_list_item', ['common_users' => $common_users, 'admin_users' => $admin_users]);
     }
 }

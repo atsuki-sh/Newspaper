@@ -1,5 +1,5 @@
 // 変更を押されたとき
-$('.change').click(function () {
+$(document).on( 'click', '.change', function () {
     const name = $(this).parent().data('name');
     const email = $(this).parent().data('email');
     const password = $(this).parent().data('password');
@@ -10,7 +10,7 @@ $('.change').click(function () {
     $('#input-password').val(password);
     $('#input-admin').val(admin);
 
-    // modal-bodyのidを0にセット
+    // modal-bodyのidをセット
     const id = $(this).parent().data('id')
     $('.modal-body').data('id', id);
 });
@@ -28,7 +28,7 @@ $('#new').click(function () {
 });
 
 // モーダルが閉じた時の処理
-$("#exampleModal").on('hidden.bs.modal', function () {
+$('#exampleModal').on('hidden.bs.modal', function () {
     // エラーメッセージを閉じる
     $('#error-messages').addClass('d-none');
 
@@ -53,10 +53,10 @@ $('#submit').click(function () {
                 break;
         }
     });
-    console.log(post_data);
 
     const id = $('.modal-body').data('id');
     post_data['id'] = id;
+    console.log(post_data);
 
     $.ajaxSetup({
         headers: {
@@ -75,8 +75,8 @@ $('#submit').click(function () {
         })
             //通信が成功したとき
             .then((res) => {
-                console.log(res);
                 $('#exampleModal').modal('hide');
+                $('#user-list').html(res);
             })
 
             //通信が失敗したとき
@@ -114,6 +114,7 @@ $('#submit').click(function () {
             //通信が成功したとき
             .then((res) => {
                 $('#exampleModal').modal('hide');
+                $('#user-list').html(res);
             })
 
             //通信が失敗したとき
@@ -158,7 +159,7 @@ $('.delete').click(function () {
         })
             //通信が成功したとき
             .then((res) => {
-                console.log(res);
+                $('#user-list').html(res);
             })
             //通信が失敗したとき
             .fail((error) => {
