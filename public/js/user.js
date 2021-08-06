@@ -58,7 +58,7 @@ $('#submit').click(function () {
 
     // 新規なら0、変更なら対象データのidを.modal-bodyに埋め込む
     const id = $('.modal-body').data('id');
-    post_data['id'] = id;
+    post_data['item[id]'] = id;
 
     $.ajaxSetup({
         headers: {
@@ -96,7 +96,7 @@ $('#submit').click(function () {
                     $('#error-messages').append(messagae_html);
 
                     // エラーの出たinputをinvalid表示
-                    $(`#input-${key}`).addClass('is-invalid');
+                    $(`[name='${key}']`).addClass('is-invalid');
                 });
             })
 
@@ -131,7 +131,7 @@ $('#submit').click(function () {
                     $('#error-messages').append(messagae_html);
 
                     // エラーの出たinputをinvalid表示
-                    $(`#input-${key}`).addClass('is-invalid');
+                    $(`[name='${key}']`).addClass('is-invalid');
                 });
             })
 

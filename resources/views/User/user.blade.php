@@ -56,25 +56,25 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1">名前</span>
                             </div>
-                            <input type="text" class="form-control post-data" id="input-name" name="name" aria-label="Username" aria-describedby="basic-addon1">
+                            <input type="text" class="form-control post-data" id="input-name" name="item[name]" aria-label="Username" aria-describedby="basic-addon1">
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1">メールアドレス</span>
                             </div>
-                            <input type="text" class="form-control post-data" id="input-email" name="email" aria-label="MailAddress" aria-describedby="basic-addon2">
+                            <input type="text" class="form-control post-data" id="input-email" name="item[email]" aria-label="MailAddress" aria-describedby="basic-addon2">
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon3">パスワード</span>
                             </div>
-                            <input type="password" class="form-control post-data" id="input-password" name="password" aria-label="Password" aria-describedby="basic-addon3">
+                            <input type="password" class="form-control post-data" id="input-password" name="item[password]" aria-label="Password" aria-describedby="basic-addon3">
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="input-admin">権限</label>
                             </div>
-                            <select class="custom-select post-data" id="input-admin" name="admin">
+                            <select class="custom-select post-data form-control" id="input-admin" name="item[admin]">
                                 <option value="0" selected>一般</option>
                                 <option value="1">管理者</option>
                             </select>

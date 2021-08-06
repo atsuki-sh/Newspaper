@@ -41,11 +41,20 @@ class UserController extends Controller
     public function create(UserRequest $request)
     {
         $user = new User();
+        // データを一括作成する
+        foreach ($request->input('item') as $key => $data) {
+            if ($key === 'password') {
+                // パスワードは暗号化して保存
+                $user->$key = Crypt::encrypt($data);
+            } else {
+                $user->$key = $data;
+            }
+        }
 
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = Crypt::encrypt($request->password);
-        $user->admin = $request->admin;
+//        $user->name = $request->name;
+//        $user->email = $request->email;
+//        $user->password = Crypt::encrypt($request->password);
+//        $user->admin = $request->admin;
 
         $user->save();
 
@@ -56,15 +65,26 @@ class UserController extends Controller
 
     public function update(UpdateUserRequest $request)
     {
-        dd($request);
-        $user = User::find($request->id);
-
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = Crypt::encrypt($request->password);
-        $user->admin = $request->admin;
+        $user = User::find($request->input('item.id'));
+        // foreachでデータを一括更新する
+        foreach ($request->input('item') as $key => $data) {
+            if ($key === 'password') {
+                // パスワードは暗号化して保存
+                $user->$key = Crypt::encrypt($data);
+            } else {
+                $user->$key = $data;
+            }
+        }
 
         $user->save();
+//        dd($request->input('item'));
+
+//        $user->name = $request->name;
+//        $user->email = $request->email;
+//        $user->password = Crypt::encrypt($request->password);
+//        $user->admin = $request->admin;
+//
+//        $user->save();
 
         $divided_users = $this->divideUsers();
 

@@ -6,7 +6,6 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Log;
 
 class UpdateUserRequest extends FormRequest
 {
@@ -47,17 +46,18 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'email' => ['required', 'email', Rule::unique('users')->ignore($this->input('id'))],
-            'password' => 'required',
-            'admin' => 'required',
+            'item.name' => 'required',
+            'item.email' => ['required', 'email', Rule::unique('users', 'email')->ignore($this->input('item.id'))],
+            'item.password' => 'required',
         ];
     }
 
     public function attributes()
     {
         return [
-            'name' => '名前',
+            'item.name.' => '名前',
+            'item.email' => 'メールアドレス',
+            'item.password' => 'パスワード',
         ];
     }
 }
