@@ -1,35 +1,37 @@
 // 変更を押されたとき
 $(document).on( 'click', '.change', function () {
+    // .userにセットされているデータを取得
     const name = $(this).parent().data('name');
     const email = $(this).parent().data('email');
     const password = $(this).parent().data('password');
     const admin = $(this).parent().data('admin');
 
+    // モーダルにデータを貼る
     $('#input-name').val(name);
     $('#input-email').val(email);
     $('#input-password').val(password);
     $('#input-admin').val(admin);
 
-    // modal-bodyのidをセット
+    // modal-bodyにidをセット
     const id = $(this).parent().data('id')
     $('.modal-body').data('id', id);
 });
 
 // 新規登録ボタンを押されたとき
 $('#new').click(function () {
-    // 値をクリア
+    // モーダルの値をクリア
     $('#input-name').val('');
     $('#input-email').val('');
     $('#input-password').val('');
     $('#input-admin').val(0);
 
-    // modal-bodyのidを0にセット
+    // modal-bodyのidに0をセット
     $('.modal-body').data('id', 0);
 });
 
 // モーダルが閉じた時の処理
 $('#exampleModal').on('hidden.bs.modal', function () {
-    // エラーメッセージを閉じる
+    // エラーメッセージエリアを非表示
     $('#error-messages').addClass('d-none');
 
     // フォームのinvalidを消す
@@ -54,6 +56,7 @@ $('#submit').click(function () {
         }
     });
 
+    // 新規なら0、変更なら対象データのidを.modal-bodyに埋め込む
     const id = $('.modal-body').data('id');
     post_data['id'] = id;
 
@@ -66,31 +69,28 @@ $('#submit').click(function () {
     // idが0ならcreate
     if (id === 0) {
         $.ajax({
-            //POST通信
             type: 'post',
-            //ここでデータの送信先URLを指定します。
             url: 'user/create',
             data: post_data,
         })
-            //通信が成功したとき
             .then((res) => {
+                // モーダルを閉じて一覧を更新
                 $('#exampleModal').modal('hide');
                 $('#user-list').html(res);
             })
-
-            //通信が失敗したとき
             .fail((xhr, textStatus, errorThrow) => {
                 console.log(xhr.responseJSON.errors);
                 console.log(errorThrow);
 
+                // エラーメッセージエリアを表示
                 $('#error-messages').removeClass('d-none');
 
-                // バリデーションのエラーメッセージを出力
                 // いったんエラーメッセージとフォームをクリア
                 $('#error-messages').html('');
                 $('.form-control').removeClass('is-invalid');
-                // エラーメッセージとフォームを表示
+
                 Object.keys(xhr.responseJSON.errors).forEach(function (key) {
+                    // エラーメッセージを表示
                     const message = xhr.responseJSON.errors[key];
                     const messagae_html = `<div>${message}</div>`;
                     $('#error-messages').append(messagae_html);
@@ -99,33 +99,33 @@ $('#submit').click(function () {
                     $(`#input-${key}`).addClass('is-invalid');
                 });
             })
+
     }
 
     // idが0でないならupdate
     else {
         $.ajax({
-            //POST通信
             type: 'post',
-            //ここでデータの送信先URLを指定します。
             url: 'user/update',
             data: post_data,
         })
-            //通信が成功したとき
             .then((res) => {
                 $('#exampleModal').modal('hide');
                 $('#user-list').html(res);
             })
-
-            //通信が失敗したとき
             .fail((xhr, textStatus, errorThrow) => {
                 console.log(xhr.responseJSON.errors);
                 console.log(errorThrow);
 
+                // エラーメッセージエリアを表示
                 $('#error-messages').removeClass('d-none');
 
-                // バリデーションのエラーメッセージを出力
+                // いったんエラーメッセージとフォームをクリア
                 $('#error-messages').html('');
+                $('.form-control').removeClass('is-invalid');
+
                 Object.keys(xhr.responseJSON.errors).forEach(function (key) {
+                    // エラーメッセージを表示
                     const message = xhr.responseJSON.errors[key];
                     const messagae_html = `<div>${message}</div>`;
                     $('#error-messages').append(messagae_html);
@@ -134,6 +134,7 @@ $('#submit').click(function () {
                     $(`#input-${key}`).addClass('is-invalid');
                 });
             })
+
     }
 });
 
@@ -150,19 +151,16 @@ $(document).on('click', '.delete', function () {
         });
 
         $.ajax({
-            //POST通信
             type: 'post',
-            //ここでデータの送信先URLを指定します。
             url: 'user/delete',
             data: {id: $(this).parent().data('id')}
         })
-            //通信が成功したとき
             .then((res) => {
                 $('#user-list').html(res);
             })
-            //通信が失敗したとき
             .fail((error) => {
                 console.log(error.statusText);
             });
+
     }
 });

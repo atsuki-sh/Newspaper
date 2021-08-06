@@ -18,6 +18,8 @@ class UserController extends Controller
         $admin_users = [];
 
         foreach ($all_users as $user) {
+            $user->password = Crypt::decrypt($user->password);
+
             if ($user->admin === "0") {
                 array_push($common_users, $user);
             } else {
@@ -54,6 +56,7 @@ class UserController extends Controller
 
     public function update(UpdateUserRequest $request)
     {
+        dd($request);
         $user = User::find($request->id);
 
         $user->name = $request->name;
