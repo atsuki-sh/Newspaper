@@ -75,8 +75,8 @@
                         </div>
                         <div class="input-group mb-3">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="defaultCheck1" value="" style="transform:scale(1.5);">
-                                <label class="form-check-label" for="defaultCheck1">
+                                <input class="form-check-input" type="checkbox" id="checkbox-password" style="transform:scale(1.5);">
+                                <label class="form-check-label" for="checkbox-password">
                                     パスワードを変更する
                                 </label>
                             </div>
@@ -85,13 +85,13 @@
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="input-password">パスワード</label>
                             </div>
-                            <input type="password" class="form-control post-data" id="input-password" name="item[password]" aria-label="Password" disabled>
+                            <input type="password" class="form-control post-data passwords" id="input-password" name="item[password]" aria-label="Password" disabled>
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="input-password-confirm">パスワード（確認用）</label>
                             </div>
-                            <input type="password" class="form-control post-data" id="input-password-confirm" name="item[password_confirmation]" aria-label="Password_confirmation" disabled>
+                            <input type="password" class="form-control post-data passwords" id="input-password-confirm" name="item[password_confirmation]" aria-label="Password_confirmation" disabled>
                         </div>
                     </div>
                     <div class="modal-footer">

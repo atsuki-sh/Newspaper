@@ -35,7 +35,20 @@ $('#exampleModal').on('hidden.bs.modal', function () {
 
     // フォームのinvalidを消す
     $('.form-control').removeClass('is-invalid');
+
+    // チェックボックスをuncheckedにし、パスワードフォームをdisabledに
+    $('#checkbox-password').prop('checked', false);
+    $('.passwords').prop('disabled', true);
 });
+
+// モーダルのチェックボックスを押されたとき
+$('#checkbox-password').click(function () {
+    if ($(this).prop('checked')) {
+        $('.passwords').prop('disabled', false);
+    } else {
+        $('.passwords').prop('disabled', true);
+    }
+})
 
 // 新規・更新の処理
 $('#submit').click(function () {
