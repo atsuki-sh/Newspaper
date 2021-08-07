@@ -13,6 +13,8 @@ $(document).on( 'click', '.change', function () {
     // modal-bodyにidをセット
     const id = $(this).parent().data('id')
     $('.modal-body').data('id', id);
+
+    $('#checkbox-password').prop('disabled', false);
 });
 
 // 新規登録ボタンを押されたとき
@@ -26,6 +28,11 @@ $('#new').click(function () {
 
     // modal-bodyのidに0をセット
     $('.modal-body').data('id', 0);
+
+    // 新規登録はパスワードが必須なので、チェックボックスはcheckedかつdisabled
+    $('#checkbox-password').prop('checked', true);
+    $('#checkbox-password').prop('disabled', true);
+    $('.passwords').prop('disabled', false);
 });
 
 // モーダルが閉じた時の処理
@@ -39,6 +46,8 @@ $('#exampleModal').on('hidden.bs.modal', function () {
     // チェックボックスをuncheckedにし、パスワードフォームをdisabledに
     $('#checkbox-password').prop('checked', false);
     $('.passwords').prop('disabled', true);
+    $('#input-password').val('');
+    $('#input-password-confirm').val('');
 });
 
 // モーダルのチェックボックスを押されたとき
@@ -101,14 +110,19 @@ $('#submit').click(function () {
                 $('#error-messages').html('');
                 $('.form-control').removeClass('is-invalid');
 
+                // パスワードのvalueもクリア
+                $('.passwords').val('');
+
                 Object.keys(xhr.responseJSON.errors).forEach(function (key) {
                     // エラーメッセージを表示
                     const message = xhr.responseJSON.errors[key];
                     const messagae_html = `<div>${message}</div>`;
                     $('#error-messages').append(messagae_html);
 
+                    const data_name = key.slice(5);
+
                     // エラーの出たinputをinvalid表示
-                    $(`[name='${key}']`).addClass('is-invalid');
+                    $(`[name='item[${data_name}]']`).addClass('is-invalid');
                 });
             })
 
@@ -136,14 +150,20 @@ $('#submit').click(function () {
                 $('#error-messages').html('');
                 $('.form-control').removeClass('is-invalid');
 
+                // パスワードのvalueもクリア
+                $('.passwords').val('');
+
                 Object.keys(xhr.responseJSON.errors).forEach(function (key) {
                     // エラーメッセージを表示
                     const message = xhr.responseJSON.errors[key];
                     const messagae_html = `<div>${message}</div>`;
                     $('#error-messages').append(messagae_html);
 
+                    const data_name = key.slice(5);
+                    console.log(key.slice(5));
+
                     // エラーの出たinputをinvalid表示
-                    $(`[name='${key}']`).addClass('is-invalid');
+                    $(`[name='item[${data_name}]']`).addClass('is-invalid');
                 });
             })
 
