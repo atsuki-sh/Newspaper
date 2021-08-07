@@ -30,7 +30,7 @@
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <h5 class="mb-0">{{ $user["name"] }}</h5>
                             {{--                            userクラスにユーザーのデータを保存--}}
-                            <span class="user" data-id="{{ $user->id }}" data-name="{{ $user->name }}" data-email="{{ $user->email }}" data-password="{{ $user->password }}" data-admin="{{ $user->admin }}">
+                            <span class="user" data-id="{{ $user->id }}" data-name="{{ $user->name }}" data-email="{{ $user->email }}" data-admin="{{ $user->admin }}">
                                 <button type="button" class="btn btn-success change" data-toggle="modal" data-target="#exampleModal">変更</button>
                                 <button type="button" class="btn btn-secondary delete">削除</button>
                             </span>
@@ -54,21 +54,15 @@
                         <div class="alert alert-danger d-none" id="error-messages"></div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">名前</span>
+                                <label class="input-group-text" for="input-name">名前</label>
                             </div>
-                            <input type="text" class="form-control post-data" id="input-name" name="item[name]" aria-label="Username" aria-describedby="basic-addon1">
+                            <input type="text" class="form-control post-data" id="input-name" name="item[name]" aria-label="Username">
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">メールアドレス</span>
+                                <label class="input-group-text" for="input-email">メールアドレス</label>
                             </div>
-                            <input type="text" class="form-control post-data" id="input-email" name="item[email]" aria-label="MailAddress" aria-describedby="basic-addon2">
-                        </div>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon3">パスワード</span>
-                            </div>
-                            <input type="password" class="form-control post-data" id="input-password" name="item[password]" aria-label="Password" aria-describedby="basic-addon3">
+                            <input type="text" class="form-control post-data" id="input-email" name="item[email]" aria-label="MailAddress">
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
@@ -78,6 +72,26 @@
                                 <option value="0" selected>一般</option>
                                 <option value="1">管理者</option>
                             </select>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="defaultCheck1" value="" style="transform:scale(1.5);">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    パスワードを変更する
+                                </label>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="input-password">パスワード</label>
+                            </div>
+                            <input type="password" class="form-control post-data" id="input-password" name="item[password]" aria-label="Password" disabled>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="input-password-confirm">パスワード（確認用）</label>
+                            </div>
+                            <input type="password" class="form-control post-data" id="input-password-confirm" name="item[password_confirmation]" aria-label="Password_confirmation" disabled>
                         </div>
                     </div>
                     <div class="modal-footer">

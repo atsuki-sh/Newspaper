@@ -6,7 +6,6 @@ use App\Http\Requests\UserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Crypt;
 
 class UserController extends Controller
 {
@@ -18,8 +17,6 @@ class UserController extends Controller
         $admin_users = [];
 
         foreach ($all_users as $user) {
-            $user->password = Crypt::decrypt($user->password);
-
             if ($user->admin === "0") {
                 array_push($common_users, $user);
             } else {
@@ -45,16 +42,11 @@ class UserController extends Controller
         foreach ($request->input('item') as $key => $data) {
             if ($key === 'password') {
                 // パスワードは暗号化して保存
-                $user->$key = Crypt::encrypt($data);
+                $user->$key = bcrypt($data);
             } else {
                 $user->$key = $data;
             }
         }
-
-//        $user->name = $request->name;
-//        $user->email = $request->email;
-//        $user->password = Crypt::encrypt($request->password);
-//        $user->admin = $request->admin;
 
         $user->save();
 
@@ -70,21 +62,13 @@ class UserController extends Controller
         foreach ($request->input('item') as $key => $data) {
             if ($key === 'password') {
                 // パスワードは暗号化して保存
-                $user->$key = Crypt::encrypt($data);
+                $user->$key = bcrypt($data);
             } else {
                 $user->$key = $data;
             }
         }
 
         $user->save();
-//        dd($request->input('item'));
-
-//        $user->name = $request->name;
-//        $user->email = $request->email;
-//        $user->password = Crypt::encrypt($request->password);
-//        $user->admin = $request->admin;
-//
-//        $user->save();
 
         $divided_users = $this->divideUsers();
 

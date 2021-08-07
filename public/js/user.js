@@ -3,13 +3,11 @@ $(document).on( 'click', '.change', function () {
     // .userにセットされているデータを取得
     const name = $(this).parent().data('name');
     const email = $(this).parent().data('email');
-    const password = $(this).parent().data('password');
     const admin = $(this).parent().data('admin');
 
     // モーダルにデータを貼る
     $('#input-name').val(name);
     $('#input-email').val(email);
-    $('#input-password').val(password);
     $('#input-admin').val(admin);
 
     // modal-bodyにidをセット
@@ -23,6 +21,7 @@ $('#new').click(function () {
     $('#input-name').val('');
     $('#input-email').val('');
     $('#input-password').val('');
+    $('#input-password-confirm').val('');
     $('#input-admin').val(0);
 
     // modal-bodyのidに0をセット
