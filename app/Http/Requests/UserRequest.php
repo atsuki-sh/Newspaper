@@ -48,14 +48,14 @@ class UserRequest extends FormRequest
         return [
             'item.name' => 'required',
             'item.email' => ['required', 'email', Rule::unique('users', 'email')],
-            'item.password' => 'required',
+            'item.password' => 'required | confirmed',
         ];
     }
 
     public function attributes()
     {
         return [
-            'item.name.' => '名前',
+            'item.name' => '名前',
             'item.email' => 'メールアドレス',
             'item.password' => 'パスワード',
         ];

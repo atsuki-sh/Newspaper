@@ -43,7 +43,10 @@ class UserController extends Controller
             if ($key === 'password') {
                 // パスワードは暗号化して保存
                 $user->$key = bcrypt($data);
-            } else {
+            } else if ($key === 'password_confirmation') {
+                continue;
+            }
+            else {
                 $user->$key = $data;
             }
         }
@@ -63,7 +66,10 @@ class UserController extends Controller
             if ($key === 'password') {
                 // パスワードは暗号化して保存
                 $user->$key = bcrypt($data);
-            } else {
+            } else if ($key === 'password_confirmation') {
+                continue;
+            }
+            else {
                 $user->$key = $data;
             }
         }

@@ -89,7 +89,7 @@
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <label class="input-group-text" for="input-password-confirm">パスワード（確認用）</label>
+                                <label class="input-group-text" for="input-password-confirm">パスワード（確認）</label>
                             </div>
                             <input type="password" class="form-control post-data passwords" id="input-password-confirm" name="item[password_confirmation]" aria-label="Password_confirmation" disabled>
                         </div>
