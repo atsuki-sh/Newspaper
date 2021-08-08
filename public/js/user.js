@@ -1,64 +1,4 @@
-$('#nav-user').addClass('active');
-
-// 変更を押されたとき
-$(document).on( 'click', '.change', function () {
-    // .userにセットされているデータを取得
-    const name = $(this).parent().data('name');
-    const email = $(this).parent().data('email');
-    const phone1 = $(this).parent().data('phone1');
-    const phone2 = $(this).parent().data('phone2');
-    const phone3 = $(this).parent().data('phone3');
-    const admin = $(this).parent().data('admin');
-
-    // モーダルにデータを貼る
-    $('#input-name').val(name);
-    $('#input-email').val(email);
-    $('#input-phone1').val(phone1);
-    $('#input-phone2').val(phone2);
-    $('#input-phone3').val(phone3);
-    $('#input-admin').val(admin);
-
-    // modal-bodyにidをセット
-    const id = $(this).parent().data('id')
-    $('.modal-body').data('id', id);
-});
-
-// 新規登録ボタンを押されたとき
-$('#new').click(function () {
-    // モーダルの値をクリア
-    $('#input-name').val('');
-    $('#input-email').val('');
-    $('#input-password').val('');
-    $('#input-password-confirm').val('');
-    $('#input-admin').val(0);
-    $('.phone').val('');
-
-    // modal-bodyのidに0をセット
-    $('.modal-body').data('id', 0);
-
-    // 新規登録はパスワードが必須なので、チェックボックスはcheckedかつdisabled
-    $('#checkbox-password').prop('checked', true);
-    $('#checkbox-password').prop('disabled', true);
-    $('.passwords').prop('disabled', false);
-});
-
-// モーダルが閉じた時の処理
-$('#exampleModal').on('hidden.bs.modal', function () {
-    // エラーメッセージエリアを非表示
-    $('#error-messages').addClass('d-none');
-
-    // フォームのinvalidを消す
-    $('.form-control').removeClass('is-invalid');
-
-    // チェックボックスをuncheckedにし、パスワードフォームをdisabledに
-    $('#checkbox-password').prop('checked', false);
-    $('#checkbox-password').prop('disabled', false);
-    $('.passwords').prop('disabled', true);
-    $('#input-password').val('');
-    $('#input-password-confirm').val('');
-});
-
-// ラジオボタンを押されたとき
+// ラジオボタンが押されたとき
 $('.radio').click(function () {
     $.ajaxSetup({
         headers: {
@@ -76,16 +16,68 @@ $('.radio').click(function () {
         })
 });
 
-// モーダルのチェックボックスを押されたとき
+// 「新規登録」が押されたとき
+$('#new').click(function () {
+    // モーダルの値をクリア
+    $('.post-data').val('');
+    $('#input-admin').val(0);
+    $('.phone').val('');
+
+    // modal-bodyのidに0をセット
+    $('.modal-body').data('id', 0);
+
+    // 新規登録はパスワードが必須なので、チェックボックスはcheckedかつdisabled
+    $('#checkbox-password').prop('checked', true);
+    $('#checkbox-password').prop('disabled', true);
+    $('.passwords').prop('disabled', false);
+});
+
+// 「変更」が押されたとき
+$(document).on( 'click', '.change', function () {
+    // tdにセットされているデータを取得
+    const id = $(this).parent().data('id');
+    const name = $(this).parent().data('name');
+    const email = $(this).parent().data('email');
+    const phone1 = $(this).parent().data('phone1');
+    const phone2 = $(this).parent().data('phone2');
+    const phone3 = $(this).parent().data('phone3');
+    const admin = $(this).parent().data('admin');
+
+    // モーダルにデータを貼る
+    $('#input-name').val(name);
+    $('#input-email').val(email);
+    $('#input-phone1').val(phone1);
+    $('#input-phone2').val(phone2);
+    $('#input-phone3').val(phone3);
+    $('#input-admin').val(admin);
+
+    // modal-bodyにidをセット
+    $('.modal-body').data('id', id);
+});
+
+// モーダルのチェックボックスが押されたとき
 $('#checkbox-password').click(function () {
     if ($(this).prop('checked')) {
         $('.passwords').prop('disabled', false);
     } else {
-        $('.passwords').prop('disabled', true);
+        $('.passwords').prop('disabled', true).val('');
     }
 })
 
-// 新規・更新の処理
+// モーダルが閉じたとき
+$('#exampleModal').on('hidden.bs.modal', function () {
+    // エラーメッセージエリアを非表示
+    $('#error-messages').addClass('d-none');
+
+    // フォームのinvalidを消す
+    $('.form-control').removeClass('is-invalid');
+
+    // チェックボックスをuncheckedにし、パスワードフォームをdisabledに
+    $('#checkbox-password').prop('checked', false).prop('disabled', false);
+    $('.passwords').prop('disabled', true).val('');
+});
+
+// 「保存」が押されたとき
 $('#submit').click(function () {
     // 送信するデータをpost_dataにまとめる
     const post_data = {};
@@ -103,13 +95,13 @@ $('#submit').click(function () {
         }
     });
 
-    // 電話番号を結合してpost_dataに保存
+    // 電話番号は結合してpost_dataに保存
     post_data['item[phone]'] = $('#input-phone1').val() + $('#input-phone2').val() + $('#input-phone3').val();
 
-    // どのラジオボタンが押されているかも保存
+    // ラジオボタンの状態も保存
     post_data['item[radio]'] = $('input[name="user_radio"]:checked').val();
 
-    // 新規なら0、変更なら対象データのidを.modal-bodyに埋め込む
+    // 新規なら0、変更なら対象データのidを.modal-bodyから取得
     const id = $('.modal-body').data('id');
     post_data['item[id]'] = id;
 
@@ -127,7 +119,6 @@ $('#submit').click(function () {
             data: post_data,
         })
             .then((res) => {
-                // モーダルを閉じて一覧を更新
                 $('#exampleModal').modal('hide');
                 $('#user-list').html(res);
             })
@@ -138,11 +129,11 @@ $('#submit').click(function () {
                 // エラーメッセージエリアを表示
                 $('#error-messages').removeClass('d-none');
 
-                // いったんエラーメッセージとフォームをクリア
+                // いったんエラーメッセージとフォームを消去
                 $('#error-messages').html('');
                 $('.form-control').removeClass('is-invalid');
 
-                // パスワードのvalueもクリア
+                // パスワードのvalueも消去
                 $('.passwords').val('');
 
                 Object.keys(xhr.responseJSON.errors).forEach(function (key) {
@@ -151,14 +142,15 @@ $('#submit').click(function () {
                     const messagae_html = `<div>${message}</div>`;
                     $('#error-messages').append(messagae_html);
 
-                    // keyはitem.nameなのでnameの値と一致するように整形
+                    // keyは「item.name」なので「name」となるように整形
                     const data_name = key.slice(5);
 
                     // エラーの出たinputをinvalid表示
                     if (data_name === 'phone') {
                         $('.phone').addClass('is-invalid');
+                    } else {
+                        $(`[name='item[${data_name}]']`).addClass('is-invalid');
                     }
-                    $(`[name='item[${data_name}]']`).addClass('is-invalid');
                 });
             })
 
@@ -179,26 +171,20 @@ $('#submit').click(function () {
                 console.log(xhr.responseJSON.errors);
                 console.log(errorThrow);
 
-                // エラーメッセージエリアを表示
                 $('#error-messages').removeClass('d-none');
 
-                // いったんエラーメッセージとフォームをクリア
                 $('#error-messages').html('');
                 $('.form-control').removeClass('is-invalid');
 
-                // パスワードのvalueもクリア
                 $('.passwords').val('');
 
                 Object.keys(xhr.responseJSON.errors).forEach(function (key) {
-                    // エラーメッセージを表示
                     const message = xhr.responseJSON.errors[key];
                     const messagae_html = `<div>${message}</div>`;
                     $('#error-messages').append(messagae_html);
 
-                    // keyはitem.nameなのでnameの値と一致するように整形
                     const data_name = key.slice(5);
 
-                    // エラーの出たinputをinvalid表示
                     if (data_name === 'phone') {
                         $('.phone').addClass('is-invalid');
                     }
@@ -209,11 +195,11 @@ $('#submit').click(function () {
     }
 });
 
-// 削除の処理
+// 「削除」が押されたとき
 $(document).on('click', '.delete', function () {
-    // confirmで「OK」が押されたら、データを削除する
     const name = $(this).parent().data('name');
 
+    // confirmで「OK」が押されたらデータを削除する
     if(confirm(`ユーザー「${name}」 を削除しますか？`)) {
         $.ajaxSetup({
             headers: {

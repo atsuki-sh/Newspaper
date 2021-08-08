@@ -9,8 +9,8 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    // 管理者ユーザーと一般ユーザーで分けるためのメソッド
-    public function divideUsers()
+    // ラジオボタンの状態に合ったユーザーリストを返すメソッド
+    public function sendUserList($radio)
     {
         $all_users = User::all();
         $common_users = [];
@@ -24,13 +24,7 @@ class UserController extends Controller
             }
         }
 
-        return [$all_users, $admin_users, $common_users];
-    }
-
-    // ラジオボタンの状態に合ったユーザーリストを返すメソッド
-    public function sendUserList($radio)
-    {
-        $divided_users = $this->divideUsers();
+        $divided_users = [$all_users, $admin_users, $common_users];
 
         switch ($radio) {
             case "0":
@@ -55,6 +49,7 @@ class UserController extends Controller
     public function create(UserRequest $request)
     {
         $user = new User();
+
         foreach ($request->input('item') as $key => $data) {
             if ($key === 'password') {
                 $user->$key = bcrypt($data);

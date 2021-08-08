@@ -139,4 +139,5 @@
 
 @section('script')
     <script src={{ asset('js/user.js') }}></script>
+    <script>$('#nav-user').addClass('active');</script>
 @endsection
