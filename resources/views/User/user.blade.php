@@ -8,20 +8,20 @@
             <div class="col-md-12 d-flex justify-content-between align-items-center">
                 <h3 class="mb-0">ユーザー一覧</h3>
                 <div>
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="aa" style="transform:scale(1.5);" checked>
-                    <label class="form-check-label" for="aa">
+                    <input class="form-check-input radio" type="radio" name="user_radio" id="user_all" value="0" style="transform:scale(1.5);" checked>
+                    <label class="form-check-label" for="user_all">
                         すべて表示
                     </label>
                 </div>
                 <div>
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="bb" style="transform:scale(1.5);">
-                    <label class="form-check-label" for="bb">
+                    <input class="form-check-input radio" type="radio" name="user_radio" id="user_admin" value="1" style="transform:scale(1.5);">
+                    <label class="form-check-label" for="user_admin">
                         管理者のみ
                     </label>
                 </div>
                 <div>
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="cc" style="transform:scale(1.5);">
-                    <label class="form-check-label" for="cc">
+                    <input class="form-check-input radio" type="radio" name="user_radio" id="user_common" value="2" style="transform:scale(1.5);">
+                    <label class="form-check-label" for="user_common">
                         一般のみ
                     </label>
                 </div>
@@ -40,7 +40,7 @@
                     <th scope="col">操作</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="user-list">
                 @foreach($users as $user)
                     <tr>
                         <th scope="row" class="align-middle">{{ $loop->iteration }}</th>

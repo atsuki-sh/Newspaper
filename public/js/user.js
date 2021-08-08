@@ -51,6 +51,13 @@ $('#exampleModal').on('hidden.bs.modal', function () {
     $('#input-password-confirm').val('');
 });
 
+// ラジオボタンを押されたとき
+$('.radio').click(function () {
+    console.log($("input[name='user_radio']:checked").val());
+
+
+});
+
 // モーダルのチェックボックスを押されたとき
 $('#checkbox-password').click(function () {
     if ($(this).prop('checked')) {
@@ -77,6 +84,9 @@ $('#submit').click(function () {
                 break;
         }
     });
+
+    // どのラジオボタンが押されているかも保存
+    post_data['item[radio]'] = $('input[name="user_radio"]:checked').val();
 
     // 新規なら0、変更なら対象データのidを.modal-bodyに埋め込む
     const id = $('.modal-body').data('id');
@@ -187,7 +197,10 @@ $(document).on('click', '.delete', function () {
         $.ajax({
             type: 'post',
             url: 'user/delete',
-            data: {id: $(this).parent().data('id')}
+            data: {
+                id: $(this).parent().data('id'),
+                radio: $("input[name='user_radio']:checked").val(),
+            }
         })
             .then((res) => {
                 $('#user-list').html(res);

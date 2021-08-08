@@ -24,16 +24,12 @@ class UserController extends Controller
             }
         }
 
-        // [0]に一般、[1]に管理者のユーザーを返す
-        return [$common_users, $admin_users];
+        return [$all_users, $admin_users, $common_users];
     }
 
     public function index()
     {
-//        $divided_users = $this->divideUsers();
-        $users = User::all();
-
-        return view('User/user', ['users' => $users]);
+        return view('User/user', ['users' => User::all()]);
     }
 
     public function create(UserRequest $request)
@@ -44,7 +40,7 @@ class UserController extends Controller
             if ($key === 'password') {
                 // パスワードは暗号化して保存
                 $user->$key = bcrypt($data);
-            } else if ($key === 'password_confirmation') {
+            } else if ($key === 'id' or $key === 'password_confirmation' or $key === 'radio') {
                 continue;
             }
             else {
@@ -56,18 +52,26 @@ class UserController extends Controller
 
         $divided_users = $this->divideUsers();
 
-        return view('User/user_list_item', ['common_users' => $divided_users[0], 'admin_users' => $divided_users[1]]);
+        switch ($request->input('item.radio')) {
+            case "0":
+                return view('User/user_list_item', ['users' => $divided_users[0]]);
+            case "1":
+                return view('User/user_list_item', ['users' => $divided_users[1]]);
+            default:
+                return view('User/user_list_item', ['users' => $divided_users[2]]);
+        }
     }
 
     public function update(UpdateUserRequest $request)
     {
         $user = User::find($request->input('item.id'));
+
         // foreachでデータを一括更新する
         foreach ($request->input('item') as $key => $data) {
             if ($key === 'password') {
                 // パスワードは暗号化して保存
                 $user->$key = bcrypt($data);
-            } else if ($key === 'password_confirmation') {
+            } else if ($key === 'password_confirmation' or $key === 'radio') {
                 continue;
             }
             else {
@@ -79,7 +83,14 @@ class UserController extends Controller
 
         $divided_users = $this->divideUsers();
 
-        return view('User/user_list_item', ['common_users' => $divided_users[0], 'admin_users' => $divided_users[1]]);
+        switch ($request->input('item.radio')) {
+            case 0:
+                return view('User/user_list_item', ['users' => $divided_users[0]]);
+            case 1:
+                return view('User/user_list_item', ['users' => $divided_users[1]]);
+            default:
+                return view('User/user_list_item', ['users' => $divided_users[2]]);
+        }
     }
 
     public function delete(Request $request)
@@ -88,6 +99,13 @@ class UserController extends Controller
 
         $divided_users = $this->divideUsers();
 
-        return view('User/user_list_item', ['common_users' => $divided_users[0], 'admin_users' => $divided_users[1]]);
+        switch ($request->radio) {
+            case "0":
+                return view('User/user_list_item', ['users' => $divided_users[0]]);
+            case "1":
+                return view('User/user_list_item', ['users' => $divided_users[1]]);
+            default:
+                return view('User/user_list_item', ['users' => $divided_users[2]]);
+        }
     }
 }
