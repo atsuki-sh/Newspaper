@@ -42,13 +42,19 @@
             </thead>
             <tbody id="user-list">
                 @foreach($users as $user)
+                    {{-- 携帯電話番号(phone)をハイフンで区切るように整形 --}}
+                    @php
+                        $phone1 = mb_substr($user->phone, 0, 3);
+                        $phone2 = mb_substr($user->phone, 3, 4);
+                        $phone3 = mb_substr($user->phone, 7, 4);
+                    @endphp
                     <tr>
                         <th scope="row" class="align-middle">{{ $loop->iteration }}</th>
                         <td class="align-middle">{{ $user->name }}</td>
                         <td class="align-middle">{{ $user->email }}</td>
-                        <td class="align-middle">080-6373-0453</td>
+                        <td class="align-middle">{{ $phone1 }}-{{ $phone2 }}-{{ $phone3 }}</td>
                         <td class="align-middle">{{ $user->admin === "0" ? "一般" : "管理者" }}</td>
-                        <td class="align-middle" data-id="{{ $user->id }}" data-name="{{ $user->name }}" data-email="{{ $user->email }}" data-admin="{{ $user->admin }}">
+                        <td class="align-middle" data-id="{{ $user->id }}" data-name="{{ $user->name }}" data-email="{{ $user->email }}" data-phone1="{{ $phone1 }}" data-phone2="{{ $phone2 }}" data-phone3="{{ $phone3 }}" data-admin="{{ $user->admin }}">
                             <button type="button" class="btn btn-success change" data-toggle="modal" data-target="#exampleModal">変更</button>
                             <button type="button" class="btn btn-secondary delete">削除</button>
                         </td>
@@ -80,6 +86,16 @@
                                 <label class="input-group-text" for="input-email">メールアドレス</label>
                             </div>
                             <input type="text" class="form-control post-data" id="input-email" name="item[email]" aria-label="MailAddress">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="input-phone1">携帯電話番号</label>
+                            </div>
+                            <input type="tel" class="form-control phone" id="input-phone1" name="item[phone1]" aria-label="PhoneNumber1">
+                            <h3 class="mb-0 ml-1 mr-1">-</h3>
+                            <input type="tel" class="form-control phone" id="input-phone2" name="item[phone2]" aria-label="PhoneNumber2">
+                            <h3 class="mb-0 ml-1 mr-1">-</h3>
+                            <input type="tel" class="form-control phone" id="input-phone3" name="item[phone3]" aria-label="PhoneNumber3">
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">

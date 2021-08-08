@@ -5,11 +5,17 @@ $(document).on( 'click', '.change', function () {
     // .userにセットされているデータを取得
     const name = $(this).parent().data('name');
     const email = $(this).parent().data('email');
+    const phone1 = $(this).parent().data('phone1');
+    const phone2 = $(this).parent().data('phone2');
+    const phone3 = $(this).parent().data('phone3');
     const admin = $(this).parent().data('admin');
 
     // モーダルにデータを貼る
     $('#input-name').val(name);
     $('#input-email').val(email);
+    $('#input-phone1').val(phone1);
+    $('#input-phone2').val(phone2);
+    $('#input-phone3').val(phone3);
     $('#input-admin').val(admin);
 
     // modal-bodyにidをセット
@@ -25,6 +31,7 @@ $('#new').click(function () {
     $('#input-password').val('');
     $('#input-password-confirm').val('');
     $('#input-admin').val(0);
+    $('.phone').val('');
 
     // modal-bodyのidに0をセット
     $('.modal-body').data('id', 0);
@@ -96,6 +103,9 @@ $('#submit').click(function () {
         }
     });
 
+    // 電話番号を結合してpost_dataに保存
+    post_data['item[phone]'] = $('#input-phone1').val() + $('#input-phone2').val() + $('#input-phone3').val();
+
     // どのラジオボタンが押されているかも保存
     post_data['item[radio]'] = $('input[name="user_radio"]:checked').val();
 
@@ -145,6 +155,9 @@ $('#submit').click(function () {
                     const data_name = key.slice(5);
 
                     // エラーの出たinputをinvalid表示
+                    if (data_name === 'phone') {
+                        $('.phone').addClass('is-invalid');
+                    }
                     $(`[name='item[${data_name}]']`).addClass('is-invalid');
                 });
             })
@@ -186,6 +199,9 @@ $('#submit').click(function () {
                     const data_name = key.slice(5);
 
                     // エラーの出たinputをinvalid表示
+                    if (data_name === 'phone') {
+                        $('.phone').addClass('is-invalid');
+                    }
                     $(`[name='item[${data_name}]']`).addClass('is-invalid');
                 });
             })

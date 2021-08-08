@@ -48,6 +48,7 @@ class UserRequest extends FormRequest
         return [
             'item.name' => 'required',
             'item.email' => ['required', 'email', Rule::unique('users', 'email')],
+            'item.phone' => ['required', 'numeric', Rule::unique('users', 'phone')->ignore($this->input('item.id'))],
             'item.password' => 'required | confirmed',
         ];
     }
@@ -57,6 +58,7 @@ class UserRequest extends FormRequest
         return [
             'item.name' => '名前',
             'item.email' => 'メールアドレス',
+            'item.phone' => '携帯電話番号',
             'item.password' => 'パスワード',
         ];
     }
