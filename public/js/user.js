@@ -53,9 +53,20 @@ $('#exampleModal').on('hidden.bs.modal', function () {
 
 // ラジオボタンを押されたとき
 $('.radio').click(function () {
-    console.log($("input[name='user_radio']:checked").val());
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 
-
+    $.ajax({
+        type: 'post',
+        url: 'user/',
+        data: {radio: $("input[name='user_radio']:checked").val()},
+    })
+        .then((res) => {
+            $('#user-list').html(res);
+        })
 });
 
 // モーダルのチェックボックスを押されたとき

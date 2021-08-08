@@ -32,6 +32,20 @@ class UserController extends Controller
         return view('User/user', ['users' => User::all()]);
     }
 
+    public function indexRadio(Request $request)
+    {
+        $divided_users = $this->divideUsers();
+
+        switch ($request->radio) {
+            case "0":
+                return view('User/user_list_item', ['users' => $divided_users[0]]);
+            case "1":
+                return view('User/user_list_item', ['users' => $divided_users[1]]);
+            default:
+                return view('User/user_list_item', ['users' => $divided_users[2]]);
+        }
+    }
+
     public function create(UserRequest $request)
     {
         $user = new User();
