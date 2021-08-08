@@ -27,16 +27,12 @@ class UserController extends Controller
         return [$all_users, $admin_users, $common_users];
     }
 
-    public function index()
-    {
-        return view('User/user', ['users' => User::all()]);
-    }
-
-    public function indexRadio(Request $request)
+    // ラジオボタンの状態に合ったユーザーリストを返すメソッド
+    public function sendUserList($radio)
     {
         $divided_users = $this->divideUsers();
 
-        switch ($request->radio) {
+        switch ($radio) {
             case "0":
                 return view('User/user_list_item', ['users' => $divided_users[0]]);
             case "1":
@@ -46,13 +42,21 @@ class UserController extends Controller
         }
     }
 
+    public function index()
+    {
+        return view('User/user', ['users' => User::all()]);
+    }
+
+    public function indexRadio(Request $request)
+    {
+        return $this->sendUserList($request->input('item.radio'));
+    }
+
     public function create(UserRequest $request)
     {
         $user = new User();
-        // データを一括作成する
         foreach ($request->input('item') as $key => $data) {
             if ($key === 'password') {
-                // パスワードは暗号化して保存
                 $user->$key = bcrypt($data);
             } else if ($key === 'id' or $key === 'password_confirmation' or $key === 'radio') {
                 continue;
@@ -64,28 +68,17 @@ class UserController extends Controller
 
         $user->save();
 
-        $divided_users = $this->divideUsers();
-
-        switch ($request->input('item.radio')) {
-            case "0":
-                return view('User/user_list_item', ['users' => $divided_users[0]]);
-            case "1":
-                return view('User/user_list_item', ['users' => $divided_users[1]]);
-            default:
-                return view('User/user_list_item', ['users' => $divided_users[2]]);
-        }
+        return $this->sendUserList($request->input('item.radio'));
     }
 
     public function update(UpdateUserRequest $request)
     {
         $user = User::find($request->input('item.id'));
 
-        // foreachでデータを一括更新する
         foreach ($request->input('item') as $key => $data) {
             if ($key === 'password') {
-                // パスワードは暗号化して保存
                 $user->$key = bcrypt($data);
-            } else if ($key === 'password_confirmation' or $key === 'radio') {
+            } else if ($key === 'id' or $key === 'password_confirmation' or $key === 'radio') {
                 continue;
             }
             else {
@@ -95,31 +88,13 @@ class UserController extends Controller
 
         $user->save();
 
-        $divided_users = $this->divideUsers();
-
-        switch ($request->input('item.radio')) {
-            case 0:
-                return view('User/user_list_item', ['users' => $divided_users[0]]);
-            case 1:
-                return view('User/user_list_item', ['users' => $divided_users[1]]);
-            default:
-                return view('User/user_list_item', ['users' => $divided_users[2]]);
-        }
+        return $this->sendUserList($request->input('item.radio'));
     }
 
     public function delete(Request $request)
     {
-        User::find($request->id)->delete();
+        User::find($request->input('item.id'))->delete();
 
-        $divided_users = $this->divideUsers();
-
-        switch ($request->radio) {
-            case "0":
-                return view('User/user_list_item', ['users' => $divided_users[0]]);
-            case "1":
-                return view('User/user_list_item', ['users' => $divided_users[1]]);
-            default:
-                return view('User/user_list_item', ['users' => $divided_users[2]]);
-        }
+        return $this->sendUserList($request->input('item.radio'));
     }
 }

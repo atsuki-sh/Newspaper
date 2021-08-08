@@ -69,7 +69,7 @@ $('.radio').click(function () {
     $.ajax({
         type: 'post',
         url: 'user/',
-        data: {radio: $("input[name='user_radio']:checked").val()},
+        data: {'item[radio]': $("input[name='user_radio']:checked").val()},
     })
         .then((res) => {
             $('#user-list').html(res);
@@ -225,8 +225,8 @@ $(document).on('click', '.delete', function () {
             type: 'post',
             url: 'user/delete',
             data: {
-                id: $(this).parent().data('id'),
-                radio: $("input[name='user_radio']:checked").val(),
+                'item[id]': $(this).parent().data('id'),
+                'item[radio]': $("input[name='user_radio']:checked").val(),
             }
         })
             .then((res) => {
