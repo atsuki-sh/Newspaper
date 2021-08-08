@@ -30,9 +30,10 @@ class UserController extends Controller
 
     public function index()
     {
-        $divided_users = $this->divideUsers();
+//        $divided_users = $this->divideUsers();
+        $users = User::all();
 
-        return view('User/user', ['common_users' => $divided_users[0], 'admin_users' => $divided_users[1]]);
+        return view('User/user', ['users' => $users]);
     }
 
     public function create(UserRequest $request)
