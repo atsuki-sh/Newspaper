@@ -1,3 +1,5 @@
+$('#nav-user').addClass('active');
+
 // 変更を押されたとき
 $(document).on( 'click', '.change', function () {
     // .userにセットされているデータを取得
@@ -13,8 +15,6 @@ $(document).on( 'click', '.change', function () {
     // modal-bodyにidをセット
     const id = $(this).parent().data('id')
     $('.modal-body').data('id', id);
-
-    $('#checkbox-password').prop('disabled', false);
 });
 
 // 新規登録ボタンを押されたとき
@@ -45,6 +45,7 @@ $('#exampleModal').on('hidden.bs.modal', function () {
 
     // チェックボックスをuncheckedにし、パスワードフォームをdisabledに
     $('#checkbox-password').prop('checked', false);
+    $('#checkbox-password').prop('disabled', false);
     $('.passwords').prop('disabled', true);
     $('#input-password').val('');
     $('#input-password-confirm').val('');
@@ -119,6 +120,7 @@ $('#submit').click(function () {
                     const messagae_html = `<div>${message}</div>`;
                     $('#error-messages').append(messagae_html);
 
+                    // keyはitem.nameなのでnameの値と一致するように整形
                     const data_name = key.slice(5);
 
                     // エラーの出たinputをinvalid表示
@@ -159,8 +161,8 @@ $('#submit').click(function () {
                     const messagae_html = `<div>${message}</div>`;
                     $('#error-messages').append(messagae_html);
 
+                    // keyはitem.nameなのでnameの値と一致するように整形
                     const data_name = key.slice(5);
-                    console.log(key.slice(5));
 
                     // エラーの出たinputをinvalid表示
                     $(`[name='item[${data_name}]']`).addClass('is-invalid');

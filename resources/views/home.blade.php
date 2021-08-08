@@ -44,3 +44,9 @@
     </div>
 </div>
 @endsection
+
+@section('script')
+    <script>
+        $('#nav-home').addClass('active');
+    </script>
+@endsection
