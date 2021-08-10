@@ -138,7 +138,17 @@
 @endsection
 
 @section('script')
+    <script>
+        $('#nav-user').addClass('active');
+        const urls = {
+            'index': '{{ route('user_index') }}',
+            'create': '{{ route('user_create') }}',
+            'update': '{{ route('user_update') }}',
+            'delete': '{{ route('user_delete') }}',
+        };
+        window.Laravel = {};
+        window.Laravel.urls = urls;
+    </script>
     <script src={{ asset('js/common.js') }}></script>
     <script src={{ asset('js/user.js') }}></script>
-    <script>$('#nav-user').addClass('active');</script>
 @endsection

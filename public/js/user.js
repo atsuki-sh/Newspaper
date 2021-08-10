@@ -11,7 +11,7 @@ $('.radio').click(function () {
         console.log(errorThrow);
     };
 
-    ajax_data_post('user', post_data, then, fail);
+    ajax_data_post(Laravel.urls['index'], post_data, then, fail);
 });
 
 // 「新規登録」が押されたとき
@@ -138,12 +138,12 @@ $('#submit').click(function () {
 
     // idが0ならcreate
     if (id === 0) {
-        ajax_data_post('user/create', post_data, then, fail);
+        ajax_data_post(Laravel.urls['create'], post_data, then, fail);
     }
 
     // idが0でないならupdate
     else {
-        ajax_data_post('user/update', post_data, then, fail);
+        ajax_data_post(Laravel.urls['update'], post_data, then, fail);
     }
 });
 
@@ -167,6 +167,6 @@ $(document).on('click', '.delete', function () {
             console.log(errorThrow);
         };
 
-        ajax_data_post('user/delete', post_data, then, fail);
+        ajax_data_post(Laravel.urls['delete'], post_data, then, fail);
     }
 });
