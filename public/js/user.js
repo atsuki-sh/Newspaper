@@ -91,6 +91,11 @@ $('#submit').click(function () {
                 break;
         }
     });
+    // パスワードを保存しないならpost_dataからpasswordを消去
+    if (!$('#checkbox-password').prop('checked')) {
+        delete post_data['item[password]'];
+        delete post_data['item[password_confirmation]'];
+    }
     // 電話番号は結合してpost_dataに保存
     post_data['item[phone]'] = $('#input-phone1').val() + $('#input-phone2').val() + $('#input-phone3').val();
     // ラジオボタンの状態も保存
