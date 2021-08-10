@@ -1,19 +1,17 @@
 // ラジオボタンが押されたとき
 $('.radio').click(function () {
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
+    const post_data = {'item[radio]': $("input[name='user_radio']:checked").val()};
 
-    $.ajax({
-        type: 'post',
-        url: 'user/',
-        data: {'item[radio]': $("input[name='user_radio']:checked").val()},
-    })
-        .then((res) => {
-            $('#user-list').html(res);
-        })
+    const then = function (res) {
+        $('#user-list').html(res);
+    };
+
+    const fail = function (xhr, textStatus, errorThrow) {
+        console.log(xhr.responseJSON.errors);
+        console.log(errorThrow);
+    };
+
+    ajax_data_post('user', post_data, then, fail);
 });
 
 // 「新規登録」が押されたとき
@@ -27,8 +25,7 @@ $('#new').click(function () {
     $('.modal-body').data('id', 0);
 
     // 新規登録はパスワードが必須なので、チェックボックスはcheckedかつdisabled
-    $('#checkbox-password').prop('checked', true);
-    $('#checkbox-password').prop('disabled', true);
+    $('#checkbox-password').prop('checked', true).prop('disabled', true);
     $('.passwords').prop('disabled', false);
 });
 
@@ -94,104 +91,59 @@ $('#submit').click(function () {
                 break;
         }
     });
-
     // 電話番号は結合してpost_dataに保存
     post_data['item[phone]'] = $('#input-phone1').val() + $('#input-phone2').val() + $('#input-phone3').val();
-
     // ラジオボタンの状態も保存
     post_data['item[radio]'] = $('input[name="user_radio"]:checked').val();
-
     // 新規なら0、変更なら対象データのidを.modal-bodyから取得
     const id = $('.modal-body').data('id');
     post_data['item[id]'] = id;
 
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
+    const then = function (res) {
+        $('#exampleModal').modal('hide');
+        $('#user-list').html(res);
+    };
+
+    const fail = function (xhr, textStatus, errorThrow) {
+        console.log(xhr.responseJSON.errors);
+        console.log(errorThrow);
+
+        // エラーメッセージエリアを表示
+        $('#error-messages').removeClass('d-none');
+
+        // いったんエラーメッセージとフォームを消去
+        $('#error-messages').html('');
+        $('.form-control').removeClass('is-invalid');
+
+        // パスワードのvalueも消去
+        $('.passwords').val('');
+
+        Object.keys(xhr.responseJSON.errors).forEach(function (key) {
+            // エラーメッセージを表示
+            const message = xhr.responseJSON.errors[key];
+            const messagae_html = `<div>${message}</div>`;
+            $('#error-messages').append(messagae_html);
+
+            // keyは「item.name」なので「name」となるように整形
+            const data_name = key.slice(5);
+
+            // エラーの出たinputをinvalid表示
+            if (data_name === 'phone') {
+                $('.phone').addClass('is-invalid');
+            } else {
+                $(`[name='item[${data_name}]']`).addClass('is-invalid');
+            }
+        });
+    };
 
     // idが0ならcreate
     if (id === 0) {
-        $.ajax({
-            type: 'post',
-            url: 'user/create',
-            data: post_data,
-        })
-            .then((res) => {
-                $('#exampleModal').modal('hide');
-                $('#user-list').html(res);
-            })
-            .fail((xhr, textStatus, errorThrow) => {
-                console.log(xhr.responseJSON.errors);
-                console.log(errorThrow);
-
-                // エラーメッセージエリアを表示
-                $('#error-messages').removeClass('d-none');
-
-                // いったんエラーメッセージとフォームを消去
-                $('#error-messages').html('');
-                $('.form-control').removeClass('is-invalid');
-
-                // パスワードのvalueも消去
-                $('.passwords').val('');
-
-                Object.keys(xhr.responseJSON.errors).forEach(function (key) {
-                    // エラーメッセージを表示
-                    const message = xhr.responseJSON.errors[key];
-                    const messagae_html = `<div>${message}</div>`;
-                    $('#error-messages').append(messagae_html);
-
-                    // keyは「item.name」なので「name」となるように整形
-                    const data_name = key.slice(5);
-
-                    // エラーの出たinputをinvalid表示
-                    if (data_name === 'phone') {
-                        $('.phone').addClass('is-invalid');
-                    } else {
-                        $(`[name='item[${data_name}]']`).addClass('is-invalid');
-                    }
-                });
-            })
-
+        ajax_data_post('user/create', post_data, then, fail);
     }
 
     // idが0でないならupdate
     else {
-        $.ajax({
-            type: 'post',
-            url: 'user/update',
-            data: post_data,
-        })
-            .then((res) => {
-                $('#exampleModal').modal('hide');
-                $('#user-list').html(res);
-            })
-            .fail((xhr, textStatus, errorThrow) => {
-                console.log(xhr.responseJSON.errors);
-                console.log(errorThrow);
-
-                $('#error-messages').removeClass('d-none');
-
-                $('#error-messages').html('');
-                $('.form-control').removeClass('is-invalid');
-
-                $('.passwords').val('');
-
-                Object.keys(xhr.responseJSON.errors).forEach(function (key) {
-                    const message = xhr.responseJSON.errors[key];
-                    const messagae_html = `<div>${message}</div>`;
-                    $('#error-messages').append(messagae_html);
-
-                    const data_name = key.slice(5);
-
-                    if (data_name === 'phone') {
-                        $('.phone').addClass('is-invalid');
-                    }
-                    $(`[name='item[${data_name}]']`).addClass('is-invalid');
-                });
-            })
-
+        ajax_data_post('user/update', post_data, then, fail);
     }
 });
 
@@ -201,26 +153,20 @@ $(document).on('click', '.delete', function () {
 
     // confirmで「OK」が押されたらデータを削除する
     if(confirm(`ユーザー「${name}」 を削除しますか？`)) {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
+        const post_data = {
+            'item[id]': $(this).parent().data('id'),
+            'item[radio]': $("input[name='user_radio']:checked").val(),
+        }
 
-        $.ajax({
-            type: 'post',
-            url: 'user/delete',
-            data: {
-                'item[id]': $(this).parent().data('id'),
-                'item[radio]': $("input[name='user_radio']:checked").val(),
-            }
-        })
-            .then((res) => {
-                $('#user-list').html(res);
-            })
-            .fail((error) => {
-                console.log(error.statusText);
-            });
+        const then = function (res) {
+            $('#user-list').html(res);
+        };
 
+        const fail = function (xhr, textStatus, errorThrow) {
+            console.log(xhr.responseJSON.errors);
+            console.log(errorThrow);
+        };
+
+        ajax_data_post('user/delete', post_data, then, fail);
     }
 });
