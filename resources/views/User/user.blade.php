@@ -4,29 +4,27 @@
 
 @section('content')
     <div class="container">
-        <div class="row mb-3">
-            <div class="col-md-12 d-flex justify-content-between align-items-center">
-                <h3 class="mb-0">ユーザー一覧</h3>
-                <div>
-                    <input class="form-check-input radio" type="radio" name="user_radio" id="user_all" value="0" style="transform:scale(1.5);" checked>
-                    <label class="form-check-label" for="user_all">
-                        すべて表示
-                    </label>
-                </div>
-                <div>
-                    <input class="form-check-input radio" type="radio" name="user_radio" id="user_admin" value="1" style="transform:scale(1.5);">
-                    <label class="form-check-label" for="user_admin">
-                        管理者のみ
-                    </label>
-                </div>
-                <div>
-                    <input class="form-check-input radio" type="radio" name="user_radio" id="user_common" value="2" style="transform:scale(1.5);">
-                    <label class="form-check-label" for="user_common">
-                        一般のみ
-                    </label>
-                </div>
-                <button type="button" class="btn btn-primary btn-lg" id="new" data-toggle="modal" data-target="#exampleModal">新規登録</button>
+        <div class="mb-3 d-flex justify-content-between align-items-center">
+            <h3 class="mb-0">ユーザー一覧</h3>
+            <div>
+                <input class="form-check-input radio" type="radio" name="user_radio" id="user_all" value="0" style="transform:scale(1.5);" checked>
+                <label class="form-check-label" for="user_all">
+                    すべて表示
+                </label>
             </div>
+            <div>
+                <input class="form-check-input radio" type="radio" name="user_radio" id="user_admin" value="1" style="transform:scale(1.5);">
+                <label class="form-check-label" for="user_admin">
+                    管理者のみ
+                </label>
+            </div>
+            <div>
+                <input class="form-check-input radio" type="radio" name="user_radio" id="user_common" value="2" style="transform:scale(1.5);">
+                <label class="form-check-label" for="user_common">
+                    一般のみ
+                </label>
+            </div>
+            <button type="button" class="btn btn-primary btn-lg" id="new" data-toggle="modal" data-target="#exampleModal">新規登録</button>
         </div>
 
         <table class="table table-striped">
@@ -35,7 +33,7 @@
                     <th scope="col">#</th>
                     <th scope="col">名前</th>
                     <th scope="col">メールアドレス</th>
-                    <th scope="col">電話番号</th>
+                    <th scope="col">携帯電話番号</th>
                     <th scope="col">権限</th>
                     <th scope="col">操作</th>
                 </tr>

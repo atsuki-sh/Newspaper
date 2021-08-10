@@ -47,8 +47,17 @@ class UserRequest extends FormRequest
     {
         return [
             'item.name' => 'required',
-            'item.email' => ['required', 'email', Rule::unique('users', 'email')],
-            'item.phone' => ['required', 'numeric', Rule::unique('users', 'phone')->ignore($this->input('item.id'))],
+            'item.email' => [
+                'required',
+                'email',
+                Rule::unique('users', 'email')
+            ],
+            'item.phone' => [
+                'required',
+                'numeric',
+                'digits: 11',
+                Rule::unique('users', 'phone')->ignore($this->input('item.id'))
+            ],
             'item.password' => 'required | confirmed',
         ];
     }
