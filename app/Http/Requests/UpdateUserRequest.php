@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use http\Env\Request;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Foundation\Http\FormRequest;
@@ -45,7 +46,7 @@ class UpdateUserRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'item.name' => 'required',
             'item.email' => ['required',
                 'email',
@@ -57,8 +58,14 @@ class UpdateUserRequest extends FormRequest
                 'digits: 11',
                 Rule::unique('users', 'phone')->ignore($this->input('item.id'))
             ],
-            'item.password' => 'confirmed',
         ];
+
+        // パスワードを変更するなら、下のルールを追加
+        if ($this->input('item.password_checked') === 'true') {
+            $rules['item.password'] = 'required | confirmed';
+        }
+
+        return $rules;
     }
 
     public function attributes()

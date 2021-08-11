@@ -40,6 +40,14 @@ $(document).on( 'click', '.change', function () {
     const phone3 = $(this).parent().data('phone3');
     const admin = $(this).parent().data('admin');
 
+    // todo data-id以外は消す
+    // data-idの値をajaxで送信し、そのユーザーのデータを返してもらう
+    // ['name' => 'sdfsd']
+    // foreach(data as $key => $value) {
+    //     $('#input-' + $key).val($value);
+    // }
+
+    // todo この処理は上で完結
     // モーダルにデータを貼る
     $('#input-name').val(name);
     $('#input-email').val(email);
@@ -91,15 +99,12 @@ $('#submit').click(function () {
                 break;
         }
     });
-    // パスワードを保存しないならpost_dataからpasswordを消去
-    if (!$('#checkbox-password').prop('checked')) {
-        delete post_data['item[password]'];
-        delete post_data['item[password_confirmation]'];
-    }
     // 電話番号は結合してpost_dataに保存
     post_data['item[phone]'] = $('#input-phone1').val() + $('#input-phone2').val() + $('#input-phone3').val();
     // ラジオボタンの状態も保存
     post_data['item[radio]'] = $('input[name="user_radio"]:checked').val();
+    // パスワードを変更するかどうかも保存（updateの場合に使用）
+    post_data['item[password_checked]'] = $('#checkbox-password').prop('checked');
     // 新規なら0、変更なら対象データのidを.modal-bodyから取得
     const id = $('.modal-body').data('id');
     post_data['item[id]'] = id;
