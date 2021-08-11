@@ -12,28 +12,21 @@ class UserController extends Controller
     // ラジオボタンの状態に合ったユーザーリストを返すメソッド
     public function sendUserList($radio)
     {
-        $all_users = User::all();
-        $common_users = [];
-        $admin_users = [];
-
-        foreach ($all_users as $user) {
-            if ($user->admin === "0") {
-                array_push($common_users, $user);
-            } else {
-                array_push($admin_users, $user);
-            }
-        }
-
-        $divided_users = [$all_users, $admin_users, $common_users];
-
+        // todo こんな感じで簡単に書ける
+        $users = User::query();
         switch ($radio) {
-            case "0":
-                return view('User/user_list_item', ['users' => $divided_users[0]]);
             case "1":
-                return view('User/user_list_item', ['users' => $divided_users[1]]);
+                $users = $users->where('admin', '=', '1');
+                break;
+            case "2":
+                $users = $users
+                    ->where('admin', '=', '0')
+                    ->whereNotNull('admin');
+                break;
             default:
-                return view('User/user_list_item', ['users' => $divided_users[2]]);
+                break;
         }
+        return view('User/user_list_item', ['users' => $users->get()]);
     }
 
     public function index()
@@ -49,18 +42,9 @@ class UserController extends Controller
     public function create(UserRequest $request)
     {
         $user = new User();
-
-        foreach ($request->input('item') as $key => $data) {
-            if ($key === 'password') {
-                $user->$key = bcrypt($data);
-            } else if ($key === 'id' or $key === 'password_confirmation' or $key === 'radio') {
-                continue;
-            }
-            else {
-                $user->$key = $data;
-            }
-        }
-
+        $items = $request->input('item');
+        $user->fill($items);
+        $user->password = bcrypt($user->password);
         $user->save();
 
         return $this->sendUserList($request->input('item.radio'));
@@ -70,15 +54,17 @@ class UserController extends Controller
     {
         $user = User::find($request->input('item.id'));
 
-        foreach ($request->input('item') as $key => $data) {
-            if ($key === 'password') {
-                $user->$key = bcrypt($data);
-            } else if ($key === 'id' or $key === 'password_confirmation' or $key === 'radio') {
-                continue;
-            }
-            else {
-                $user->$key = $data;
-            }
+        // 現在のパスワード
+        $old_password = $user->password;
+
+        $items = $request->input('item');
+        $user->fill($items);
+
+        // パスワードに変更があったら新しく保存する
+        if ($user->password === null) {
+            $user->password = $old_password;
+        } else {
+            $user->password = bcrypt($user->password);
         }
 
         $user->save();
