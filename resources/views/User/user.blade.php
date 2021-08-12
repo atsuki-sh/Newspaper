@@ -7,19 +7,19 @@
         <div class="mb-3 d-flex justify-content-between align-items-center">
             <h3 class="mb-0">ユーザー一覧</h3>
             <div>
-                <input class="form-check-input radio" type="radio" name="user_radio" id="user_all" value="0" style="transform:scale(1.5);" checked>
+                <input class="form-check-input radio" type="radio" name="user_radio" id="user_all" data-url="{{ route('all_user_list') }}" style="transform:scale(1.5);" checked>
                 <label class="form-check-label" for="user_all">
                     すべて表示
                 </label>
             </div>
             <div>
-                <input class="form-check-input radio" type="radio" name="user_radio" id="user_admin" value="1" style="transform:scale(1.5);">
+                <input class="form-check-input radio" type="radio" name="user_radio" id="user_admin" data-url="{{ route('admin_user_list') }}" style="transform:scale(1.5);">
                 <label class="form-check-label" for="user_admin">
                     管理者のみ
                 </label>
             </div>
             <div>
-                <input class="form-check-input radio" type="radio" name="user_radio" id="user_common" value="2" style="transform:scale(1.5);">
+                <input class="form-check-input radio" type="radio" name="user_radio" id="user_common" data-url="{{ route('common_user_list') }}" style="transform:scale(1.5);">
                 <label class="form-check-label" for="user_common">
                     一般のみ
                 </label>
@@ -40,7 +40,7 @@
             </thead>
             <tbody id="user-list">
                 @foreach($users as $user)
-                    {{-- 携帯電話番号(phone)をハイフンで区切るように整形 --}}
+                    {{-- 携帯電話番号をハイフンで区切るように整形 --}}
                     @php
                         $phone1 = mb_substr($user->phone, 0, 3);
                         $phone2 = mb_substr($user->phone, 3, 4);
@@ -77,6 +77,7 @@
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="input-name">名前</label>
                             </div>
+                            {{-- todo data-urlにモーダルのコンポーネントをGETするURLを貼る。それ以外はいらない --}}
                             <input type="text" class="form-control post-data" id="input-name" name="item[name]" aria-label="Username">
                         </div>
                         <div class="input-group mb-3">

@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserAjaxController;
+use App\Http\Controllers\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,10 +28,18 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
     // ホーム画面
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
     // ユーザー管理画面
     Route::get('/user', [UserController::class, 'index'])->name('user_index');
-    Route::post('/user', [UserController::class, 'indexRadio']);
     Route::post('/user/create', [UserController::class, 'create'])->name('user_create');
     Route::post('/user/update', [UserController::class, 'update'])->name('user_update');
     Route::post('/user/delete', [UserController::class, 'delete'])->name('user_delete');
+
+//    Route::get('/user/{id}', [UserAjaxController::class, 'sendUserData'])->name('modal_data');
+    Route::get('/user/all', [UserAjaxController::class, 'sendAllUserList'])->name('all_user_list');
+    Route::get('/user/admin', [UserAjaxController::class, 'sendAdminUserList'])->name('admin_user_list');
+    Route::get('/user/common', [UserAjaxController::class, 'sendCommonUserList'])->name('common_user_list');
+
+    // お客様管理画面
+    Route::get('/customer', [CustomerController::class, 'index'])->name('customer_index');
 });

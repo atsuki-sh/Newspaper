@@ -1,17 +1,6 @@
 // ラジオボタンが押されたとき
 $('.radio').click(function () {
-    const post_data = {'item[radio]': $("input[name='user_radio']:checked").val()};
-
-    const then = function (res) {
-        $('#user-list').html(res);
-    };
-
-    const fail = function (xhr, textStatus, errorThrow) {
-        console.log(xhr.responseJSON.errors);
-        console.log(errorThrow);
-    };
-
-    ajax_data_post(Laravel.urls['index'], post_data, then, fail);
+    window.ajax_load($(this).data('url'), '#user-list');
 });
 
 // 「新規登録」が押されたとき
