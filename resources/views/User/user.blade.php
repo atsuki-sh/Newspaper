@@ -52,7 +52,7 @@
                         <td class="align-middle">{{ $user->email }}</td>
                         <td class="align-middle">{{ $phone1 }}-{{ $phone2 }}-{{ $phone3 }}</td>
                         <td class="align-middle">{{ $user->admin === "0" ? "一般" : "管理者" }}</td>
-                        <td class="align-middle" data-url="{{ route('modal_data', ['id' => $user->id]) }}">
+                        <td class="align-middle" data-id="{{ $user->id }}" data-name="{{ $user->name }}" data-url="{{ route('modal_data', ['id' => $user->id]) }}">
                             <button type="button" class="btn btn-success change">変更</button>
                             <button type="button" class="btn btn-secondary delete">削除</button>
                         </td>

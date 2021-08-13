@@ -1,4 +1,5 @@
 @foreach($users as $user)
+    {{-- 携帯電話番号をハイフンで区切るように整形 --}}
     @php
         $phone1 = mb_substr($user->phone, 0, 3);
         $phone2 = mb_substr($user->phone, 3, 4);
@@ -10,8 +11,8 @@
         <td class="align-middle">{{ $user->email }}</td>
         <td class="align-middle">{{ $phone1 }}-{{ $phone2 }}-{{ $phone3 }}</td>
         <td class="align-middle">{{ $user->admin === "0" ? "一般" : "管理者" }}</td>
-        <td class="align-middle" data-id="{{ $user->id }}" data-name="{{ $user->name }}" data-email="{{ $user->email }}" data-phone1="{{ $phone1 }}" data-phone2="{{ $phone2 }}" data-phone3="{{ $phone3 }}" data-admin="{{ $user->admin }}">
-            <button type="button" class="btn btn-success change" data-toggle="modal" data-target="#exampleModal">変更</button>
+        <td class="align-middle" data-id="{{ $user->id }}" data-name="{{ $user->name }}" data-url="{{ route('modal_data', ['id' => $user->id]) }}">
+            <button type="button" class="btn btn-success change">変更</button>
             <button type="button" class="btn btn-secondary delete">削除</button>
         </td>
     </tr>

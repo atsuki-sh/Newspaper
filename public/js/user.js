@@ -65,8 +65,6 @@ $(document).on('click', '#submit', function () {
     });
     // 電話番号は結合してpost_dataに保存
     post_data['item[phone]'] = $('#input-phone1').val() + $('#input-phone2').val() + $('#input-phone3').val();
-    // ラジオボタンの状態も保存
-    post_data['item[radio]'] = $('input[name="user_radio"]:checked').val();
     // パスワードを変更するかどうかも保存（updateの場合に使用）
     post_data['item[password_checked]'] = $('#checkbox-password').prop('checked');
     // 新規なら0、変更なら対象データのidを.modal-bodyから取得
@@ -75,7 +73,7 @@ $(document).on('click', '#submit', function () {
 
     const then = function (res) {
         $('#exampleModal').modal('hide');
-        $('#user-list').html(res);
+        window.ajax_load($('input[name="user_radio"]:checked').data('url'), '#user-list');
     };
 
     const fail = function (xhr, textStatus, errorThrow) {
@@ -129,11 +127,10 @@ $(document).on('click', '.delete', function () {
     if(confirm(`ユーザー「${name}」 を削除しますか？`)) {
         const post_data = {
             'item[id]': $(this).parent().data('id'),
-            'item[radio]': $("input[name='user_radio']:checked").val(),
         }
 
         const then = function (res) {
-            $('#user-list').html(res);
+            window.ajax_load($('input[name="user_radio"]:checked').data('url'), '#user-list');
         };
 
         const fail = function (xhr, textStatus, errorThrow) {
