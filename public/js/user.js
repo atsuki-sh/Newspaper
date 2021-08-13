@@ -20,37 +20,12 @@ $('#new').click(function () {
 
 // 「変更」が押されたとき
 $(document).on( 'click', '.change', function () {
-    // tdにセットされているデータを取得
-    const id = $(this).parent().data('id');
-    const name = $(this).parent().data('name');
-    const email = $(this).parent().data('email');
-    const phone1 = $(this).parent().data('phone1');
-    const phone2 = $(this).parent().data('phone2');
-    const phone3 = $(this).parent().data('phone3');
-    const admin = $(this).parent().data('admin');
-
-    // todo data-id以外は消す
-    // data-idの値をajaxで送信し、そのユーザーのデータを返してもらう
-    // ['name' => 'sdfsd']
-    // foreach(data as $key => $value) {
-    //     $('#input-' + $key).val($value);
-    // }
-
-    // todo この処理は上で完結
-    // モーダルにデータを貼る
-    $('#input-name').val(name);
-    $('#input-email').val(email);
-    $('#input-phone1').val(phone1);
-    $('#input-phone2').val(phone2);
-    $('#input-phone3').val(phone3);
-    $('#input-admin').val(admin);
-
-    // modal-bodyにidをセット
-    $('.modal-body').data('id', id);
+    window.ajax_load($(this).parent().data('url'), '#exampleModal');
+    $('#exampleModal').modal('show');
 });
 
 // モーダルのチェックボックスが押されたとき
-$('#checkbox-password').click(function () {
+$(document).on('click', '#checkbox-password', function () {
     if ($(this).prop('checked')) {
         $('.passwords').prop('disabled', false);
     } else {
@@ -59,7 +34,7 @@ $('#checkbox-password').click(function () {
 })
 
 // モーダルが閉じたとき
-$('#exampleModal').on('hidden.bs.modal', function () {
+$(document).on('hidden.bs.modal', '#exampleModal', function () {
     // エラーメッセージエリアを非表示
     $('#error-messages').addClass('d-none');
 
@@ -72,7 +47,7 @@ $('#exampleModal').on('hidden.bs.modal', function () {
 });
 
 // 「保存」が押されたとき
-$('#submit').click(function () {
+$(document).on('click', '#submit', function () {
     // 送信するデータをpost_dataにまとめる
     const post_data = {};
     $('.post-data').each(function () {

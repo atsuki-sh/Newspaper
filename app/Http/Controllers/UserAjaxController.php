@@ -7,9 +7,11 @@ use App\Models\User;
 
 class UserAjaxController extends Controller
 {
-    public function sendUserData()
+    public function sendUserData($id)
     {
-        return view('User/user_list_item', ['users' => User::all()]);
+        $user = User::find($id);
+
+        return view('User/user_modal_item', ['user' => $user]);
     }
 
     public function sendAllUserList()
