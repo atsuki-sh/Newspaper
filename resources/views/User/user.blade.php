@@ -6,7 +6,6 @@
     <div class="container">
         <div class="mb-3 d-flex justify-content-between align-items-center">
             <h3 class="mb-0">ユーザー一覧</h3>
-
             <button type="button" class="btn btn-primary btn-lg" id="new" data-toggle="modal" data-target="#exampleModal">新規登録</button>
         </div>
 
@@ -32,8 +31,8 @@
                 </div>
             </div>
             <div class="d-flex w-25 align-items-center">
-                <label for="input-search" class="sr-only">名前</label>
-                <input type="text" class="form-control mr-1 ml-auto w-50" id="input-search" data-url="{{ route('search_user') }}" placeholder="名前">
+                <label for="input-search" class="sr-only">名前など</label>
+                <input type="text" class="form-control mr-1 ml-auto w-50" id="input-search" data-url="{{ route('search_user') }}" placeholder="名前など">
                 <button type="button" id="btn-search" class="btn btn-primary">検索</button>
             </div>
         </div>
@@ -62,7 +61,6 @@
         <div class="modal" id="exampleModal" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
             @include('User/user_modal_item', ['user' => $users[0]])
         </div>
-
     </div>
 @endsection
 

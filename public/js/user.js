@@ -44,10 +44,8 @@ $(document).on('click', '#checkbox-password', function () {
 
 // モーダルが閉じたとき
 $(document).on('hidden.bs.modal', '#exampleModal', function () {
-    // エラーメッセージエリアを非表示
     $('#error-messages').addClass('d-none');
 
-    // フォームのinvalidを消す
     $('.form-control').removeClass('is-invalid');
 
     // チェックボックスをuncheckedにし、パスワードフォームをdisabledに
@@ -76,15 +74,17 @@ $(document).on('click', '#submit', function () {
     post_data['item[phone]'] = $('#input-phone1').val() + $('#input-phone2').val() + $('#input-phone3').val();
     // パスワードを変更するかどうかも保存（updateの場合に使用）
     post_data['item[password_checked]'] = $('#checkbox-password').prop('checked');
-    // 新規なら0、変更なら対象データのidを.modal-bodyから取得
+    // .modal-bodyからidを取得
     const id = $('.modal-body').data('id');
     post_data['item[id]'] = id;
 
+    // 通信成功時の処理
     const then = function (res) {
         $('#exampleModal').modal('hide');
         window.ajax_get_load($('input[name="user_radio"]:checked').data('url'), '#user-list');
     };
 
+    // 通信失敗時の処理
     const fail = function (xhr, textStatus, errorThrow) {
         console.log(xhr.responseJSON.errors);
         console.log(errorThrow);
