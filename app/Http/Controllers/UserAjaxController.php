@@ -24,14 +24,21 @@ class UserAjaxController extends Controller
 
     public function sendAdminUserList()
     {
-        $users = User::where('admin', 1)->paginate(1);
+        $users = User::where('admin', 1)->paginate(10);
 
         return view('User/user_list_item', ['users' => $users]);
     }
 
     public function sendCommonUserList()
     {
-        $users = User::where('admin', 0)->paginate(2);
+        $users = User::where('admin', 0)->paginate(10);
+
+        return view('User/user_list_item', ['users' => $users]);
+    }
+
+    public function searchUserData($name)
+    {
+        $users = User::where('name','like', "%{$name}%")->paginate(10);
 
         return view('User/user_list_item', ['users' => $users]);
     }

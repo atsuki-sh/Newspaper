@@ -36,6 +36,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/user/delete', [UserController::class, 'delete'])->name('user_delete');
 
     Route::get('/user/modal/{id}', [UserAjaxController::class, 'sendUserData'])->name('modal_data');
+    Route::get('/user/search/{name}', [UserAjaxController::class, 'searchUserData'])->name('search_user');
     Route::get('/user/all', [UserAjaxController::class, 'sendAllUserList'])->name('all_user_list');
     Route::get('/user/admin', [UserAjaxController::class, 'sendAdminUserList'])->name('admin_user_list');
     Route::get('/user/common', [UserAjaxController::class, 'sendCommonUserList'])->name('common_user_list');

@@ -18,6 +18,12 @@ $('#new').click(function () {
     $('.passwords').prop('disabled', false);
 });
 
+// 「検索」が押されたとき
+$('#btn-search').click(function () {
+    const url = $('#input-search').data('url').replace('???', '') + $('#input-search').val();
+    window.ajax_load(url, '#user-list');
+})
+
 // 「変更」が押されたとき
 $(document).on( 'click', '.change', function () {
     window.ajax_load($(this).parent().data('url'), '#exampleModal');

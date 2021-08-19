@@ -12,7 +12,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        return view('User/user', ['users' => User::paginate(2)]);
+        return view('User/user', ['users' => User::paginate(10)]);
     }
 
     public function create(UserRequest $request)
