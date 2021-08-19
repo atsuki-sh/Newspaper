@@ -36,9 +36,14 @@ class UserAjaxController extends Controller
         return view('User/user_list_item', ['users' => $users]);
     }
 
-    public function searchUserData($name)
+    public function searchUserData(Request $request)
     {
-        $users = User::where('name','like', "%{$name}%")->paginate(10);
+        $word = $request->input('word');
+
+        $users = User::where('name', $word)
+            ->orWhere('email', $word)
+            ->orWhere('phone', $word)
+            ->paginate(10);
 
         return view('User/user_list_item', ['users' => $users]);
     }

@@ -20,8 +20,9 @@ $('#new').click(function () {
 
 // 「検索」が押されたとき
 $('#btn-search').click(function () {
-    const url = $('#input-search').data('url').replace('???', '') + $('#input-search').val();
-    window.ajax_post_load(url, '#user-list');
+    const url = $('#input-search').data('url');
+    const data = {word: $('#input-search').val()};
+    window.ajax_post_load(url, '#user-list', data);
 })
 
 // 「変更」が押されたとき

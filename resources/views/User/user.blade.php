@@ -33,9 +33,8 @@
             </div>
             <div class="d-flex w-25 align-items-center">
                 <label for="input-search" class="sr-only">名前</label>
-{{--                todo postに変えて名前以外のカラムで検索できるように--}}
 {{--                todo 現在チェックしているラジオボタンのリストの中から、ユーザーを検索。nameを引数にせずに、--}}
-                <input type="text" class="form-control mr-1 ml-auto w-50" id="input-search" data-url="{{ route('search_user', ['name' => '???']) }}" placeholder="名前">
+                <input type="text" class="form-control mr-1 ml-auto w-50" id="input-search" data-url="{{ route('search_user') }}" placeholder="名前">
                 <button type="button" id="btn-search" class="btn btn-primary">検索</button>
             </div>
         </div>

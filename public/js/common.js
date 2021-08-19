@@ -35,7 +35,7 @@ window.ajax_get_load = function(url, selector) {
         });
 }
 
-window.ajax_post_load = function(url, selector) {
+window.ajax_post_load = function(url, selector, data) {
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -45,6 +45,7 @@ window.ajax_post_load = function(url, selector) {
     $.ajax({
         type: 'post',
         url: url,
+        data: data,
     })
         .then((res) => {
             $(selector).html(res);
