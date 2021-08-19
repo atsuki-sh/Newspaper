@@ -13,19 +13,19 @@
         <div class="mb-3 d-flex justify-content-between ml-4">
             <div class="d-flex w-50 justify-content-between align-items-center">
                 <div>
-                    <input class="form-check-input radio" type="radio" name="user_radio" id="user_all" data-url="{{ route('all_user_list') }}" style="transform:scale(1.5);" checked>
+                    <input class="form-check-input radio" type="radio" name="user_radio" id="user_all" data-url="{{ route('all_user_list') }}" value="0" style="transform:scale(1.5);" checked>
                     <label class="form-check-label" for="user_all">
                         すべて表示
                     </label>
                 </div>
                 <div>
-                    <input class="form-check-input radio" type="radio" name="user_radio" id="user_admin" data-url="{{ route('admin_user_list') }}" style="transform:scale(1.5);">
+                    <input class="form-check-input radio" type="radio" name="user_radio" id="user_admin" data-url="{{ route('admin_user_list') }}" value="1" style="transform:scale(1.5);">
                     <label class="form-check-label" for="user_admin">
                         管理者のみ
                     </label>
                 </div>
                 <div>
-                    <input class="form-check-input radio" type="radio" name="user_radio" id="user_common" data-url="{{ route('common_user_list') }}" style="transform:scale(1.5);">
+                    <input class="form-check-input radio" type="radio" name="user_radio" id="user_common" data-url="{{ route('common_user_list') }}" value="2" style="transform:scale(1.5);">
                     <label class="form-check-label" for="user_common">
                         一般のみ
                     </label>

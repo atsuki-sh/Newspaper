@@ -21,7 +21,9 @@ $('#new').click(function () {
 // 「検索」が押されたとき
 $('#btn-search').click(function () {
     const url = $('#input-search').data('url');
-    const data = {word: $('#input-search').val()};
+    const data = {};
+    data['word'] = $('#input-search').val();
+    data['radio'] = $('input[name="user_radio"]:checked').val();
     window.ajax_post_load(url, '#user-list', data);
 })
 
