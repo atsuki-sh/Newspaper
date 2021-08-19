@@ -1,5 +1,5 @@
 // ajaxでデータを送信するための関数
-function ajax_data_post(url, data, then, fail) {
+window.ajax_post = function (url, data, then, fail) {
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
