@@ -6,12 +6,13 @@ use App\Http\Requests\UserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 
 class UserController extends Controller
 {
     public function index()
     {
-        return view('User/user', ['users' => User::all()]);
+        return view('User/user', ['users' => User::paginate(2)]);
     }
 
     public function create(UserRequest $request)

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Pagination\Paginator;
 
 class UserAjaxController extends Controller
 {
@@ -23,14 +24,14 @@ class UserAjaxController extends Controller
 
     public function sendAdminUserList()
     {
-        $users = User::where('admin', 1)->get();
+        $users = User::where('admin', 1)->paginate(1);
 
         return view('User/user_list_item', ['users' => $users]);
     }
 
     public function sendCommonUserList()
     {
-        $users = User::where('admin', 0)->get();
+        $users = User::where('admin', 0)->paginate(2);
 
         return view('User/user_list_item', ['users' => $users]);
     }
