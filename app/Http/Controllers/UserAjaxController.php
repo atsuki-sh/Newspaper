@@ -15,23 +15,13 @@ class UserAjaxController extends Controller
         return view('User/user_modal_item', ['user' => $user]);
     }
 
-    public function sendAllUserList()
-    {
-        $users = User::all();
-
-        return view('User/user_list_item', ['users' => $users]);
-    }
-
-    public function sendAdminUserList()
-    {
-        $users = User::where('admin', 1)->paginate(10);
-
-        return view('User/user_list_item', ['users' => $users]);
-    }
-
-    public function sendCommonUserList()
-    {
-        $users = User::where('admin', 0)->paginate(10);
+    public function sendUserList($admin)
+    {;
+        if ($admin === '100') {
+            $users = User::all();
+        } else {
+            $users = User::where('admin', $admin)->paginate(10);
+        }
 
         return view('User/user_list_item', ['users' => $users]);
     }
