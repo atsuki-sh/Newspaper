@@ -30,7 +30,7 @@
                     </label>
                 </div>
             </div>
-            <div class="d-flex w-25 align-items-center">
+            <div class="d-flex w-50 align-items-center">
                 <label for="input-search" class="sr-only">名前など</label>
                 <input type="text" class="form-control mr-1 ml-auto w-50" id="input-search" data-url="{{ route('search_user') }}" placeholder="名前など">
                 <button type="button" id="btn-search" class="btn btn-primary">検索</button>

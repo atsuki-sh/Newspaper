@@ -34,15 +34,19 @@ class UserAjaxController extends Controller
         if ($radio === '100') {
             $users = User::query();
         } elseif ($radio === '1') {
-            $users = User::where('admin', 1);
+            $users = User::query()->where('admin', 1);
         } else {
-            $users = User::where('admin', 0);
+            $users = User::query()->where('admin', 0);
         }
+
+//        dd($users->get());
 
         $users = $users->where('name', $word)
             ->orWhere('email', $word)
             ->orWhere('phone', $word)
             ->paginate(10);
+
+        dd($users);
 
         return view('User/user_list_item', ['users' => $users]);
     }
