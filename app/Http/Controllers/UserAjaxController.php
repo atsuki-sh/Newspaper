@@ -31,28 +31,18 @@ class UserAjaxController extends Controller
         $word = $request->input('word');
         $radio = $request->input('radio');
 
-        if ($radio === '0') {
-            $users = User::where('name', $word)
-                ->orWhere('email', $word)
-                ->orWhere('phone', $word)
-                ->paginate(10);
+        if ($radio === '100') {
+            $users = User::query();
         } elseif ($radio === '1') {
-            $users = User::where('admin', 1)
-                ->where(function ($query) use ($word) {
-                    $query->where('name', $word)
-                        ->orWhere('email', $word)
-                        ->orWhere('phone', $word);
-                })
-                ->paginate(10);
+            $users = User::where('admin', 1);
         } else {
-            $users = User::where('admin', 0)
-                ->where(function ($query) use ($word) {
-                    $query->where('name', $word)
-                        ->orWhere('email', $word)
-                        ->orWhere('phone', $word);
-                })
-                ->paginate(10);
+            $users = User::where('admin', 0);
         }
+
+        $users = $users->where('name', $word)
+            ->orWhere('email', $word)
+            ->orWhere('phone', $word)
+            ->paginate(10);
 
         return view('User/user_list_item', ['users' => $users]);
     }
