@@ -15,7 +15,7 @@ function ajax_data_post(url, data, then, fail) {
         .fail((xhr, textStatus, errorThrow) => fail(xhr, textStatus, errorThrow))
 }
 
-window.ajax_load = function(url, selector) {
+window.ajax_get_load = function(url, selector) {
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -24,6 +24,26 @@ window.ajax_load = function(url, selector) {
 
     $.ajax({
         type: 'get',
+        url: url,
+    })
+        .then((res) => {
+            $(selector).html(res);
+        })
+        .fail((xhr, textStatus, errorThrown) => {
+            console.log(xhr.responseJSON.errors);
+            console.log(errorThrow);
+        });
+}
+
+window.ajax_post_load = function(url, selector) {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $.ajax({
+        type: 'post',
         url: url,
     })
         .then((res) => {

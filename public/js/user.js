@@ -1,6 +1,6 @@
 // ラジオボタンが押されたとき
 $('.radio').click(function () {
-    window.ajax_load($(this).data('url'), '#user-list');
+    window.ajax_get_load($(this).data('url'), '#user-list');
 });
 
 // 「新規登録」が押されたとき
@@ -21,12 +21,12 @@ $('#new').click(function () {
 // 「検索」が押されたとき
 $('#btn-search').click(function () {
     const url = $('#input-search').data('url').replace('???', '') + $('#input-search').val();
-    window.ajax_load(url, '#user-list');
+    window.ajax_post_load(url, '#user-list');
 })
 
 // 「変更」が押されたとき
 $(document).on( 'click', '.change', function () {
-    window.ajax_load($(this).parent().data('url'), '#exampleModal');
+    window.ajax_get_load($(this).parent().data('url'), '#exampleModal');
     $('#exampleModal').modal('show');
 });
 
@@ -79,7 +79,7 @@ $(document).on('click', '#submit', function () {
 
     const then = function (res) {
         $('#exampleModal').modal('hide');
-        window.ajax_load($('input[name="user_radio"]:checked').data('url'), '#user-list');
+        window.ajax_get_load($('input[name="user_radio"]:checked').data('url'), '#user-list');
     };
 
     const fail = function (xhr, textStatus, errorThrow) {
@@ -136,7 +136,7 @@ $(document).on('click', '.delete', function () {
         }
 
         const then = function (res) {
-            window.ajax_load($('input[name="user_radio"]:checked').data('url'), '#user-list');
+            window.ajax_get_load($('input[name="user_radio"]:checked').data('url'), '#user-list');
         };
 
         const fail = function (xhr, textStatus, errorThrow) {
