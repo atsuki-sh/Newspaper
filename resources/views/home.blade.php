@@ -19,7 +19,7 @@
                 <div class="card-body">
                     <h5 class="card-title">お客様管理</h5>
                     <p class="card-text">お客様の管理画面です</p>
-                    <a href="#" class="btn btn-primary">移動</a>
+                    <a href="{{ route('customer_index') }}" class="btn btn-primary">移動</a>
                 </div>
             </div>
         </div>
