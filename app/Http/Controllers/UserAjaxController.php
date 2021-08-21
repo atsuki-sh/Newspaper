@@ -39,14 +39,13 @@ class UserAjaxController extends Controller
             $users = User::query()->where('admin', 0);
         }
 
-//        dd($users->get());
+        $users = $users->where([
+            ['name', '=', $word, 'or'],
+            ['email', '=', $word, 'or'],
+            ['phone', '=', $word, 'or'],
+        ])->paginate(10);
 
-        $users = $users->where('name', $word)
-            ->orWhere('email', $word)
-            ->orWhere('phone', $word)
-            ->paginate(10);
-
-        dd($users);
+//        dd($users);
 
         return view('User/user_list_item', ['users' => $users]);
     }
