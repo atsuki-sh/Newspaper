@@ -95,4 +95,6 @@
     <script>
         $('#nav-customer').addClass('active');
     </script>
+    <script src="{{ asset('js/common.js') }}"></script>
+    <script src="{{ asset('js/customer.js') }}"></script>
 @endsection
