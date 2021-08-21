@@ -5,6 +5,7 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserAjaxController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\CustomerAjaxController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,4 +43,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // お客様管理画面
     Route::get('/customer', [CustomerController::class, 'index'])->name('customer_index');
+
+    // 顧客のAjax通信
+    Route::get('/customer/modal/{id}', [CustomerAjaxController::class, 'sendCustomerModal'])->name('customer_modal');
 });
