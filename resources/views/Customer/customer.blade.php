@@ -34,7 +34,7 @@
 
 {{--        モーダル--}}
         <div class="modal" id="exampleModal" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            @include('Customer/customer_modal_item')
+            @include('Customer/customer_modal_item', ['customer' => $customers[0]])
         </div>
     </div>
 @endsection
