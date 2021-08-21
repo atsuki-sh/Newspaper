@@ -13,4 +13,11 @@ class Customer extends Model
     {
         return $this->hasOne(Point::class);
     }
+
+    protected $fillable =[
+        'name',
+        'tel',
+        'address',
+        'copy',
+    ];
 }

@@ -18,6 +18,7 @@ class CreateCustomersTable extends Migration
             $table->foreignId('point_id')->constrained('points');
             $table->string('name');
             $table->string('tel', 11);
+            $table->string('address');
             $table->integer('copy');
             $table->timestamps();
         });
