@@ -11,4 +11,9 @@ class CustomerAjaxController extends Controller
     {
         return view('customer/customer_modal_item', ['customer' => Customer::find($id)]);
     }
+
+    public function sendCustomerList()
+    {
+        return view('Customer/customer_list_item', ['customers' => Customer::all()]);
+    }
 }

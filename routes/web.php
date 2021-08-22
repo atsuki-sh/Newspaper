@@ -49,4 +49,5 @@ Route::group(['middleware' => 'auth'], function () {
 
     // 顧客のAjax通信
     Route::get('/customer/modal/{id}', [CustomerAjaxController::class, 'sendCustomerModal'])->name('customer_modal');
+    Route::get('/customer/list', [CustomerAjaxController::class, 'sendCustomerList'])->name('customer_list');
 });

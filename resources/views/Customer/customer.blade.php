@@ -27,7 +27,7 @@
                 <th scope="col">操作</th>
             </tr>
             </thead>
-            <tbody id="customer-list">
+            <tbody id="customer-list" data-url="{{ route('customer_list') }}">
             @include('Customer/customer_list_item', ['customers' => $customers])
             </tbody>
         </table>

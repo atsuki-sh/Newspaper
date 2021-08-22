@@ -34,7 +34,7 @@
             </div>
         </div>
         <div class="modal-footer" data-url-create="{{ route('customer_create') }}" data-url-update="{{ route('customer_update') }}" data-id="{{ $customer->id }}">
-            <button type="button" class="btn btn-primary" id="submit" data-dismiss="modal">保存</button>
+            <button type="button" class="btn btn-primary" id="submit">保存</button>
             <button type="button" class="btn btn-secondary" id="close" data-dismiss="modal">閉じる</button>
         </div>
     </div>
