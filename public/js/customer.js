@@ -37,3 +37,11 @@ $(document).on('click', '#submit', function () {
         window.ajax_post_load($(this).parent().data('url-update'),'#customer-list', post_data);
     }
 });
+
+$(document).on('click', '.delete', function () {
+    const name = $(this).data('name');
+
+    if (confirm(`顧客「${name}」を削除しますか？`)) {
+        window.ajax_post_load($(this).data('url'), '#customer-list', {'id': $(this).data('id')});
+    }
+});

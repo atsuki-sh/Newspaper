@@ -39,6 +39,8 @@ class CustomerController extends Controller
 
     public function delete(Request $request)
     {
+        Customer::find($request->id)->delete();
 
+        return view('Customer/customer_list_item', ['customers' => Customer::all()]);
     }
 }
