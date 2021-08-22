@@ -43,6 +43,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     // お客様管理画面
     Route::get('/customer', [CustomerController::class, 'index'])->name('customer_index');
+    Route::post('/customer/create', [CustomerController::class, 'create'])->name('customer_create');
+    Route::post('/customer/update', [CustomerController::class, 'update'])->name('customer_update');
+    Route::post('/customer/delete', [CustomerController::class, 'delete'])->name('customer_delete');
 
     // 顧客のAjax通信
     Route::get('/customer/modal/{id}', [CustomerAjaxController::class, 'sendCustomerModal'])->name('customer_modal');
