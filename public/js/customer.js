@@ -13,6 +13,11 @@ $('#search').click(function () {
     window.ajax_post_load($(this).data('url'), '#customer-list', {'word': $('#input-search').val()});
 });
 
+$('#reset').click(function () {
+    $('#input-search').val('');
+    window.ajax_get_load($(this).data('url'), '#customer-list');
+});
+
 $(document).on('click', '.change', function () {
     window.ajax_get_load($(this).data('url'), '#exampleModal');
     $('#exampleModal').modal('show');
