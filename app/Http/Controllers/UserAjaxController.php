@@ -45,8 +45,6 @@ class UserAjaxController extends Controller
             ['phone', '=', $word, 'or'],
         ])->paginate(10);
 
-//        dd($users);
-
         return view('User/user_list_item', ['users' => $users]);
     }
 }

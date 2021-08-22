@@ -9,6 +9,10 @@ $(document).on('hidden.bs.modal', '#exampleModal', function () {
     $('.form-control').removeClass('is-invalid');
 });
 
+$('#search').click(function () {
+    window.ajax_post_load($(this).data('url'), '#customer-list', {'word': $('#input-search').val()});
+});
+
 $(document).on('click', '.change', function () {
     window.ajax_get_load($(this).data('url'), '#exampleModal');
     $('#exampleModal').modal('show');

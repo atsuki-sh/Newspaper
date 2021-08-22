@@ -11,9 +11,8 @@
 
         <div class="d-flex mb-3 ml-auto w-50 align-items-center">
             <label for="input-search" class="sr-only">名前など</label>
-{{--            todo data-urlのrouteをお客様検索画面のものに変更--}}
-            <input type="text" class="form-control mr-1 ml-auto w-50" id="input-search" data-url="{{ route('search_user') }}" placeholder="名前など">
-            <button type="button" id="btn-search" class="btn btn-primary">検索</button>
+            <input type="text" class="form-control mr-1 ml-auto w-50" id="input-search" placeholder="名前など">
+            <button type="button" id="search" class="btn btn-primary" data-url="{{ route('customer_search') }}">検索</button>
         </div>
 
         <table class="table table-striped">
