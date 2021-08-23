@@ -29,8 +29,10 @@ $('#btn-search').click(function () {
 
 // 「変更」が押されたとき
 $(document).on( 'click', '.change', function () {
-    window.ajax_get_load($(this).parent().data('url'), '#exampleModal');
-    $('#exampleModal').modal('show');
+    const addDone = function () {
+        $('#exampleModal').modal('show');
+    }
+    window.ajax_get_load($(this).parent().data('url'), '#exampleModal', addDone);
 });
 
 // モーダルのチェックボックスが押されたとき
@@ -80,8 +82,8 @@ $(document).on('click', '#submit', function () {
 
     // 通信成功時の処理
     const then = function (res) {
-        $('#exampleModal').modal('hide');
         window.ajax_get_load($('input[name="user_radio"]:checked').data('url'), '#user-list');
+        $('#exampleModal').modal('hide');
     };
 
     // 通信失敗時の処理

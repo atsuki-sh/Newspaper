@@ -58,7 +58,7 @@
         </div>
 
         <!-- Modal -->
-        <div class="modal" id="exampleModal" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
             @include('User/user_modal_item', ['user' => $users[0]])
         </div>
     </div>
