@@ -33,7 +33,7 @@
         </table>
 
 {{--        モーダル--}}
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="exampleModal" tabindex="-1" data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
             @include('Customer/customer_modal_item', ['customer' => $customers[0]])
         </div>
     </div>
