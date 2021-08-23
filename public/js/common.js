@@ -15,7 +15,7 @@ window.ajax_post = function (url, data, then, fail) {
         .fail((xhr, textStatus, errorThrow) => fail(xhr, textStatus, errorThrow))
 }
 
-window.ajax_get_load = function(url, selector) {
+window.ajax_get_load = function(url, selector, addDone = function () {}) {
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -28,6 +28,8 @@ window.ajax_get_load = function(url, selector) {
     })
         .then((res) => {
             $(selector).html(res);
+            // 追加の処理があれば実行
+            addDone();
         })
         .fail((xhr, textStatus, errorThrown) => {
             console.log(xhr.responseJSON.errors);

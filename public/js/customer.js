@@ -19,8 +19,10 @@ $('#reset').click(function () {
 });
 
 $(document).on('click', '.change', function () {
-    window.ajax_get_load($(this).data('url'), '#exampleModal');
-    $('#exampleModal').modal('show');
+    const addDone = function () {
+        $('#exampleModal').modal('show')
+    }
+    window.ajax_get_load($(this).data('url'), '#exampleModal', addDone);
 });
 
 $(document).on('click', '#submit', function () {
