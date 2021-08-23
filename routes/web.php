@@ -7,6 +7,7 @@ use App\Http\Controllers\UserAjaxController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CustomerAjaxController;
 use App\Http\Controllers\DeliveryRouteController;
+use App\Http\Controllers\DeliveryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,4 +54,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // ルート管理画面
     Route::get('/route', [DeliveryRouteController::class, 'index'])->name('route_index');
+
+    // 配達管理画面
+    Route::get('/delivery', [DeliveryController::class, 'index'])->name('delivery_index');
 });

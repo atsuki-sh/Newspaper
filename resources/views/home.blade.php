@@ -28,7 +28,7 @@
                 <div class="card-body">
                     <h5 class="card-title">配達管理</h5>
                     <p class="card-text">配達の管理画面です</p>
-                    <a href="#" class="btn btn-primary">移動</a>
+                    <a href="{{ route('delivery_index') }}" class="btn btn-primary">移動</a>
                 </div>
             </div>
         </div>
