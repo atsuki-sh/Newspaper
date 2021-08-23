@@ -35,9 +35,9 @@
         <div class="col-md-5 mb-4">
             <div class="card text-center">
                 <div class="card-body">
-                    <h5 class="card-title">ポイント管理</h5>
-                    <p class="card-text">ポイントの管理画面です</p>
-                    <a href="#" class="btn btn-primary">移動</a>
+                    <h5 class="card-title">ルート管理</h5>
+                    <p class="card-text">配達ルートの管理画面です</p>
+                    <a href="{{ route('route_index') }}" class="btn btn-primary">移動</a>
                 </div>
             </div>
         </div>

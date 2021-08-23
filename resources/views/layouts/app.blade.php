@@ -46,7 +46,7 @@
                             <a class="nav-link" href="{{ route('home') }}">配達管理</a>
                         </li>
                         <li class="nav-item ml-2" id="nav-route">
-                            <a class="nav-link" href="{{ route('home') }}">ルート管理</a>
+                            <a class="nav-link" href="{{ route('route_index') }}">ルート管理</a>
                         </li>
                     </ul>
 

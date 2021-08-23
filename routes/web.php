@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserAjaxController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CustomerAjaxController;
+use App\Http\Controllers\DeliveryRouteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +36,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/user/create', [UserController::class, 'create'])->name('user_create');
     Route::post('/user/update', [UserController::class, 'update'])->name('user_update');
     Route::post('/user/delete', [UserController::class, 'delete'])->name('user_delete');
-
     // ユーザーのAjax通信
     Route::get('/user/modal/{id}', [UserAjaxController::class, 'sendUserData'])->name('modal_data');
     Route::get('/user/{admin}', [UserAjaxController::class, 'sendUserList'])->name('user_list');
@@ -46,9 +46,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/customer/create', [CustomerController::class, 'create'])->name('customer_create');
     Route::post('/customer/update', [CustomerController::class, 'update'])->name('customer_update');
     Route::post('/customer/delete', [CustomerController::class, 'delete'])->name('customer_delete');
-
     // 顧客のAjax通信
     Route::get('/customer/modal/{id}', [CustomerAjaxController::class, 'sendCustomerModal'])->name('customer_modal');
     Route::get('/customer/list', [CustomerAjaxController::class, 'sendCustomerList'])->name('customer_list');
     Route::post('/customer/search', [CustomerAjaxController::class, 'searchCustomerData'])->name('customer_search');
+
+    // ルート管理画面
+    Route::get('/route', [DeliveryRouteController::class, 'index'])->name('route_index');
 });
