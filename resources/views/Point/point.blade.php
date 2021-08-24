@@ -10,8 +10,8 @@
         </div>
 
         <div class="d-flex mb-3 ml-auto w-50 align-items-center">
-            <label for="input-search" class="sr-only">名前など</label>
-            <input type="text" class="form-control mr-1 ml-auto w-50" id="input-search" placeholder="名前など">
+            <label for="input-search" class="sr-only">ポイント名など</label>
+            <input type="text" class="form-control mr-1 ml-auto w-50" id="input-search" placeholder="ポイント名など">
             <button type="button" id="search" class="btn btn-primary mr-1" data-url="#">検索</button>
             <button type="button" id="reset" class="btn btn-secondary" data-url="#">リセット</button>
         </div>
@@ -32,6 +32,11 @@
             @include('Point/point_list_item', ['points' => $points])
             </tbody>
         </table>
+
+        {{--        モーダル--}}
+        <div class="modal fade" id="exampleModal" tabindex="-1" data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            @include('Point/point_modal_item', ['point' => $points[0]])
+        </div>
     </div>
 @endsection
 
