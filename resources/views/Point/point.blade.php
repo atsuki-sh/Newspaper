@@ -34,9 +34,7 @@
         </table>
 
         {{--        モーダル--}}
-        <div class="modal fade" id="customerModal" tabindex="-1" data-backdrop="static" aria-labelledby="customerModalLabel" aria-hidden="true">
-            @include('Point/point_modal_item')
-        </div>
+        <div class="modal fade" id="customerModal" tabindex="-1" data-backdrop="static" aria-labelledby="customerModalLabel" aria-hidden="true"></div>
     </div>
 @endsection
 
@@ -45,4 +43,5 @@
         $('#nav-point').addClass('active');
     </script>
     <script src="{{ asset('js/common.js') }}"></script>
+    <script src="{{ asset('js/point.js') }}"></script>
 @endsection

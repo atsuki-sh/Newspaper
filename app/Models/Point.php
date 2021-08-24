@@ -11,7 +11,7 @@ class Point extends Model
 
     public function customer()
     {
-        return $this->hasOne(Customer::class);
+        return $this->hasMany(Customer::class);
     }
 
     public function delivery_route()
@@ -21,6 +21,6 @@ class Point extends Model
 
     public function delivery_detail()
     {
-        return $this->hasMany(DeliveryDetail::class, );
+        return $this->hasMany(DeliveryDetail::class);
     }
 }

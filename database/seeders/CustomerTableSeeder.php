@@ -16,7 +16,7 @@ class CustomerTableSeeder extends Seeder
     public function run()
     {
         DB::table('customers')->insert([
-            'point_id' => null,
+            'point_id' => 1,
             'name' => '太郎',
             'tel' => '11122223333',
             'address' => '彦根市長曽根南町494-25',
@@ -36,7 +36,7 @@ class CustomerTableSeeder extends Seeder
         ]);
 
         DB::table('customers')->insert([
-            'point_id' => null,
+            'point_id' => 1,
             'name' => '花子',
             'tel' => '77788889999',
             'address' => '彦根市野村町野村23-311',
