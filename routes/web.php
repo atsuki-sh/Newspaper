@@ -8,6 +8,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CustomerAjaxController;
 use App\Http\Controllers\DeliveryRouteController;
 use App\Http\Controllers\DeliveryController;
+use App\Http\Controllers\PointController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/customer/modal/{id}', [CustomerAjaxController::class, 'sendCustomerModal'])->name('customer_modal');
     Route::get('/customer/list', [CustomerAjaxController::class, 'sendCustomerList'])->name('customer_list');
     Route::post('/customer/search', [CustomerAjaxController::class, 'searchCustomerData'])->name('customer_search');
+
+    // ポイント管理画面
+    Route::get('/point', [PointController::class, 'index'])->name('point_index');
 
     // ルート管理画面
     Route::get('/route', [DeliveryRouteController::class, 'index'])->name('route_index');

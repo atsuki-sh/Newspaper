@@ -42,11 +42,14 @@
                         <li class="nav-item ml-2" id="nav-customer">
                             <a class="nav-link" href="{{ route('customer_index') }}">お客様管理</a>
                         </li>
-                        <li class="nav-item ml-2" id="nav-deliver">
-                            <a class="nav-link" href="{{ route('delivery_index') }}">配達管理</a>
+                        <li class="nav-item ml-2" id="nav-point">
+                            <a class="nav-link" href="{{ route('point_index') }}">ポイント管理</a>
                         </li>
                         <li class="nav-item ml-2" id="nav-route">
                             <a class="nav-link" href="{{ route('route_index') }}">ルート管理</a>
+                        </li>
+                        <li class="nav-item ml-2" id="nav-deliver">
+                            <a class="nav-link" href="{{ route('delivery_index') }}">配達管理</a>
                         </li>
                     </ul>
 
