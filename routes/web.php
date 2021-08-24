@@ -9,6 +9,7 @@ use App\Http\Controllers\CustomerAjaxController;
 use App\Http\Controllers\DeliveryRouteController;
 use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\PointController;
+use App\Http\Controllers\PointAjaxController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +56,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     // ポイント管理画面
     Route::get('/point', [PointController::class, 'index'])->name('point_index');
+    // ポイントのAjax通信
+    Route::get('/point/list', [PointAjaxController::class, 'sendPointList'])->name('point_list');
 
     // ルート管理画面
     Route::get('/route', [DeliveryRouteController::class, 'index'])->name('route_index');
