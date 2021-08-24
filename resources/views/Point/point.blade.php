@@ -6,7 +6,7 @@
     <div class="container">
         <div class="mb-3 d-flex justify-content-between align-items-center">
             <h3 class="mb-0">配達ポイント一覧</h3>
-            <button type="button" class="btn btn-primary btn-lg" id="new" data-toggle="modal" data-target="#exampleModal">新規登録</button>
+            <button type="button" class="btn btn-primary btn-lg" id="new" data-toggle="modal" data-target="#customerModal">新規登録</button>
         </div>
 
         <div class="d-flex mb-3 ml-auto w-50 align-items-center">
@@ -34,8 +34,8 @@
         </table>
 
         {{--        モーダル--}}
-        <div class="modal fade" id="exampleModal" tabindex="-1" data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            @include('Point/point_modal_item', ['point' => $points[0]])
+        <div class="modal fade" id="customerModal" tabindex="-1" data-backdrop="static" aria-labelledby="customerModalLabel" aria-hidden="true">
+            @include('Point/point_modal_item')
         </div>
     </div>
 @endsection
