@@ -16,8 +16,7 @@ class CustomerTableSeeder extends Seeder
     public function run()
     {
         DB::table('customers')->insert([
-            'id' => 1,
-            'point_id' => 1,
+            'point_id' => null,
             'name' => '太郎',
             'tel' => '11122223333',
             'address' => '彦根市長曽根南町494-25',
@@ -27,8 +26,7 @@ class CustomerTableSeeder extends Seeder
         ]);
 
         DB::table('customers')->insert([
-            'id' => 2,
-            'point_id' => 2,
+            'point_id' => null,
             'name' => '次郎',
             'tel' => '44455556666',
             'address' => '彦根市馬場1-1-1',
@@ -38,8 +36,7 @@ class CustomerTableSeeder extends Seeder
         ]);
 
         DB::table('customers')->insert([
-            'id' => 3,
-            'point_id' => 3,
+            'point_id' => null,
             'name' => '花子',
             'tel' => '77788889999',
             'address' => '彦根市野村町野村23-311',
@@ -49,8 +46,7 @@ class CustomerTableSeeder extends Seeder
         ]);
 
         DB::table('customers')->insert([
-            'id' => 4,
-            'point_id' => 4,
+            'point_id' => null,
             'name' => '梅子',
             'tel' => '12345678901',
             'address' => '彦根市泉町543-44',

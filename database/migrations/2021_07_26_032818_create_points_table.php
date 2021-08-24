@@ -15,11 +15,11 @@ class CreatePointsTable extends Migration
     {
         Schema::create('points', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('delivery_route_id')->constrained('delivery_routes');
+            $table->foreignId('delivery_route_id')->nullable()->constrained('delivery_routes');
+            $table->string('name');
             $table->double('north_lat', 20, 15);
             $table->double('east_lon', 20, 15);
-            $table->integer('rank');
-            $table->boolean('status');
+            $table->string('updated_by');
             $table->timestamps();
         });
     }
