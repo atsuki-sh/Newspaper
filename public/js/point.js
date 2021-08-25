@@ -17,7 +17,6 @@ $(document).on('click', '.registration', function () {
         point_id: $('#customerModalLabel').data('id'),
         customer_id: $(this).data('customer_id'),
     }
-    console.log(data);
     window.ajax_post_load($(this).data('url'), '#customerModal', data);
 });
 
