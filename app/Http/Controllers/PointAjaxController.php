@@ -31,6 +31,6 @@ class PointAjaxController extends Controller
             ['address', '=', $word, 'or'],
         ])->get();
 
-        return view('Point/point_customer_list_item', ['customers' => $customers]);
+        return view('Point/point_customer_list_item', ['customers' => $customers, 'bool' => false]);
     }
 }

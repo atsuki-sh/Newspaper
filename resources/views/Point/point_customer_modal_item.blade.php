@@ -24,24 +24,7 @@
                     <th class="text-center p-1" scope="col"></th>
                 </tr>
                 </thead>
-                <tbody id="searched-list">
-{{--                <tr class="table-light">--}}
-{{--                    <td class="align-middle text-center p-1 pl-2 pr-2">shinoto</td>--}}
-{{--                    <td class="align-middle text-center p-1 pl-2 pr-2">長曾根南町</td>--}}
-{{--                    <td class="align-middle text-center p-1 pl-2 pr-2">3</td>--}}
-{{--                    <td class="align-middle text-center p-1 pl-2 pr-2">--}}
-{{--                        <button type="button" class="btn btn-success text-nowrap" data-url="">登録</button>--}}
-{{--                    </td>--}}
-{{--                </tr>--}}
-{{--                <tr class="table-light">--}}
-{{--                    <td class="align-middle text-center p-1 pl-2 pr-2">atsuki</td>--}}
-{{--                    <td class="align-middle text-center p-1 pl-2 pr-2">彦根市長曽根南町494-25 ファーストハイツ205号室</td>--}}
-{{--                    <td class="align-middle text-center p-1 pl-2 pr-2">3</td>--}}
-{{--                    <td class="align-middle text-center p-1 pl-2 pr-2">--}}
-{{--                        <button type="button" class="btn btn-success text-nowrap" disabled data-url="">登録</button>--}}
-{{--                    </td>--}}
-{{--                </tr>--}}
-                </tbody>
+                <tbody id="searched-list"></tbody>
             </table>
         </div>
 
@@ -57,7 +40,7 @@
                 </tr>
                 </thead>
                 <tbody id="registered-list">
-                @include('Point/point_customer_list_item', ['customers' => $customers])
+                @include('Point/point_customer_list_item', ['customers' => $customers, 'bool' => true])
                 </tbody>
             </table>
         </div>
