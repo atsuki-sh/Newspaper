@@ -1,7 +1,7 @@
 <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="customerModalLabel">{{ $point->name }} の顧客情報</h5>
+            <h5 class="modal-title" id="customerModalLabel" data-id="{{ $point->id }}">{{ $point->name }} の顧客情報</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span id="x" aria-hidden="true">&times;</span>
             </button>
@@ -11,9 +11,8 @@
             <h5>顧客の検索</h5>
             <div class="d-flex align-items-center mb-3">
                 <label for="input-search-customer" class="sr-only">顧客名など</label>
-                <input type="text" class="form-control mr-1 flex-fill" id="input-search-customer" placeholder="顧客名など">
+                <input type="text" class="form-control mr-1 flex-fill" id="input-search-customer" placeholder="顧客名・電話番号・住所">
                 <button type="button" id="btn-search-customer" class="btn btn-primary mr-1 text-nowrap" data-url="{{ route('point_customer_search') }}">検索</button>
-                <button type="button" id="btn-reset-customer" class="btn btn-secondary text-nowrap" data-url="">リセット</button>
             </div>
             <table class="table">
                 <thead>

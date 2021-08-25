@@ -56,6 +56,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     // ポイント管理画面
     Route::get('/point', [PointController::class, 'index'])->name('point_index');
+    Route::post('/point/customer_update', [PointController::class, 'customerUpdate'])->name('point_customer_update');
+    Route::post('/point/customer_delete', [PointController::class, 'customerDelete'])->name('point_customer_delete');
     // ポイントのAjax通信
     Route::get('/point/list', [PointAjaxController::class, 'sendPointList'])->name('point_list');
     Route::get('/point/modal/{id}', [PointAjaxController::class, 'sendCustomerModal'])->name('point_customer_modal');

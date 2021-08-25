@@ -6,7 +6,8 @@
             <td class="align-middle text-center p-1 pl-2 pr-2">{{ $customer->address }}</td>
             <td class="align-middle text-center p-1 pl-2 pr-2">{{ $customer->copy }}</td>
             <td class="align-middle text-center p-1 pl-2 pr-2">
-                <button type="button" class="btn btn-success text-nowrap" data-url="">登録</button>
+                <button type="button" class="registration btn btn-success text-nowrap"
+                        data-url="{{ route('point_customer_update') }}" data-customer_id="{{ $customer->id }}">登録</button>
             </td>
         </tr>
     @else
@@ -17,7 +18,8 @@
                 <td class="align-middle text-center p-1 pl-2 pr-2">{{ $customer->address }}</td>
                 <td class="align-middle text-center p-1 pl-2 pr-2">{{ $customer->copy }}</td>
                 <td class="align-middle text-center p-1 pl-2 pr-2">
-                    <button type="button" class="btn btn-danger text-nowrap" data-url="">削除</button>
+                    <button type="button" class="customer-delete btn btn-danger text-nowrap"
+                            data-url="{{ route('point_customer_delete') }}" data-customer_id="{{ $customer->id }}">削除</button>
                 </td>
             </tr>
         @else
