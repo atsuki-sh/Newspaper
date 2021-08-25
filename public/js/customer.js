@@ -71,11 +71,11 @@ $(document).on('click', '#submit', function () {
 
     if (id === 0)
     {
-        window.ajax_post($(this).parent().data('url-create'), post_data, then, fail);
+        window.ajax_post_load($(this).parent().data('url-create'), '', post_data, then, fail);
     }
     else
     {
-        window.ajax_post($(this).parent().data('url-update'), post_data, then, fail);
+        window.ajax_post_load($(this).parent().data('url-update'), '', post_data, then, fail);
     }
 });
 
@@ -92,6 +92,6 @@ $(document).on('click', '.delete', function () {
     };
 
     if (confirm(`顧客「${name}」を削除しますか？`)) {
-        window.ajax_post($(this).data('url'),{'id': $(this).data('id')}, then, fail);
+        window.ajax_post_load($(this).data('url'),'', {'id': $(this).data('id')}, then, fail);
     }
 });
