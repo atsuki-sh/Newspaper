@@ -10,10 +10,10 @@
         <div class="modal-body">
             <h5>顧客の検索</h5>
             <div class="d-flex align-items-center mb-3">
-                <label for="search-customer" class="sr-only">顧客名など</label>
-                <input type="text" class="form-control mr-1 flex-fill" id="search-customer" placeholder="顧客名など">
-                <button type="button" id="btn-search-customer" class="btn btn-primary mr-1 text-nowrap" data-url="#">検索</button>
-                <button type="button" id="btn-reset-customer" class="btn btn-secondary text-nowrap" data-url="#">リセット</button>
+                <label for="input-search-customer" class="sr-only">顧客名など</label>
+                <input type="text" class="form-control mr-1 flex-fill" id="input-search-customer" placeholder="顧客名など">
+                <button type="button" id="btn-search-customer" class="btn btn-primary mr-1 text-nowrap" data-url="{{ route('point_customer_search') }}">検索</button>
+                <button type="button" id="btn-reset-customer" class="btn btn-secondary text-nowrap" data-url="">リセット</button>
             </div>
             <table class="table">
                 <thead>

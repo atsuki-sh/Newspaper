@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Point;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 
 class PointAjaxController extends Controller
@@ -18,5 +19,18 @@ class PointAjaxController extends Controller
         $customers = $point->customer()->get();
 
         return view('Point/point_customer_modal_item', ['point' => $point, 'customers' => $customers]);
+    }
+
+    public function searchCustomerData(Request $request)
+    {
+        $word = $request->input('word');
+
+        $customers = Customer::where([
+            ['name', '=', $word, 'or'],
+            ['tel', '=', $word, 'or'],
+            ['address', '=', $word, 'or'],
+        ])->get();
+
+        return view('Point/point_customer_list_item', ['customers' => $customers]);
     }
 }
