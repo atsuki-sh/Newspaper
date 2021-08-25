@@ -61,6 +61,7 @@ Route::group(['middleware' => 'auth'], function () {
     // ポイントのAjax通信
     Route::get('/point/list', [PointAjaxController::class, 'sendPointList'])->name('point_list');
     Route::get('/point/modal/{id}', [PointAjaxController::class, 'sendCustomerModal'])->name('point_customer_modal');
+    Route::post('/point/search', [PointAjaxController::class, 'searchPointData'])->name('point_search');
     Route::post('/point/customer_search', [PointAjaxController::class, 'searchCustomerData'])->name('point_customer_search');
 
     // ルート管理画面

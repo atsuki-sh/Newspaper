@@ -1,3 +1,13 @@
+$('#btn-search-point').click(function () {
+    const data = {word: $('#input-search').val()}
+    window.ajax_post_load($(this).data('url'), '#point-list', data);
+});
+
+$('#btn-search-reset').click(function () {
+    $('#input-search').val('');
+    window.ajax_get_load($('#point-list').data('url'), '#point-list');
+});
+
 $(document).on('click', '.customer-info', function () {
     const addDone = function () {
         $('#customerModal').modal('show');

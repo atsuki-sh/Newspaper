@@ -13,6 +13,15 @@ class PointAjaxController extends Controller
         return view('Point/point_list_item', ['points' => Point::all()]);
     }
 
+    public function searchPointData(Request $request)
+    {
+        $word = $request->input('word');
+
+        $points = Point::where('name', $word)->get();
+
+        return view('Point/point_list_item', ['points' => $points]);
+    }
+
     public function sendCustomerModal($id)
     {
         $point = Point::find($id);

@@ -10,10 +10,10 @@
         </div>
 
         <div class="d-flex mb-3 ml-auto w-50 align-items-center">
-            <label for="input-search" class="sr-only">ポイント名など</label>
-            <input type="text" class="form-control mr-1 ml-auto w-50" id="input-search" placeholder="ポイント名など">
-            <button type="button" id="search" class="btn btn-primary mr-1" data-url="#">検索</button>
-            <button type="button" id="reset" class="btn btn-secondary" data-url="#">リセット</button>
+            <label for="input-search" class="sr-only">ポイント名</label>
+            <input type="text" class="form-control mr-1 ml-auto w-50" id="input-search" placeholder="ポイント名">
+            <button type="button" id="btn-search-point" class="btn btn-primary mr-1" data-url="{{ route('point_search') }}">検索</button>
+            <button type="button" id="btn-search-reset" class="btn btn-secondary">リセット</button>
         </div>
 
         <table class="table table-striped">
