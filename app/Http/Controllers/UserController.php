@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -21,6 +22,7 @@ class UserController extends Controller
         $items = $request->input('item');
         $user->fill($items);
         $user->password = bcrypt($user->password);
+        $user->updated_by = Auth::user()->name;
         $user->save();
     }
 
@@ -33,6 +35,7 @@ class UserController extends Controller
 
         $items = $request->input('item');
         $user->fill($items);
+        $user->updated_by = Auth::user()->name;
 
         // パスワードに変更があったら新しく保存する
         if ($user->password === null) {

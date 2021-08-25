@@ -24,6 +24,7 @@
                 <th scope="col">電話番号</th>
                 <th scope="col">住所</th>
                 <th scope="col">部数</th>
+                <th scope="col">最終更新者</th>
                 <th scope="col">操作</th>
             </tr>
             </thead>

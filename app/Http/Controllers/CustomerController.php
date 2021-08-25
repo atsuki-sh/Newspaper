@@ -7,6 +7,7 @@ use App\Models\Customer;
 use App\Models\User;
 use Illuminate\Contracts\Container\CircularDependencyException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CustomerController extends Controller
 {
@@ -22,7 +23,7 @@ class CustomerController extends Controller
         $customer = new Customer();
         $items = $request->input('item');
         $customer->fill($items);
-        $customer->point_id = 1;
+        $customer->updated_by = Auth::user()->name;
         $customer->save();
     }
 
@@ -31,6 +32,7 @@ class CustomerController extends Controller
         $customer = Customer::find($request->input('item.id'));
         $items = $request->input('item');
         $customer->fill($items);
+        $customer->updated_by = Auth::user()->name;
         $customer->save();
     }
 

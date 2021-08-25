@@ -21,6 +21,7 @@ class CustomerTableSeeder extends Seeder
             'tel' => '11122223333',
             'address' => '彦根市長曽根南町494-25',
             'copy' => 1,
+            'updated_by' => 'atsuki',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
@@ -31,6 +32,7 @@ class CustomerTableSeeder extends Seeder
             'tel' => '44455556666',
             'address' => '彦根市馬場1-1-1',
             'copy' => 2,
+            'updated_by' => 'atsuki',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
@@ -41,6 +43,7 @@ class CustomerTableSeeder extends Seeder
             'tel' => '77788889999',
             'address' => '彦根市野村町野村23-311',
             'copy' => 3,
+            'updated_by' => 'shinoto',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
@@ -51,6 +54,7 @@ class CustomerTableSeeder extends Seeder
             'tel' => '12345678901',
             'address' => '彦根市泉町543-44',
             'copy' => 4,
+            'updated_by' => 'shinoto',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);

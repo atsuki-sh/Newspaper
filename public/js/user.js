@@ -121,12 +121,12 @@ $(document).on('click', '#submit', function () {
 
     // idが0ならcreate
     if (id === 0) {
-        window.ajax_post(Laravel.urls['create'], post_data, then, fail);
+        window.ajax_post_load(Laravel.urls['create'], '', post_data, then, fail);
     }
 
     // idが0でないならupdate
     else {
-        window.ajax_post(Laravel.urls['update'], post_data, then, fail);
+        window.ajax_post_load(Laravel.urls['update'], '', post_data, then, fail);
     }
 });
 
@@ -149,6 +149,6 @@ $(document).on('click', '.delete', function () {
             console.log(errorThrow);
         };
 
-        window.ajax_post(Laravel.urls['delete'], post_data, then, fail);
+        window.ajax_post_load(Laravel.urls['delete'], '', post_data, then, fail);
     }
 });

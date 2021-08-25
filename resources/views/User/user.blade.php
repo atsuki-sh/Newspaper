@@ -45,6 +45,7 @@
                     <th scope="col">メールアドレス</th>
                     <th scope="col">携帯電話番号</th>
                     <th scope="col">権限</th>
+                    <th scope="col">最終更新者</th>
                     <th scope="col">操作</th>
                 </tr>
             </thead>

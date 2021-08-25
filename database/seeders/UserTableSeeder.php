@@ -22,6 +22,7 @@ class UserTableSeeder extends Seeder
             'password' => bcrypt('bluegreen'),
             'email' => 'blue@example.com',
             'phone' => '08063730453',
+            'updated_by' => 'atsuki',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
@@ -32,6 +33,7 @@ class UserTableSeeder extends Seeder
             'admin' => false,
             'email' => 'green@example.com',
             'phone' => '08011112222',
+            'updated_by' => 'shinoto',
             'password' => bcrypt('greenblue'),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
