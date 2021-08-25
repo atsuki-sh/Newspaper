@@ -17,7 +17,10 @@ $(document).on('click', '.registration', function () {
         point_id: $('#customerModalLabel').data('id'),
         customer_id: $(this).data('customer_id'),
     }
-    window.ajax_post_load($(this).data('url'), '#customerModal', data);
+    const addDone = function () {
+        window.ajax_get_load($('#point-list').data('url'), '#point-list');
+    }
+    window.ajax_post_load($(this).data('url'), '#customerModal', data, addDone);
 });
 
 $(document).on('click', '.customer-delete', function () {
@@ -25,5 +28,8 @@ $(document).on('click', '.customer-delete', function () {
         point_id: $('#customerModalLabel').data('id'),
         customer_id: $(this).data('customer_id'),
     }
-    window.ajax_post_load($(this).data('url'), '#customerModal', data);
+    const addDone = function () {
+        window.ajax_get_load($('#point-list').data('url'), '#point-list');
+    }
+    window.ajax_post_load($(this).data('url'), '#customerModal', data, addDone);
 });

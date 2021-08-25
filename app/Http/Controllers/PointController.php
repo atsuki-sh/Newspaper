@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use App\Models\Point;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PointController extends Controller
 {
@@ -20,6 +21,8 @@ class PointController extends Controller
         $customer->save();
 
         $point = Point::find($request->point_id);
+        $point->updated_by = Auth::user()->name;
+        $point->save();
         $customers = $point->customer()->get();
 
         return view('Point/point_customer_modal_item', ['point' => $point, 'customers' => $customers]);
@@ -32,6 +35,8 @@ class PointController extends Controller
         $customer->save();
 
         $point = Point::find($request->point_id);
+        $point->updated_by = Auth::user()->name;
+        $point->save();
         $customers = $point->customer()->get();
 
         return view('Point/point_customer_modal_item', ['point' => $point, 'customers' => $customers]);
