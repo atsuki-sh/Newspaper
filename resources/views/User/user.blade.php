@@ -6,34 +6,37 @@
     <div class="container">
         <div class="mb-3 d-flex justify-content-between align-items-center">
             <h3 class="mb-0">ユーザー一覧</h3>
-            <button type="button" class="btn btn-primary btn-lg" id="new" data-toggle="modal" data-target="#exampleModal">新規登録</button>
+            <button type="button" class="btn btn-primary btn-lg text-nowrap" id="new" data-toggle="modal" data-target="#exampleModal">新規登録</button>
         </div>
 
         <div class="mb-3 d-flex justify-content-between ml-4">
             <div class="d-flex w-50 justify-content-between align-items-center">
                 <div>
-                    <input class="form-check-input radio" type="radio" name="user_radio" id="user_all" data-url="{{ route('user_list', ['admin'=>100]) }}" value="100" style="transform:scale(1.5);" checked>
+                    <input class="form-check-input radio" type="radio" name="user_radio" id="user_all"
+                           data-url="{{ route('user_list', ['admin'=>100]) }}" value="100" style="transform:scale(1.5);" checked>
                     <label class="form-check-label" for="user_all">
                         すべて表示
                     </label>
                 </div>
                 <div>
-                    <input class="form-check-input radio" type="radio" name="user_radio" id="user_admin" data-url="{{ route('user_list', ['admin'=>1]) }}" value="1" style="transform:scale(1.5);">
+                    <input class="form-check-input radio" type="radio" name="user_radio" id="user_admin"
+                           data-url="{{ route('user_list', ['admin'=>1]) }}" value="1" style="transform:scale(1.5);">
                     <label class="form-check-label" for="user_admin">
                         管理者のみ
                     </label>
                 </div>
-                <div>
-                    <input class="form-check-input radio" type="radio" name="user_radio" id="user_common" data-url="{{ route('user_list', ['admin'=>0]) }}" value="0" style="transform:scale(1.5);">
+                <div class="mr-3">
+                    <input class="form-check-input radio" type="radio" name="user_radio" id="user_common"
+                           data-url="{{ route('user_list', ['admin'=>0]) }}" value="0" style="transform:scale(1.5);">
                     <label class="form-check-label" for="user_common">
                         一般のみ
                     </label>
                 </div>
             </div>
-            <div class="d-flex w-50 align-items-center">
+            <div class="d-flex flex-fill align-items-center">
                 <label for="input-search" class="sr-only">名前など</label>
-                <input type="text" class="form-control mr-1 ml-auto w-50" id="input-search" data-url="{{ route('search_user') }}" placeholder="名前など">
-                <button type="button" id="btn-search" class="btn btn-primary">検索</button>
+                <input type="text" class="form-control mr-1 ml-auto w-75 text-nowrap" id="input-search" data-url="{{ route('search_user') }}" placeholder="名前・メールアドレス・携帯電話番号">
+                <button type="button" class="btn btn-primary text-nowrap" id="btn-search">検索</button>
             </div>
         </div>
 

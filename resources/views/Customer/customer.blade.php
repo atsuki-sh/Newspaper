@@ -6,14 +6,14 @@
     <div class="container">
         <div class="mb-3 d-flex justify-content-between align-items-center">
             <h3 class="mb-0">お客様一覧</h3>
-            <button type="button" class="btn btn-primary btn-lg" id="new" data-toggle="modal" data-target="#exampleModal">新規登録</button>
+            <button type="button" class="btn btn-primary btn-lg text-nowrap" id="new" data-toggle="modal" data-target="#exampleModal">新規登録</button>
         </div>
 
-        <div class="d-flex mb-3 ml-auto w-50 align-items-center">
+        <div class="d-flex mb-3 align-items-center">
             <label for="input-search" class="sr-only">名前など</label>
-            <input type="text" class="form-control mr-1 ml-auto w-50" id="input-search" placeholder="名前など">
-            <button type="button" id="search" class="btn btn-primary mr-1" data-url="{{ route('customer_search') }}">検索</button>
-            <button type="button" id="reset" class="btn btn-secondary" data-url="{{ route('customer_list') }}">リセット</button>
+            <input type="text" class="form-control mr-1 ml-auto w-25" id="input-search" placeholder="名前・電話番号・住所">
+            <button type="button" id="search" class="btn btn-primary mr-1 text-nowrap" data-url="{{ route('customer_search') }}">検索</button>
+            <button type="button" id="reset" class="btn btn-secondary text-nowrap" data-url="{{ route('customer_list') }}">リセット</button>
         </div>
 
         <table class="table table-striped">

@@ -6,14 +6,14 @@
     <div class="container">
         <div class="mb-3 d-flex justify-content-between align-items-center">
             <h3 class="mb-0">配達ポイント一覧</h3>
-            <button type="button" class="btn btn-primary btn-lg" id="new">新規登録</button>
+            <button type="button" class="btn btn-primary btn-lg text-nowrap" id="new">新規登録</button>
         </div>
 
-        <div class="d-flex mb-3 ml-auto w-50 align-items-center">
+        <div class="d-flex mb-3 align-items-center">
             <label for="input-search" class="sr-only">ポイント名</label>
-            <input type="text" class="form-control mr-1 ml-auto w-50" id="input-search" placeholder="ポイント名">
-            <button type="button" id="btn-search-point" class="btn btn-primary mr-1" data-url="{{ route('point_search') }}">検索</button>
-            <button type="button" id="btn-search-reset" class="btn btn-secondary">リセット</button>
+            <input type="text" class="form-control mr-1 ml-auto w-25" id="input-search" placeholder="ポイント名">
+            <button type="button" id="btn-search-point" class="btn btn-primary mr-1 text-nowrap" data-url="{{ route('point_search') }}">検索</button>
+            <button type="button" id="btn-search-reset" class="btn btn-secondary text-nowrap">リセット</button>
         </div>
 
         <table class="table table-striped">
