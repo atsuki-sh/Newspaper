@@ -10,7 +10,8 @@
             <button type="button" class="btn btn-danger customer-info" data-url="{{ route('point_customer_modal', ['id' => $point->id]) }}">顧客情報</button>
             <button type="button" class="btn btn-success change" data-url="{{ route('point_modal', ['id' => $point->id]) }}">変更</button>
             <button type="button" class="btn btn-secondary point-delete"
-                    data-url="{{ route('point_delete', ['id' => $point->id]) }}"
+                    data-url="{{ route('point_delete') }}"
+                    data-id="{{ $point->id }}"
                     data-name="{{ $point->name }}">削除</button>
         </td>
     </tr>

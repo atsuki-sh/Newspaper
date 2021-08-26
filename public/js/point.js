@@ -9,12 +9,11 @@ $('#btn-search-reset').click(function () {
 });
 
 $(document).on('click', '.point-delete', function () {
-    const name = $(this).data('name');
     const done = function () {
         window.ajax_get_load($('#point-list').data('url'), '#point-list');
     }
-    if (confirm(`ポイント「${name}」を削除しますか？`)) {
-        window.ajax_post_load($(this).data('url'), '', '', done);
+    if (confirm(`ポイント「${$(this).data('name')}」を削除しますか？`)) {
+        window.ajax_post_load($(this).data('url'), '', {'id': $(this).data('id')}, done);
     }
 })
 
@@ -50,6 +49,11 @@ $(document).on('click', '.change', function () {
 });
 
 $(document).on('click', '#submit', function () {
+    const data = {
+        'id': $('#pointModalLabel').data('id'),
+        'name': $('#input-name').val(),
+    }
+
     const addDone = function () {
         window.ajax_get_load($('#point-list').data('url'), '#point-list');
         $('#pointModal').modal('hide');
@@ -63,5 +67,5 @@ $(document).on('click', '#submit', function () {
         const message_html = `<div>${xhr.responseJSON.errors['name']}</div>`;
         $('#error-messages').append(message_html);
     }
-    window.ajax_post_load($(this).data('url'), '', {name: $('#input-name').val()}, addDone, addFail);
+    window.ajax_post_load($(this).data('url'), '', data, addDone, addFail);
 });

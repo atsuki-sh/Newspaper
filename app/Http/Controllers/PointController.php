@@ -15,17 +15,17 @@ class PointController extends Controller
         return view('Point/point', ['points' => Point::all()]);
     }
 
-    public function update(PointRequest $request, $id)
+    public function update(PointRequest $request)
     {
-        $point = Point::find($id);
+        $point = Point::find($request->id);
         $point->name = $request->name;
         $point->updated_by = Auth::user()->name;
         $point->save();
     }
 
-    public function delete($id)
+    public function delete(Request $request)
     {
-        Point::find($id)->delete();
+        Point::find($request->id)->delete();
     }
 
 

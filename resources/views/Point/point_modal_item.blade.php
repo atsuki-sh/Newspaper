@@ -18,7 +18,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-primary" id="submit"
-                    data-url="{{ route('point_update', ['id' => $point->id]) }}">保存</button>
+                    data-url="{{ route('point_update') }}">保存</button>
             <button type="button" class="btn btn-secondary" id="btn-close" data-dismiss="modal">閉じる</button>
         </div>
 
