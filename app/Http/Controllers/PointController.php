@@ -14,6 +14,12 @@ class PointController extends Controller
         return view('Point/point', ['points' => Point::all()]);
     }
 
+    public function delete($id)
+    {
+        $point = Point::find($id)->delete();
+    }
+
+
     public function customerUpdate(Request $request)
     {
         $customer = Customer::find($request->customer_id);

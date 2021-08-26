@@ -8,6 +8,16 @@ $('#btn-search-reset').click(function () {
     window.ajax_get_load($('#point-list').data('url'), '#point-list');
 });
 
+$(document).on('click', '.point-delete', function () {
+    const name = $(this).data('name');
+    const done = function () {
+        window.ajax_get_load($('#point-list').data('url'), '#point-list');
+    }
+    if (confirm(`ポイント「${name}」を削除しますか？`)) {
+        window.ajax_post_load($(this).data('url'), '', done);
+    }
+})
+
 $(document).on('click', '.customer-info', function () {
     const addDone = function () {
         $('#customerModal').modal('show');
