@@ -15,7 +15,8 @@ class CreateDeliveryRoutesTable extends Migration
     {
         Schema::create('delivery_routes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
+            $table->string('name');
+            $table->string('updated_by');
             $table->timestamps();
         });
     }
