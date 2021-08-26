@@ -5,12 +5,12 @@
 @section('content')
     <div class="container">
         <div class="mb-3 d-flex justify-content-between align-items-center">
-            <h3 class="mb-0">配達ポイント一覧</h3>
+            <h3 class="mb-0">配達ルート一覧</h3>
             <button type="button" class="btn btn-primary btn-lg text-nowrap" id="new">新規登録</button>
         </div>
 
         <div class="d-flex mb-3 align-items-center">
-            <label for="input-search" class="sr-only">ポイント名</label>
+            <label for="input-search" class="sr-only">ルート名</label>
             <input type="text" class="form-control mr-1 ml-auto w-25" id="input-search" placeholder="ポイント名">
             <button type="button" id="btn-search-point" class="btn btn-primary mr-1 text-nowrap" data-url="">検索</button>
             <button type="button" id="btn-search-reset" class="btn btn-secondary text-nowrap">リセット</button>
@@ -25,7 +25,7 @@
                 <th scope="col" class="text-center">操作</th>
             </tr>
             </thead>
-            <tbody id="point-list" data-url="">
+            <tbody id="route-list" data-url="">
             @include('DeliveryRoute/route_list', ['routes' => $routes])
             </tbody>
         </table>
@@ -41,4 +41,5 @@
         $('#nav-route').addClass('active');
     </script>
     <script src="{{ asset('js/common.js') }}"></script>
+    <script src="{{ asset('js/route.js') }}"></script>
 @endsection
