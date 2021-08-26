@@ -1,7 +1,7 @@
 <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="pointModalLabel" data-id="{{ $point->id }}">配達ポイント管理</h5>
+            <h5 class="modal-title" id="routeModalLabel" data-id="{{ $route->id }}">配達ルート管理</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span id="x" aria-hidden="true">&times;</span>
             </button>
@@ -11,14 +11,14 @@
             <div class="alert alert-danger d-none" id="error-messages"></div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <label class="input-group-text" for="input-name">ポイント名</label>
+                    <label class="input-group-text" for="input-name">ルート名</label>
                 </div>
-                <input type="text" class="form-control post-data" id="input-name" value="{{ $point->name }}">
+                <input type="text" class="form-control post-data" id="input-name" value="{{ $route->name }}">
             </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-primary" id="submit"
-                    data-url="{{ route('point_update') }}">保存</button>
+                    data-url="">保存</button>
             <button type="button" class="btn btn-secondary" id="btn-close" data-dismiss="modal">閉じる</button>
         </div>
 

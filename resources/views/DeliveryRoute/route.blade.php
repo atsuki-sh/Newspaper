@@ -30,6 +30,10 @@
             </tbody>
         </table>
     </div>
+
+    {{-- モーダル --}}
+    <div class="modal fade" id="routeModal" tabindex="-1" data-backdrop="static" aria-labelledby="routeModalLabel" aria-hidden="true"></div>
+    <div class="modal fade" id="routePointModal" tabindex="-1" data-backdrop="static" aria-labelledby="routePointModalLabel" aria-hidden="true"></div>
 @endsection
 
 @section('script')
