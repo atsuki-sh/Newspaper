@@ -8,6 +8,7 @@
         </div>
 
         <div class="modal-body">
+            <div class="alert alert-danger d-none" id="error-messages"></div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <label class="input-group-text" for="input-name">ポイント名</label>
@@ -16,7 +17,8 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id="submit">保存</button>
+            <button type="button" class="btn btn-primary" id="submit"
+                    data-url="{{ route('point_update', ['id' => $point->id]) }}">保存</button>
             <button type="button" class="btn btn-secondary" id="btn-close" data-dismiss="modal">閉じる</button>
         </div>
 

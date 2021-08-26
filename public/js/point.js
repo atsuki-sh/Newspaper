@@ -43,8 +43,25 @@ $(document).on('click', '.registration, .customer-delete', function () {
 });
 
 $(document).on('click', '.change', function () {
-    const done = function () {
+    const addDone = function () {
         $('#pointModal').modal('show');
     }
-    window.ajax_get_load($(this).data('url'), '#pointModal', done);
-})
+    window.ajax_get_load($(this).data('url'), '#pointModal', addDone);
+});
+
+$(document).on('click', '#submit', function () {
+    const addDone = function () {
+        window.ajax_get_load($('#point-list').data('url'), '#point-list');
+        $('#pointModal').modal('hide');
+    }
+    const addFail = function (xhr) {
+        $('#error-messages').removeClass('d-none');
+
+        $('#error-messages').html('');
+        $('.form-control').removeClass('is-invalid');
+
+        const message_html = `<div>${xhr.responseJSON.errors['name']}</div>`;
+        $('#error-messages').append(message_html);
+    }
+    window.ajax_post_load($(this).data('url'), '', {name: $('#input-name').val()}, addDone, addFail);
+});

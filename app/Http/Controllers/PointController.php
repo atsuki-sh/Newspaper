@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use App\Models\Point;
 use Illuminate\Http\Request;
+use App\Http\Requests\PointRequest;
 use Illuminate\Support\Facades\Auth;
 
 class PointController extends Controller
@@ -14,9 +15,16 @@ class PointController extends Controller
         return view('Point/point', ['points' => Point::all()]);
     }
 
+    public function update(PointRequest $request, $id)
+    {
+        $point = Point::find($id);
+        $point->name = $request->name;
+        $point->save();
+    }
+
     public function delete($id)
     {
-        $point = Point::find($id)->delete();
+        Point::find($id)->delete();
     }
 
 
