@@ -1,10 +1,10 @@
 $('#new').click(function () {
     $('.post-data').val('');
 
-    $('#submit').parent().data('id', 0);
-})
+    $('#submit').data('id', 0);
+});
 
-$(document).on('hidden.bs.modal', '#exampleModal', function () {
+$(document).on('hidden.bs.modal', '#customerModal', function () {
     $('#error-messages').addClass('d-none');
     $('.form-control').removeClass('is-invalid');
 });
@@ -20,9 +20,9 @@ $('#reset').click(function () {
 
 $(document).on('click', '.change', function () {
     const addDone = function () {
-        $('#exampleModal').modal('show')
+        $('#customerModal').modal('show')
     }
-    window.ajax_get_load($(this).data('url'), '#exampleModal', addDone);
+    window.ajax_get_load($(this).data('url'), '#customerModal', addDone);
 });
 
 $(document).on('click', '#submit', function () {
@@ -41,12 +41,12 @@ $(document).on('click', '#submit', function () {
         }
     });
 
-    const id = $(this).parent().data('id');
+    const id = $(this).data('id');
     post_data['item[id]'] = id;
 
     const then = function (res) {
         window.ajax_get_load($('#customer-list').data('url'), '#customer-list');
-        $('#exampleModal').modal('hide');
+        $('#customerModal').modal('hide');
     };
 
     const fail = function (xhr, textStatus, errorThrow) {
@@ -68,11 +68,11 @@ $(document).on('click', '#submit', function () {
 
     if (id === 0)
     {
-        window.ajax_post_load($(this).parent().data('url-create'), '', post_data, then, fail);
+        window.ajax_post_load($(this).data('url-create'), '', post_data, then, fail);
     }
     else
     {
-        window.ajax_post_load($(this).parent().data('url-update'), '', post_data, then, fail);
+        window.ajax_post_load($(this).data('url-update'), '', post_data, then, fail);
     }
 });
 

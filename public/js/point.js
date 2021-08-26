@@ -14,7 +14,7 @@ $(document).on('click', '.point-delete', function () {
         window.ajax_get_load($('#point-list').data('url'), '#point-list');
     }
     if (confirm(`ポイント「${name}」を削除しますか？`)) {
-        window.ajax_post_load($(this).data('url'), '', done);
+        window.ajax_post_load($(this).data('url'), '', '', done);
     }
 })
 
