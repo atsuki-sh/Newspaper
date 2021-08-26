@@ -19,6 +19,7 @@ class PointController extends Controller
     {
         $point = Point::find($id);
         $point->name = $request->name;
+        $point->updated_by = Auth::user()->name;
         $point->save();
     }
 
@@ -37,6 +38,7 @@ class PointController extends Controller
         $point = Point::find($request->point_id);
         $point->updated_by = Auth::user()->name;
         $point->save();
+
         $customers = $point->customer()->get();
 
         return view('Point/point_customer_modal_item', ['point' => $point, 'customers' => $customers]);
