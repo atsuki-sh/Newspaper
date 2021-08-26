@@ -41,3 +41,10 @@ $(document).on('click', '.registration, .customer-delete', function () {
     }
     window.ajax_post_load($(this).data('url'), '#customerModal', data, addDone);
 });
+
+$(document).on('click', '.change', function () {
+    const done = function () {
+        $('#pointModal').modal('show');
+    }
+    window.ajax_get_load($(this).data('url'), '#pointModal', done);
+})

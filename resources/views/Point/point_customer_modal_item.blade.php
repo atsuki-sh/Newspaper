@@ -44,7 +44,7 @@
             </table>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" id="btn-customer-close" data-dismiss="modal">閉じる</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
         </div>
 
     </div>
