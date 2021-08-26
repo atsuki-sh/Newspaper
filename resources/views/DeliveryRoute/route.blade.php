@@ -22,11 +22,11 @@
                 <th scope="col">#</th>
                 <th scope="col">ルート名</th>
                 <th scope="col">最終更新者</th>
-                <th scope="col">操作</th>
+                <th scope="col" class="text-center">操作</th>
             </tr>
             </thead>
             <tbody id="point-list" data-url="">
-    {{--        @include('Point/point_list_item', ['points' => $points])--}}
+            @include('DeliveryRoute/route_list', ['routes' => $routes])
             </tbody>
         </table>
     </div>
