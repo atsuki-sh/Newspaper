@@ -39,7 +39,7 @@ window.ajax_post_load = function(url, selector, data, addDone = function () {}, 
         })
         .fail((xhr, textStatus, errorThrown) => {
             console.log(xhr.responseJSON.errors);
-            console.log(errorThrow);
-            addFail();
+            console.log(errorThrown);
+            addFail(xhr, textStatus, errorThrown);
         });
 }

@@ -50,9 +50,6 @@ $(document).on('click', '#submit', function () {
     };
 
     const fail = function (xhr, textStatus, errorThrow) {
-        console.log(xhr.responseJSON.errors);
-        console.log(errorThrow);
-
         $('#error-messages').removeClass('d-none');
 
         $('#error-messages').html('');
@@ -86,12 +83,7 @@ $(document).on('click', '.delete', function () {
         window.ajax_get_load($('#customer-list').data('url'), '#customer-list');
     }
 
-    const fail = function (xhr, textStatus, errorThrow) {
-        console.log(xhr.responseJSON.errors);
-        console.log(errorThrow);
-    };
-
     if (confirm(`顧客「${name}」を削除しますか？`)) {
-        window.ajax_post_load($(this).data('url'),'', {'id': $(this).data('id')}, then, fail);
+        window.ajax_post_load($(this).data('url'),'', {'id': $(this).data('id')}, then);
     }
 });
