@@ -9,6 +9,10 @@ class DeliveryRoute extends Model
 {
     use HasFactory;
 
+    protected $fillable =[
+        'name',
+    ];
+
     public function point()
     {
         return $this->hasMany(Point::class);

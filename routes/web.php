@@ -72,8 +72,12 @@ Route::group(['middleware' => 'auth'], function () {
 
     // ルート管理画面
     Route::get('/route', [DeliveryRouteController::class, 'index'])->name('route_index');
+    Route::post('/route/create', [DeliveryRouteController::class, 'create'])->name('route_create');
+    Route::post('/route/update', [DeliveryRouteController::class, 'update'])->name('route_update');
+    Route::post('/route/delete', [DeliveryRouteController::class, 'delete'])->name('route_delete');
 
     // ルートのAjax通信
+    Route::get('/route/list', [DeliveryRouteAjaxController::class, 'sendRouteList'])->name('route_list');
     Route::get('/route/modal/{id}', [DeliveryRouteAjaxController::class, 'sendRouteModal'])->name('route_modal');
 
     // 配達管理画面

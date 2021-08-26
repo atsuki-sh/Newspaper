@@ -6,7 +6,8 @@
     <div class="container">
         <div class="mb-3 d-flex justify-content-between align-items-center">
             <h3 class="mb-0">お客様一覧</h3>
-            <button type="button" class="btn btn-primary btn-lg text-nowrap" id="new" data-toggle="modal" data-target="#customerModal">新規登録</button>
+            <button type="button" class="btn btn-primary btn-lg text-nowrap" id="new"
+                    data-toggle="modal" data-target="#customerModal">新規登録</button>
         </div>
 
         <div class="d-flex mb-3 align-items-center">

@@ -1,7 +1,7 @@
 <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="routeModalLabel" data-id="{{ $route->id }}">配達ルート管理</h5>
+            <h5 class="modal-title" id="routeModalLabel">配達ルート管理</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span id="x" aria-hidden="true">&times;</span>
             </button>
@@ -13,12 +13,14 @@
                 <div class="input-group-prepend">
                     <label class="input-group-text" for="input-name">ルート名</label>
                 </div>
-                <input type="text" class="form-control post-data" id="input-name" value="{{ $route->name }}">
+                <input type="text" class="form-control post-data" id="input-name" name="item[name]" value="{{ $route->name }}">
             </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-primary" id="submit"
-                    data-url="">保存</button>
+                    data-id="{{ $route->id }}"
+                    data-url-create="{{ route('route_create') }}"
+                    data-url-update="{{ route('route_update') }}">保存</button>
             <button type="button" class="btn btn-secondary" id="btn-close" data-dismiss="modal">閉じる</button>
         </div>
 

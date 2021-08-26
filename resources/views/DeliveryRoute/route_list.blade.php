@@ -8,9 +8,9 @@
             <button type="button" class="btn btn-success change"
                     data-url="{{ route('route_modal', ['id' => $route->id]) }}">変更</button>
             <button type="button" class="btn btn-secondary route-delete"
-                    data-url=""
-                    data-id=""
-                    data-name="">削除</button>
+                    data-url="{{ route('route_delete') }}"
+                    data-id="{{ $route->id }}"
+                    data-name="{{ $route->name }}">削除</button>
         </td>
     </tr>
 @endforeach
