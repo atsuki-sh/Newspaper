@@ -12,9 +12,13 @@
         <td class="align-middle">{{ $phone1 }}-{{ $phone2 }}-{{ $phone3 }}</td>
         <td class="align-middle">{{ $user->admin === "0" ? "一般" : "管理者" }}</td>
         <td class="align-middle">{{ $user->updated_by }}</td>
-        <td class="align-middle" data-id="{{ $user->id }}" data-name="{{ $user->name }}" data-url="{{ route('modal_data', ['id' => $user->id]) }}">
-            <button type="button" class="btn btn-success change">変更</button>
-            <button type="button" class="btn btn-secondary delete">削除</button>
+        <td class="align-middle">
+            <button type="button" class="btn btn-success change"
+                    data-url="{{ route('modal_data', ['id' => $user->id]) }}">変更</button>
+            <button type="button" class="btn btn-secondary delete"
+                    data-id="{{ $user->id }}"
+                    data-url="{{ route('user_delete') }}"
+                    data-name="{{ $user->name }}">削除</button>
         </td>
     </tr>
 @endforeach

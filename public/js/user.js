@@ -10,8 +10,8 @@ $('#new').click(function () {
     $('#input-admin').val(0);
     $('.phone').val('');
 
-    // modal-bodyのidに0をセット
-    $('.modal-body').data('id', 0);
+    // #submitのidに0をセット
+    $('#submit').data('id', 0);
 
     // 新規登録はパスワードが必須なので、チェックボックスはcheckedかつdisabled
     $('#checkbox-password').prop('checked', true).prop('disabled', true);
@@ -20,19 +20,18 @@ $('#new').click(function () {
 
 // 「検索」が押されたとき
 $('#btn-search').click(function () {
-    const url = $('#input-search').data('url');
     const data = {};
     data['word'] = $('#input-search').val();
     data['radio'] = $('input[name="user_radio"]:checked').val();
-    window.ajax_post_load(url, '#user-list', data);
+    window.ajax_post_load($(this).data('url'), '#user-list', data);
 })
 
 // 「変更」が押されたとき
 $(document).on( 'click', '.change', function () {
     const addDone = function () {
-        $('#exampleModal').modal('show');
+        $('#userModal').modal('show');
     }
-    window.ajax_get_load($(this).parent().data('url'), '#exampleModal', addDone);
+    window.ajax_get_load($(this).data('url'), '#userModal', addDone);
 });
 
 // モーダルのチェックボックスが押されたとき
@@ -45,7 +44,7 @@ $(document).on('click', '#checkbox-password', function () {
 })
 
 // モーダルが閉じたとき
-$(document).on('hidden.bs.modal', '#exampleModal', function () {
+$(document).on('hidden.bs.modal', '#userModal', function () {
     $('#error-messages').addClass('d-none');
 
     $('.form-control').removeClass('is-invalid');
@@ -77,20 +76,17 @@ $(document).on('click', '#submit', function () {
     // パスワードを変更するかどうかも保存（updateの場合に使用）
     post_data['item[password_checked]'] = $('#checkbox-password').prop('checked');
     // .modal-bodyからidを取得
-    const id = $('.modal-body').data('id');
+    const id = $(this).data('id');
     post_data['item[id]'] = id;
 
     // 通信成功時の処理
     const then = function (res) {
         window.ajax_get_load($('input[name="user_radio"]:checked').data('url'), '#user-list');
-        $('#exampleModal').modal('hide');
+        $('#userModal').modal('hide');
     };
 
     // 通信失敗時の処理
     const fail = function (xhr, textStatus, errorThrow) {
-        console.log(xhr.responseJSON.errors);
-        console.log(errorThrow);
-
         // エラーメッセージエリアを表示
         $('#error-messages').removeClass('d-none');
 
@@ -121,34 +117,25 @@ $(document).on('click', '#submit', function () {
 
     // idが0ならcreate
     if (id === 0) {
-        window.ajax_post_load(Laravel.urls['create'], '', post_data, then, fail);
+        window.ajax_post_load($(this).data('url-create'), '', post_data, then, fail);
     }
 
     // idが0でないならupdate
     else {
-        window.ajax_post_load(Laravel.urls['update'], '', post_data, then, fail);
+        window.ajax_post_load($(this).data('url-update'), '', post_data, then, fail);
     }
 });
 
 // 「削除」が押されたとき
 $(document).on('click', '.delete', function () {
-    const name = $(this).parent().data('name');
+    const name = $(this).data('name');
 
     // confirmで「OK」が押されたらデータを削除する
     if(confirm(`ユーザー「${name}」 を削除しますか？`)) {
-        const post_data = {
-            'item[id]': $(this).parent().data('id'),
-        }
-
-        const then = function (res) {
+        const addDone = function (res) {
             window.ajax_get_load($('input[name="user_radio"]:checked').data('url'), '#user-list');
         };
 
-        const fail = function (xhr, textStatus, errorThrow) {
-            console.log(xhr.responseJSON.errors);
-            console.log(errorThrow);
-        };
-
-        window.ajax_post_load(Laravel.urls['delete'], '', post_data, then, fail);
+        window.ajax_post_load($(this).data('url'), '', {id: $(this).data('id')}, addDone);
     }
 });

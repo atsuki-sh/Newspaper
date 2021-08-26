@@ -1,12 +1,12 @@
 <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">ユーザー登録</h5>
+            <h5 class="modal-title" id="userModalLabel">ユーザー登録</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span id="x" aria-hidden="true">&times;</span>
             </button>
         </div>
-        <div class="modal-body" data-id="{{ $user->id }}">
+        <div class="modal-body">
             <div class="alert alert-danger d-none" id="error-messages"></div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -66,7 +66,10 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id="submit">保存</button>
+            <button type="button" class="btn btn-primary" id="submit"
+                    data-id="{{ $user->id }}"
+                    data-url-create="{{ route('user_create') }}"
+                    data-url-update="{{ route('user_update') }}">保存</button>
             <button type="button" class="btn btn-secondary" id="close" data-dismiss="modal">閉じる</button>
         </div>
     </div>

@@ -26,9 +26,9 @@ class UserController extends Controller
         $user->save();
     }
 
-    public function update(UpdateUserRequest $request)
+    public function update(UpdateUserRequest $request, $id)
     {
-        $user = User::find($request->input('item.id'));
+        $user = User::find($id);
 
         // 現在のパスワード
         $old_password = $user->password;
@@ -47,8 +47,8 @@ class UserController extends Controller
         $user->save();
     }
 
-    public function delete(Request $request)
+    public function delete($id)
     {
-        User::find($request->input('item.id'))->delete();
+        User::find($id)->delete();
     }
 }

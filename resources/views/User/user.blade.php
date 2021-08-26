@@ -6,7 +6,7 @@
     <div class="container">
         <div class="mb-3 d-flex justify-content-between align-items-center">
             <h3 class="mb-0">ユーザー一覧</h3>
-            <button type="button" class="btn btn-primary btn-lg text-nowrap" id="new" data-toggle="modal" data-target="#exampleModal">新規登録</button>
+            <button type="button" class="btn btn-primary btn-lg text-nowrap" id="new" data-toggle="modal" data-target="#userModal">新規登録</button>
         </div>
 
         <div class="mb-3 d-flex justify-content-between ml-4">
@@ -35,8 +35,8 @@
             </div>
             <div class="d-flex flex-fill align-items-center">
                 <label for="input-search" class="sr-only">名前など</label>
-                <input type="text" class="form-control mr-1 ml-auto w-75 text-nowrap" id="input-search" data-url="{{ route('search_user') }}" placeholder="名前・メールアドレス・携帯電話番号">
-                <button type="button" class="btn btn-primary text-nowrap" id="btn-search">検索</button>
+                <input type="text" class="form-control mr-1 ml-auto w-75 text-nowrap" id="input-search" placeholder="名前・メールアドレス・携帯電話番号">
+                <button type="button" class="btn btn-primary text-nowrap" id="btn-search" data-url="{{ route('search_user') }}">検索</button>
             </div>
         </div>
 
@@ -61,8 +61,8 @@
 {{--            {{ $users->links() }}--}}
         </div>
 
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        {{-- モーダル --}}
+        <div class="modal fade" id="userModal" tabindex="-1" data-backdrop="static" aria-labelledby="userModalLabel" aria-hidden="true">
             @include('User/user_modal_item', ['user' => $users[0]])
         </div>
     </div>
@@ -71,14 +71,6 @@
 @section('script')
     <script>
         $('#nav-user').addClass('active');
-        const urls = {
-            'index': '{{ route('user_index') }}',
-            'create': '{{ route('user_create') }}',
-            'update': '{{ route('user_update') }}',
-            'delete': '{{ route('user_delete') }}',
-        };
-        window.Laravel = {};
-        window.Laravel.urls = urls;
     </script>
     <script src={{ asset('js/common.js') }}></script>
     <script src={{ asset('js/user.js') }}></script>
