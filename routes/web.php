@@ -58,15 +58,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/point', [PointController::class, 'index'])->name('point_index');
     Route::post('/point/update', [PointController::class, 'update'])->name('point_update');
     Route::post('/point/delete', [PointController::class, 'delete'])->name('point_delete');
-
+    // ポイントの顧客情報
     Route::post('/point/customer_update', [PointController::class, 'customerUpdate'])->name('point_customer_update');
     Route::post('/point/customer_delete', [PointController::class, 'customerDelete'])->name('point_customer_delete');
-
     // ポイントのAjax通信
     Route::get('/point/modal/{id}', [PointAjaxController::class, 'sendPointModal'])->name('point_modal');
     Route::post('/point/search', [PointAjaxController::class, 'searchPointData'])->name('point_search');
     Route::get('/point/list', [PointAjaxController::class, 'sendPointList'])->name('point_list');
-
+    // ポイントの顧客のAjax通信
     Route::get('/point/customer_modal/{id}', [PointAjaxController::class, 'sendCustomerModal'])->name('point_customer_modal');
     Route::post('/point/customer_search', [PointAjaxController::class, 'searchCustomerData'])->name('point_customer_search');
 

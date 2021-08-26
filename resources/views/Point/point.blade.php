@@ -33,7 +33,7 @@
             </tbody>
         </table>
 
-        {{--        モーダル--}}
+        {{-- モーダル --}}
         <div class="modal fade" id="pointModal" tabindex="-1" data-backdrop="static" aria-labelledby="pointModalLabel" aria-hidden="true"></div>
         <div class="modal fade" id="customerModal" tabindex="-1" data-backdrop="static" aria-labelledby="customerModalLabel" aria-hidden="true"></div>
     </div>
