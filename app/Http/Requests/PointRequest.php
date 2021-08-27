@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class PointRequest extends FormRequest
 {
@@ -24,7 +25,10 @@ class PointRequest extends FormRequest
     public function rules()
     {
         return [
-            'item.name' => 'required',
+            'item.name' => [
+                'required',
+                Rule::unique('points', 'name')->ignore($this->input('item.id'))
+            ],
         ];
     }
 
