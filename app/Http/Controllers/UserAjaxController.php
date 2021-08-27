@@ -12,7 +12,7 @@ class UserAjaxController extends Controller
     {
         $user = User::find($id);
 
-        return view('User/user_modal_item', ['user' => $user]);
+        return view('User/user_modal', ['user' => $user]);
     }
 
     public function sendUserList($admin)
@@ -23,7 +23,7 @@ class UserAjaxController extends Controller
             $users = User::where('admin', $admin)->paginate(10);
         }
 
-        return view('User/user_list_item', ['users' => $users]);
+        return view('User/user_list', ['users' => $users]);
     }
 
     public function searchUserData(Request $request)
@@ -45,6 +45,6 @@ class UserAjaxController extends Controller
             ['phone', '=', $word, 'or'],
         ])->paginate(10);
 
-        return view('User/user_list_item', ['users' => $users]);
+        return view('User/user_list', ['users' => $users]);
     }
 }

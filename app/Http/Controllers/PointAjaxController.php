@@ -10,19 +10,19 @@ class PointAjaxController extends Controller
 {
     public function sendPointList()
     {
-        return view('Point/point_list_item', ['points' => Point::all()]);
+        return view('Point/point_list', ['points' => Point::all()]);
     }
 
     public function sendPointModal($id)
     {
-        return view('Point/point_modal_item', ['point' => Point::find($id)]);
+        return view('Point/point_modal', ['point' => Point::find($id)]);
     }
 
     public function searchPointData(Request $request)
     {
         $points = Point::where('name', $request->word)->get();
 
-        return view('Point/point_list_item', ['points' => $points]);
+        return view('Point/point_list', ['points' => $points]);
     }
 
     public function sendCustomerModal($id)
@@ -30,7 +30,7 @@ class PointAjaxController extends Controller
         $point = Point::find($id);
         $customers = $point->customer()->get();
 
-        return view('Point/point_customer_modal_item', ['point' => $point, 'customers' => $customers]);
+        return view('Point/point_customer_modal', ['point' => $point, 'customers' => $customers]);
     }
 
     public function searchCustomerData(Request $request)

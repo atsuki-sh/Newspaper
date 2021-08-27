@@ -30,13 +30,13 @@
             </tr>
             </thead>
             <tbody id="customer-list" data-url="{{ route('customer_list') }}">
-            @include('Customer/customer_list_item', ['customers' => $customers])
+            @include('Customer.customer_list', ['customers' => $customers])
             </tbody>
         </table>
 
         {{-- モーダル --}}
         <div class="modal fade" id="customerModal" tabindex="-1" data-backdrop="static" aria-labelledby="customerModalLabel" aria-hidden="true">
-            @include('Customer/customer_modal_item', ['customer' => $customers[0]])
+            @include('Customer.customer_modal', ['customer' => $customers[0]])
         </div>
     </div>
 @endsection

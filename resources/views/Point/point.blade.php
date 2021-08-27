@@ -29,7 +29,7 @@
             </tr>
             </thead>
             <tbody id="point-list" data-url="{{ route('point_list') }}">
-            @include('Point/point_list_item', ['points' => $points])
+            @include('Point.point_list', ['points' => $points])
             </tbody>
         </table>
 

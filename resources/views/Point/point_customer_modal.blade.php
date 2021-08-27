@@ -39,7 +39,7 @@
                 </tr>
                 </thead>
                 <tbody id="registered-list">
-                @include('Point/point_customer_list_item', ['customers' => $customers, 'bool' => true])
+                @include('Point.point_customer_list', ['customers' => $customers, 'bool' => true])
                 </tbody>
             </table>
         </div>

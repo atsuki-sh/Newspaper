@@ -53,7 +53,7 @@
                 </tr>
             </thead>
             <tbody id="user-list">
-                @include('User/user_list_item', ['users' => $users])
+                @include('User.user_list', ['users' => $users])
             </tbody>
         </table>
 
@@ -63,7 +63,7 @@
 
         {{-- モーダル --}}
         <div class="modal fade" id="userModal" tabindex="-1" data-backdrop="static" aria-labelledby="userModalLabel" aria-hidden="true">
-            @include('User/user_modal_item', ['user' => $users[0]])
+            @include('User.user_modal', ['user' => $users[0]])
         </div>
     </div>
 @endsection
