@@ -80,6 +80,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/route/list', [DeliveryRouteAjaxController::class, 'sendRouteList'])->name('route_list');
     Route::get('/route/modal/{id}', [DeliveryRouteAjaxController::class, 'sendRouteModal'])->name('route_modal');
     Route::post('/route/search', [DeliveryRouteAjaxController::class, 'searchRouteData'])->name('route_search');
+    // ルートのポイントのAjax通信
+    Route::get('/route/point_modal/{id}', [DeliveryRouteAjaxController::class, 'sendPointModal'])->name('route_point_modal');
 
     // 配達管理画面
     Route::get('/delivery', [DeliveryController::class, 'index'])->name('delivery_index');

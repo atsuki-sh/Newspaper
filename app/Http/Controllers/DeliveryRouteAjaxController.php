@@ -27,4 +27,12 @@ class DeliveryRouteAjaxController extends Controller
 
         return view('DeliveryRoute/route_list', ['routes' => $routes]);
     }
+
+    public function sendPointModal($id)
+    {
+        $route = DeliveryRoute::find($id);
+        $points = $route->point()->get();
+
+        return view('DeliveryRoute/point_modal', ['route' => $route, 'points' => $points]);
+    }
 }

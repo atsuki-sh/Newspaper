@@ -69,3 +69,10 @@ $(document).on('click', '.route-delete', function () {
         window.ajax_post_load($(this).data('url'), '', {'id': $(this).data('id')}, addDone);
     }
 });
+
+$(document).on('click', '.point-info', function () {
+    const addDone = function () {
+        $('#pointModal').modal('show');
+    }
+    window.ajax_get_load($(this).data('url'), '#pointModal', addDone);
+});

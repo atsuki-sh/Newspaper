@@ -4,7 +4,8 @@
         <td class="align-middle">{{ $route->name }}</td>
         <td class="align-middle">{{ $route->updated_by }}</td>
         <td class="align-middle text-center">
-            <button type="button" class="btn btn-danger mr-auto customer-info" data-url="">ポイント情報</button>
+            <button type="button" class="btn btn-danger mr-auto point-info"
+                    data-url="{{ route('route_point_modal', ['id' => $route->id]) }}">ポイント情報</button>
             <button type="button" class="btn btn-success change"
                     data-url="{{ route('route_modal', ['id' => $route->id]) }}">変更</button>
             <button type="button" class="btn btn-secondary route-delete"
