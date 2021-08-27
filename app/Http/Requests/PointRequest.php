@@ -27,7 +27,7 @@ class PointRequest extends FormRequest
         return [
             'item.name' => [
                 'required',
-                Rule::unique('points', 'name')->ignore($this->input('item.id'))
+                Rule::unique('points', 'name')->ignore($this->input('item.id')),
             ],
         ];
     }

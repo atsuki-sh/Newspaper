@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class RouteRequest extends FormRequest
 {
@@ -24,7 +25,10 @@ class RouteRequest extends FormRequest
     public function rules()
     {
         return [
-            'item.name' => 'required',
+            'item.name' => [
+                'required',
+                Rule::unique('delivery_routes', 'name')->ignore($this->input('item.id')),
+            ],
         ];
     }
 
