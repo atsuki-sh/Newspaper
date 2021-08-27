@@ -11,6 +11,15 @@ $(document).on('click', '.change', function () {
     window.ajax_get_load($(this).data('url'), '#routeModal', addDone);
 });
 
+$('#btn-search-route').click(function () {
+    window.ajax_post_load($(this).data('url'), '#route-list', {word: $('#input-search').val()});
+});
+
+$('#btn-reset-route').click(function () {
+    $('#input-search').val('');
+    window.ajax_get_load($('#route-list').data('url'), '#route-list');
+});
+
 $(document).on('click', '#submit', function () {
     const post_data = {};
     $('.post-data').each(function () {

@@ -13,8 +13,9 @@
         <div class="d-flex mb-3 align-items-center">
             <label for="input-search" class="sr-only">ルート名</label>
             <input type="text" class="form-control mr-1 ml-auto w-25" id="input-search" placeholder="ポイント名">
-            <button type="button" id="btn-search-point" class="btn btn-primary mr-1 text-nowrap" data-url="">検索</button>
-            <button type="button" id="btn-search-reset" class="btn btn-secondary text-nowrap">リセット</button>
+            <button type="button" id="btn-search-route" class="btn btn-primary mr-1 text-nowrap"
+                    data-url="{{ route('route_search') }}">検索</button>
+            <button type="button" id="btn-reset-route" class="btn btn-secondary text-nowrap">リセット</button>
         </div>
 
         <table class="table table-striped">

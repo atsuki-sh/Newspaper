@@ -18,4 +18,13 @@ class DeliveryRouteAjaxController extends Controller
 
         return view('DeliveryRoute/route_modal', ['route' => $route]);
     }
+
+    public function searchRouteData(Request $request)
+    {
+        $word = $request->input('word');
+
+        $routes = DeliveryRoute::where('name', $word)->get();
+
+        return view('DeliveryRoute/route_list', ['routes' => $routes]);
+    }
 }
