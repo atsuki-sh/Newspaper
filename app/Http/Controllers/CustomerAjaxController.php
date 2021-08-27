@@ -19,7 +19,7 @@ class CustomerAjaxController extends Controller
 
     public function searchCustomerData(Request $request)
     {
-        $word = $request->input('word');
+        $word = $request->word;
 
         $customers = Customer::where([
             ['name', '=', $word, 'or'],

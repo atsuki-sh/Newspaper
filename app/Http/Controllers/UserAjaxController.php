@@ -28,8 +28,8 @@ class UserAjaxController extends Controller
 
     public function searchUserData(Request $request)
     {
-        $word = $request->input('word');
-        $radio = $request->input('radio');
+        $word = $request->word;
+        $radio = $request->radio;
 
         if ($radio === '100') {
             $users = User::query();

@@ -20,9 +20,7 @@ class PointAjaxController extends Controller
 
     public function searchPointData(Request $request)
     {
-        $word = $request->input('word');
-
-        $points = Point::where('name', $word)->get();
+        $points = Point::where('name', $request->word)->get();
 
         return view('Point/point_list_item', ['points' => $points]);
     }
@@ -37,7 +35,7 @@ class PointAjaxController extends Controller
 
     public function searchCustomerData(Request $request)
     {
-        $word = $request->input('word');
+        $word = $request->word;
 
         $customers = Customer::where([
             ['name', '=', $word, 'or'],

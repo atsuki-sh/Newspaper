@@ -2,7 +2,6 @@
 
 @section('content')
 <div class="container">
-    <h5>ログイン用 email: blue@example.com  password: bluegreen</h5>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
