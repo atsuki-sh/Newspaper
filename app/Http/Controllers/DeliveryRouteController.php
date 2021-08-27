@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Point;
 use Illuminate\Http\Request;
+use App\Http\Requests\RouteRequest;
 use App\Models\DeliveryRoute;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,7 +15,7 @@ class DeliveryRouteController extends Controller
         return view('DeliveryRoute/route', ['routes' => DeliveryRoute::all()]);
     }
 
-    public function create(Request $request)
+    public function create(RouteRequest $request)
     {
         $route = new DeliveryRoute();
         $items = $request->input('item');
@@ -23,7 +24,7 @@ class DeliveryRouteController extends Controller
         $route->save();
     }
 
-    public function update(Request $request)
+    public function update(RouteRequest $request)
     {
         $route = DeliveryRoute::find($request->input('item.id'));
         $items = $request->input('item');
@@ -34,7 +35,7 @@ class DeliveryRouteController extends Controller
 
     public function delete(Request $request)
     {
-        DeliveryRoute::find($request->input('id'))->delete();
+        DeliveryRoute::find($request->id)->delete();
     }
 
     public function pointUpdate(Request $request)

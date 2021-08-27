@@ -1,6 +1,5 @@
 $('#new').click(function () {
     $('.post-data').val('');
-
     $('#submit').data('id', 0);
 });
 
@@ -8,7 +7,13 @@ $(document).on('click', '.change', function () {
     const addDone = function () {
         $('#routeModal').modal('show');
     }
+
     window.ajax_get_load($(this).data('url'), '#routeModal', addDone);
+});
+
+$(document).on('hidden.bs.modal', '#routeModal', function () {
+    $('#error-messages').addClass('d-none');
+    $('.form-control').removeClass('is-invalid');
 });
 
 $('#btn-search-route').click(function () {
@@ -43,15 +48,19 @@ $(document).on('click', '#submit', function () {
         window.ajax_get_load($('#route-list').data('url'), '#route-list');
         $('#routeModal').modal('hide');
     }
-
     const addFail = function (xhr) {
-        $('#error-messages').removeClass('d-none');
-
-        $('#error-messages').html('');
+        $('#error-messages').removeClass('d-none').html('');
         $('.form-control').removeClass('is-invalid');
 
-        const message_html = `<div>${xhr.responseJSON.errors['name']}</div>`;
-        $('#error-messages').append(message_html);
+        Object.keys(xhr.responseJSON.errors).forEach(function (key) {
+            const message = xhr.responseJSON.errors[key];
+            const messagae_html = `<div>${message}</div>`;
+            $('#error-messages').append(messagae_html);
+
+            const data_name = key.slice(5);
+
+            $(`[name='item[${data_name}]']`).addClass('is-invalid');
+        });
     }
 
     if (id === 0) {
@@ -65,6 +74,7 @@ $(document).on('click', '.route-delete', function () {
     const addDone = function () {
         window.ajax_get_load($('#route-list').data('url'), '#route-list')
     }
+
     if (confirm(`ルート「${$(this).data('name')}」を本当に削除しますか？`)) {
         window.ajax_post_load($(this).data('url'), '', {'id': $(this).data('id')}, addDone);
     }
@@ -74,6 +84,7 @@ $(document).on('click', '.point-info', function () {
     const addDone = function () {
         $('#pointModal').modal('show');
     }
+
     window.ajax_get_load($(this).data('url'), '#pointModal', addDone);
 });
 
@@ -89,5 +100,6 @@ $(document).on('click', '.registration, .point-delete', function () {
     const addDone = function () {
         window.ajax_get_load($('#route-list').data('url'), '#route-list');
     }
+
     window.ajax_post_load($(this).data('url'), '#pointModal', data, addDone);
 });
