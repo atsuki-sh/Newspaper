@@ -17,8 +17,9 @@ class PointController extends Controller
 
     public function update(PointRequest $request)
     {
-        $point = Point::find($request->id);
-        $point->name = $request->name;
+        $point = Point::find($request->input('item.id'));
+        $items = $request->input('item');
+        $point->fill($items);
         $point->updated_by = Auth::user()->name;
         $point->save();
     }
@@ -41,7 +42,7 @@ class PointController extends Controller
 
         $customers = $point->customer()->get();
 
-        return view('Point/point_customer_modal_item', ['point' => $point, 'customers' => $customers]);
+        return view('Point/point_customer_modal', ['point' => $point, 'customers' => $customers]);
     }
 
     public function customerDelete(Request $request)
@@ -55,6 +56,6 @@ class PointController extends Controller
         $point->save();
         $customers = $point->customer()->get();
 
-        return view('Point/point_customer_modal_item', ['point' => $point, 'customers' => $customers]);
+        return view('Point/point_customer_modal', ['point' => $point, 'customers' => $customers]);
     }
 }

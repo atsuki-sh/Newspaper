@@ -24,14 +24,14 @@ class PointRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'item.name' => 'required',
         ];
     }
 
     public function attributes()
     {
         return [
-            'name' => 'ポイント名',
+            'item.name' => 'ポイント名',
         ];
     }
 }

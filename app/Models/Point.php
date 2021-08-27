@@ -9,6 +9,10 @@ class Point extends Model
 {
     use HasFactory;
 
+    protected $fillable =[
+        'name',
+    ];
+
     public function customer()
     {
         return $this->hasMany(Customer::class);
