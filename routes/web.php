@@ -75,7 +75,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/route/create', [DeliveryRouteController::class, 'create'])->name('route_create');
     Route::post('/route/update', [DeliveryRouteController::class, 'update'])->name('route_update');
     Route::post('/route/delete', [DeliveryRouteController::class, 'delete'])->name('route_delete');
-
+    // ルートのポイント情報
+    Route::post('/route/point_update', [DeliveryRouteController::class, 'pointUpdate'])->name('route_point_update');
+    Route::post('/route/point_delete', [DeliveryRouteController::class, 'pointDelete'])->name('route_point_delete');
     // ルートのAjax通信
     Route::get('/route/list', [DeliveryRouteAjaxController::class, 'sendRouteList'])->name('route_list');
     Route::get('/route/modal/{id}', [DeliveryRouteAjaxController::class, 'sendRouteModal'])->name('route_modal');

@@ -80,3 +80,14 @@ $(document).on('click', '.point-info', function () {
 $(document).on('click', '#btn-search-point', function () {
     window.ajax_post_load($(this).data('url'), '#searched-list', {word: $('#input-search-point').val()});
 });
+
+$(document).on('click', '.registration, .point-delete', function () {
+    const data = {
+        route_id: $('#pointModalLabel').data('id'),
+        point_id: $(this).data('point-id'),
+    }
+    const addDone = function () {
+        window.ajax_get_load($('#route-list').data('url'), '#route-list');
+    }
+    window.ajax_post_load($(this).data('url'), '#pointModal', data, addDone);
+});
