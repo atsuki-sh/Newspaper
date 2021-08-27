@@ -5,7 +5,7 @@
             <td class="align-middle text-center p-1 pl-2 pr-2">{{ $point->name }}</td>
             <td class="align-middle text-center p-1 pl-2 pr-2">
                 <button type="button" class="registration btn btn-success text-nowrap"
-                        data-url="{{ route('route_point_update') }}" data-point-id="{{ $point->id }}">登録</button>
+                        data-url="" data-point-id="{{ $point->id }}">登録</button>
             </td>
         </tr>
     @else
@@ -15,7 +15,7 @@
                 <td class="align-middle text-center p-1 pl-2 pr-2">{{ $point->name }}</td>
                 <td class="align-middle text-center p-1 pl-2 pr-2">
                     <button type="button" class="point-delete btn btn-danger text-nowrap"
-                            data-url="{{ route('route_point_delete') }}" data-point-id="{{ $point->id }}">削除</button>
+                            data-url="" data-point-id="{{ $point->id }}">削除</button>
                 </td>
             </tr>
         @else

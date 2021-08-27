@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Point;
 use Illuminate\Http\Request;
 use App\Models\DeliveryRoute;
 
@@ -34,5 +35,13 @@ class DeliveryRouteAjaxController extends Controller
         $points = $route->point()->get();
 
         return view('DeliveryRoute/point_modal', ['route' => $route, 'points' => $points]);
+    }
+
+    public function searchPointData(Request $request)
+    {
+        $word = $request->input('word');
+        $points = Point::where('name', $word)->get();
+
+        return view('DeliveryRoute/point_list', ['points' => $points, 'bool' => false]);
     }
 }

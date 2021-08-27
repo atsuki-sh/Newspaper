@@ -11,13 +11,15 @@
             <h5>配達ポイントの検索</h5>
             <div class="d-flex align-items-center mb-3">
                 <label for="input-search-point" class="sr-only">ポイント名</label>
-                <input type="text" class="form-control mr-1 flex-fill" id="input-search-point" placeholder="ルート名">
-                <button type="button" id="btn-search-point" class="btn btn-primary mr-1 text-nowrap" data-url="">検索</button>
+                <input type="text" class="form-control mr-1 flex-fill" id="input-search-point" placeholder="ポイント名">
+                <button type="button" id="btn-search-point" class="btn btn-primary mr-1 text-nowrap"
+                        data-url="{{ route('route_point_search') }}">検索</button>
             </div>
             <table class="table">
                 <thead>
                 <tr>
                     <th class="text-center p-1" scope="col">名前</th>
+                    <th class="text-center p-1" scope="col"></th>
                 </tr>
                 </thead>
                 <tbody id="searched-list"></tbody>
@@ -30,6 +32,7 @@
                 <thead>
                 <tr>
                     <th class="text-center p-1" scope="col">名前</th>
+                    <th class="text-center p-1" scope="col"></th>
                 </tr>
                 </thead>
                 <tbody id="registered-list">

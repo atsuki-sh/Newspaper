@@ -76,3 +76,7 @@ $(document).on('click', '.point-info', function () {
     }
     window.ajax_get_load($(this).data('url'), '#pointModal', addDone);
 });
+
+$(document).on('click', '#btn-search-point', function () {
+    window.ajax_post_load($(this).data('url'), '#searched-list', {word: $('#input-search-point').val()});
+});

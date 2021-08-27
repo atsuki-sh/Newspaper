@@ -82,6 +82,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/route/search', [DeliveryRouteAjaxController::class, 'searchRouteData'])->name('route_search');
     // ルートのポイントのAjax通信
     Route::get('/route/point_modal/{id}', [DeliveryRouteAjaxController::class, 'sendPointModal'])->name('route_point_modal');
+    Route::post('/route/point_search', [DeliveryRouteAjaxController::class, 'searchPointData'])->name('route_point_search');
 
     // 配達管理画面
     Route::get('/delivery', [DeliveryController::class, 'index'])->name('delivery_index');
